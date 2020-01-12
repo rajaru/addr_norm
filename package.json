@@ -1,0 +1,24 @@
+{
+  "name": "addr_norm",
+  "version": "1.0.0",
+  "description": "Normalize address components (JS)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajaru/addr_norm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajaru/addr_norm/issues"
+  },
+  "homepage": "https://github.com/rajaru/addr_norm#readme",
+  "dependencies": {
+    "csv": "^5.3.1",
+    "js-yaml": "^3.13.1",
+    "unzipper": "^0.10.5"
+  }
+}
