@@ -11,32 +11,18 @@ class data {
         this.cname = null;
         this.alpha2= null;
         this.alpha3= null;
+        this.abbrev= null;
     }
 
-    async load(){
-        await this.load_countries();
-    }
-
-    async load_countries(){
+    load_countries(){
         if( !this.countries ){
-            var fname = path.join(__dirname, 'country-codes.csv');
-            var countries = await utils.csv_to_json(fname); //await this._csv_to_json(fname);
-            this.countries = countries.map( x => ({
-                "name" : x['official_name_en'] || '',
-                "un-es-short" : x["UNTERM English Short"],
-                "dial" : x["Dial"],
-                "fifa" : x['FIFA'],
-                "fips" : x["FIPS"],
-                "alpha3" : x["ISO3166-1-Alpha-3"],
-                "alpha2" : x["ISO3166-1-Alpha-2"]
-                })
-            );
-            
+            var fname = path.join(__dirname, 'country-codes.json');
+            this.countries = JSON.parse( fs.readFileSync(fname, 'utf8') );
             this.cname  = this.countries.reduce( (a,x)=>{a[x.name.toLowerCase()] = x; return a;}, {});
             this.alpha2 = this.countries.reduce( (a,x)=>{a[x.alpha2.toLowerCase()] = x; return a;}, {});
             this.alpha3 = this.countries.reduce( (a,x)=>{a[x.alpha3.toLowerCase()] = x; return a;}, {});
-            console.log('loaded')
         }
+
         fname = path.join(__dirname, 'en.yml');
         const doc = utils.yaml_to_json(fname);// yaml.safeLoad(fs.readFileSync(fname, 'utf8'));
         this.nameindex = {};
@@ -50,7 +36,7 @@ class data {
         }
     }
 
-    async _load_country_states(ccode){
+    _load_country_states(ccode){
         if( this.geo[ ccode ] )return this.geo[ ccode ];
         var fname = path.join(__dirname, ccode+'.json');
         if( fs.existsSync(fname) )this.geo[ ccode ] = JSON.parse( fs.readFileSync(fname, 'utf8') );
@@ -60,17 +46,18 @@ class data {
 
     _locate_state_by_name(parts, geo){
         var name = parts.join(' ');
-        if( geo.states[name] )return geo.states[name];
+        console.log(name, geo.states[name]);
+        if( geo.states[name] )return name;
         return null;
     }
 
-    async get_state_name(parsed){
+    get_state_name(parsed){
         var parts = parsed.parts;
         var ccode = parsed.country || 'us';
 
-        var geo = await this._load_country_states(ccode);
+        var geo = this._load_country_states(ccode);
         for(var i=4; i>0; i--){
-            if( parts.length<=i )break;
+            if( parts.length<=i )continue;
 
             var name = this._locate_state_by_name( parts.slice(parts.length-i), geo );
             if( name )return this._add_to_parsed(parsed, i, 'state', name);
@@ -78,7 +65,7 @@ class data {
 
         // try and locate state by code
         if( geo.statecodes && geo.statecodes[ parts[parts.length-1] ] )
-            return this._add_to_parsed(parsed, 1, 'state', parts[parts.length-1]);
+            return this._add_to_parsed(parsed, 1, 'state', geo.statecodes[ parts[parts.length-1] ]);
         
         parsed.state = null;
         return parsed;
@@ -86,20 +73,20 @@ class data {
 
     _locate_city_by_name(parts, geo){
         var name = parts.join(' ');
-        if( geo.cities[name] )return geo.cities[name];
+        if( geo.cities[name] )return name;
         return null;
     }
     
-    async get_city_name(parsed){
+    get_city_name(parsed){
         var parts = parsed.parts;
         var ccode = parsed.country || 'us';
         parsed.city = null;
-        var geo = await this._load_country_states(ccode);
+        var geo = this._load_country_states(ccode);
         for(var i=4; i>0; i--){
-            if( parts.length>i ){
-                var name = this._locate_city_by_name( parts.slice(parts.length-i), geo );
-                if( name )return this._add_to_parsed(parsed, i, 'city', name);
-            }
+            if( parts.length<=i )continue;
+            var name = this._locate_city_by_name( parts.slice(parts.length-i), geo );
+            
+            if( name )return this._add_to_parsed(parsed, i, 'city', name);
         }
         return parsed;
     }
@@ -129,12 +116,12 @@ class data {
         return parsed;
     }
 
-    async get_country_name(parsed){
+    get_country_name(parsed){
         var parts = parsed.parts;
         parsed.country = null;
         // try full country name from last
         for(var i=4; i>0; i--){
-            if( parts.length<=i )break;
+            if( parts.length<=i )continue;
             var name = this._locate_country_by_name( parts.slice(parts.length-i) );
             if( name )return this._add_to_parsed(parsed, i, 'country', name);
         }
@@ -148,29 +135,43 @@ class data {
         return parsed;
     }
 
-    async get_zipcode(parsed){
+    get_zipcode(parsed){
         if( parsed.zip )return parsed;
         var parts = parsed.parts;
         parsed.zip = null;
         for(var i=2; i>0; i--){
-            if( parts.length<=i )break;
+            if( parts.length<=i )continue;
             var part = parts.slice(parts.length-i).join('');
             if( !isNaN(part) )return this._add_to_parsed(parsed, i, 'zip', parts.slice(parts.length-i).join('-'));
         }
         return parsed;
     }
 
-    async parse_address(parts){
+    fix_abbreviations(parsed){
+        if( !this.abbrev ){
+            var fname = path.join(__dirname, 'street_abbrev.json');
+            this.abbrev = JSON.parse(fs.readFileSync(fname, 'utf8'));
+        }
+        var parts = parsed.parts;
+        for(var i=0; i<parts.length; i++){
+            if( this.abbrev[parts[i]] )parts[i] = this.abbrev[parts[i]];
+        }
+        return parsed;
+    }
+
+    parse_address(parts){
         var parsed = {parts: parts};
-        parsed = await this.get_zipcode(parsed);
-        parsed = await this.get_country_name(parsed);
-        parsed = await this.get_zipcode(parsed);
-        parsed = await this.get_state_name(parsed);
-        parsed = await this.get_city_name(parsed);
+        parsed = this.get_zipcode(parsed);
+        parsed = this.get_country_name(parsed);
+        parsed = this.get_zipcode(parsed);
+        parsed = this.get_state_name(parsed);
+        parsed = this.get_city_name(parsed);
+        parsed = this.fix_abbreviations(parsed);
         return parsed;
     }
 
 }
 
 var dobj = new data();
+dobj.load_countries();
 module.exports = dobj;

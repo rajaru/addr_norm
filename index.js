@@ -29,7 +29,7 @@ class address{
 
     // free form address text to be parsed and normalized
     //
-    async normalize(str){
+    normalize(str){
         var rex = [
             {exp: /([\S|\s]*)(\S)\.(\S)\.(\S)[\.]?([\S|\s]*)/g, count: 6},  //U.S.A
             {exp: /([\S|\s]*)(\S)\.(\S)[\.]?([\S|\s]*)/g, count: 5},        //U.S
@@ -43,7 +43,7 @@ class address{
             str = this._apply_regex_params( str, rex[i].exp, rex[i].count);
 
         var parts = str.split(/\s+/g) || [];
-        return await data.parse_address( parts );
+        return data.parse_address( parts );
     }
 }
 module.exports = address;
@@ -51,11 +51,11 @@ yargs.option('addr', {describe: 'Address to parse'});
 yargs.option('update', {describe: 'Update all or specific data set'});
 setTimeout(async ()=>{
     if( yargs.argv.addr ){
-        await data.load();
         var addr = new address();
-        console.log(await addr.normalize(yargs.argv.addr));
+        console.log(addr.normalize(yargs.argv.addr));
     }
     if( yargs.argv.update ){
         await update.cities();
+        await update.street_abbreviations();
     }
 }, 1);

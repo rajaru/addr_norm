@@ -36,10 +36,11 @@ class update {
     _add_city_details(rec){
         for(var key in rec )rec[key] = (rec[key]||'').toLowerCase();
         if( rec.city  )this.country.cities[rec.city ] = 1;
-        if( rec.state )this.country.states[rec.state] = 1;
+        if( rec.state )this.country.states[rec.state] = rec.state_code;
         if( rec.region)this.country.regions[rec.region]=1;
         if( rec.place )this.country.places[rec.place] = 1;
-        if( rec.state_code && !Number.isInteger(rec.state_code) )this.country.statecodes[rec.state_code] = 1;
+        if( rec.state_code && !Number.isInteger(rec.state_code) )
+            this.country.statecodes[rec.state_code] = rec.state;
     }
 
     async _parse_cities_geonames(fname){
@@ -100,8 +101,49 @@ class update {
     }
 
     async cities(){
+        var fname = path.join(__dirname, 'country-codes.csv');
+        var records = await utils.csv_to_json(fname);
+        var countries = records.map(x=>({
+            name: x.official_name_en,
+            alpha2: x["ISO3166-1-Alpha-2"],
+            alpha3: x["ISO3166-1-Alpha-3"],
+        }));
+        fname = path.join(__dirname, 'country-codes.json');
+        fs.writeFileSync(fname, JSON.stringify(countries));
+
         for(var c of countries )
             await this._update_country_geonames(c, __dirname);
+    }
+
+    async street_abbreviations(){
+        var fname = path.join(__dirname, 'street_abbrev.csv');
+        var columns = ['alt1', 'alt2', 'alt3'];
+        var options = {delimiter: ',', quote: null, columns: columns, 
+            raw: false, info: false, headers: false};
+        try{
+            var abbrv = await utils.csv_to_array(fname, options);
+            var prev = null;
+            for(var ab of abbrv ){
+                if( !ab.alt1 )ab.alt1 = prev.alt1;
+                if( !ab.alt3 )ab.alt3 = prev.alt3;
+                ab.alt1 = ab.alt1.trim().toLowerCase();
+                ab.alt2 = ab.alt2.trim().toLowerCase();
+                ab.alt3 = ab.alt3.trim().toLowerCase();
+                prev = ab;
+            }
+
+            var amap = {};
+            for(var ab of abbrv ){
+                amap[ ab.alt2 ] = ab.alt1;
+                amap[ ab.alt3 ] = ab.alt1;
+            }
+            //console.log(amap);
+            fname = path.join(__dirname, 'street_abbrev.json');
+            fs.writeFileSync(fname, JSON.stringify(amap));
+        }catch(e){
+            console.log(e);
+        }
+
     }
 }
 

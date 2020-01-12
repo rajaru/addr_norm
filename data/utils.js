@@ -49,9 +49,7 @@ class utils {
         options = options || {escape:'\\'};
         var parser = csv.parse(options);
         var fstream = fs.createReadStream(fname);
-        var headers = null;
         parser.on('readable', async ()=>{
-            if( !headers )headers = parser.read();
             var row = null;
             while( (row=parser.read()) ){
                 data.push(row);
@@ -61,7 +59,7 @@ class utils {
         parser.on('error', function(e){console.log('error: ', e);cb(e.message);});
         parser.on('end', async ()=>{
             parser.end();
-            cb(headers, data);
+            cb(null, data);
         });
         fstream.pipe(parser);
     }
