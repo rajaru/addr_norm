@@ -4,10 +4,11 @@ const request = require('request');
 const unzip = require('unzipper');
 const utils= require('./utils');
 
-const tmp = "c:\\tmp\\out";
+const tmp = "z:\\tmp\\out";
 const countries = [
-    'GB_full.csv'/*, 'NL_full.csv', 'US', 'IN'*/
+    'GB_full.csv', 'NL_full.csv', 'US', 'IN'
 ];
+
 class update {
 
     async aget(url, headers, ignoreCertErrs){
@@ -32,26 +33,24 @@ class update {
         });
     }
 
-    _add_city_details(name, state, regn, place){
-        name = (name ||'').trim().toLowerCase();
-        state= (state||'').trim().toLowerCase();
-        regn = (regn ||'').trim().toLowerCase();
-        place= (place||'').trim().toLowerCase();
-
-        if( name && state ){
-            if( !this.city_state.hasOwnProperty(state) )this.city_state[state] = [];
-            this.city_state[state].push( name );
-        }
+    _add_city_details(rec){
+        for(var key in rec )rec[key] = (rec[key]||'').toLowerCase();
+        if( rec.city  )this.country.cities[rec.city ] = 1;
+        if( rec.state )this.country.states[rec.state] = 1;
+        if( rec.region)this.country.regions[rec.region]=1;
+        if( rec.place )this.country.places[rec.place] = 1;
+        if( rec.state_code && !Number.isInteger(rec.state_code) )this.country.statecodes[rec.state_code] = 1;
     }
 
     async _parse_cities_geonames(fname){
-        var columns = [false, false, 'place', 'state', false, 'region', false, 'city', false, false, false, false];
+        var columns = [false, false, 'city', 'state', 'state_code', 'region', false, 'place', false, false, false, false];
         var options = {delimiter: '\t', quote: null, columns: columns, raw: false, info: false};
         try{
             var cities = await utils.csv_to_array(fname, options);
             
             for(var city of cities ){
-                this._add_city_details( city.city, city.state, city.region, city.place);
+                //this._add_city_details( city.city, city.state, city.region, city.place);
+                this._add_city_details( city );
             }
         }catch(e){
             console.log(e);
@@ -64,11 +63,17 @@ class update {
         var cityFolder = path.join(tmp, 'cities');
         if( !fs.existsSync(cityFolder) )fs.mkdirSync( cityFolder );
 
-        var zipFile = path.join(cityFolder, 'cities.zip');
+        var zipFile = path.join(cityFolder, c+'.zip');
         var url = "http://download.geonames.org/export/zip/"+c+'.zip';
         
         try{
-            this.city_state = {};
+            this.country = {
+                states: {},
+                cities: {},
+                regions:{},
+                places: {},
+                statecodes: {}
+            };
             if( !fs.existsSync(zipFile) )
                 fs.writeFileSync(zipFile, await this.aget(url));
             await this.unzip(zipFile, cityFolder);
@@ -82,15 +87,12 @@ class update {
                 }
             }
             await this._parse_cities_geonames(txtFile);
-
             
             if( folder ){
-                var jsfile = path.join(folder, c+'.json');
-                console.log(jsfile);
-                fs.writeFileSync(jsfile, JSON.stringify(this.city_state));    
+                var jsfile = path.join(folder, c.replace('_full.csv', '').toLowerCase()+'.json');
+                fs.writeFileSync(jsfile, JSON.stringify(this.country), null, 2);
             }
-            // console.log(this.city_state);
-            utils.rmFile(zipFile);
+            // utils.rmFile(zipFile);
         }catch(e){
             console.log('exception:', e);
             return null;

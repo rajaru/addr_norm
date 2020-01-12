@@ -2,9 +2,12 @@ const fs   = require('fs');
 const path = require('path');
 const utils= require('./utils');
 
+
+
 class data {
     constructor(){
         this.countries = null;
+        this.geo = {};
         this.cname = null;
         this.alpha2= null;
         this.alpha3= null;
@@ -47,6 +50,59 @@ class data {
         }
     }
 
+    async _load_country_states(ccode){
+        if( this.geo[ ccode ] )return this.geo[ ccode ];
+        var fname = path.join(__dirname, ccode+'.json');
+        if( fs.existsSync(fname) )this.geo[ ccode ] = JSON.parse( fs.readFileSync(fname, 'utf8') );
+        else this.geo[ ccode ] = {cities: {}, states: {}, regions: {}, places: {}, statecodes: {}};
+        return this.geo[ ccode ];
+    }
+
+    _locate_state_by_name(parts, geo){
+        var name = parts.join(' ');
+        if( geo.states[name] )return geo.states[name];
+        return null;
+    }
+
+    async get_state_name(parsed){
+        var parts = parsed.parts;
+        var ccode = parsed.country || 'us';
+
+        var geo = await this._load_country_states(ccode);
+        for(var i=4; i>0; i--){
+            if( parts.length<=i )break;
+
+            var name = this._locate_state_by_name( parts.slice(parts.length-i), geo );
+            if( name )return this._add_to_parsed(parsed, i, 'state', name);
+        }
+
+        // try and locate state by code
+        if( geo.statecodes && geo.statecodes[ parts[parts.length-1] ] )
+            return this._add_to_parsed(parsed, 1, 'state', parts[parts.length-1]);
+        
+        parsed.state = null;
+        return parsed;
+    }
+
+    _locate_city_by_name(parts, geo){
+        var name = parts.join(' ');
+        if( geo.cities[name] )return geo.cities[name];
+        return null;
+    }
+    
+    async get_city_name(parsed){
+        var parts = parsed.parts;
+        var ccode = parsed.country || 'us';
+        parsed.city = null;
+        var geo = await this._load_country_states(ccode);
+        for(var i=4; i>0; i--){
+            if( parts.length>i ){
+                var name = this._locate_city_by_name( parts.slice(parts.length-i), geo );
+                if( name )return this._add_to_parsed(parsed, i, 'city', name);
+            }
+        }
+        return parsed;
+    }
     
     _locate_country_by_name(parts){
         var name = parts.join(' ');
@@ -62,40 +118,59 @@ class data {
     }
     _locate_country_by_alpha3(parts){
         var name = parts[ parts.length-1 ];
-        if( this.alpha3[name] )return this.alpha3[name];
+        if( this.alpha3[name] )return this.alpha3[name].alpha2;
         if( this.nameindex[name] )return this.nameindex[name];
         return null;
     }
 
-    get_country_name(parts){
+    _add_to_parsed(parsed, count, key, val){
+        parsed.parts = parsed.parts.slice(0, parsed.parts.length-count);
+        parsed[key] = val;
+        return parsed;
+    }
+
+    async get_country_name(parsed){
+        var parts = parsed.parts;
+        parsed.country = null;
         // try full country name from last
         for(var i=4; i>0; i--){
-            if( parts.length>i ){
-                var name = this._locate_country_by_name( parts.slice(parts.length-i) );
-                if( name )return {parts: parts.slice(0, parts.length-i), name: name};
-            }
+            if( parts.length<=i )break;
+            var name = this._locate_country_by_name( parts.slice(parts.length-i) );
+            if( name )return this._add_to_parsed(parsed, i, 'country', name);
         }
 
-        // var name = this._locate_country_by_name( parts.slice(parts.length-3) );
-        // if( name )return {parts: parts.slice(0, parts.length-3), name: name};
-        
-        // name = this._locate_country_by_name( parts.slice(parts.length-2) );
-        // if( name )return {parts: parts.slice(0, parts.length-2), name: name};
-
-        // name = this._locate_country_by_name( parts.slice(parts.length-1) );
-        // if( name )return {parts: parts.slice(0, parts.length-1), name: name};
-
         name = this._locate_country_by_alpha2( parts );
-        if( name )return {parts: parts.slice(0, parts.length-1), name: name};
+        if( name )return this._add_to_parsed(parsed, 1, 'country', name);
 
         name = this._locate_country_by_alpha3( parts );
-        if( name )return {parts: parts.slice(0, parts.length-1), name: name};
+        if( name )return this._add_to_parsed(parsed, 1, 'country', name);
 
-        return {parts: parts, name: null};
+        return parsed;
+    }
+
+    async get_zipcode(parsed){
+        if( parsed.zip )return parsed;
+        var parts = parsed.parts;
+        parsed.zip = null;
+        for(var i=2; i>0; i--){
+            if( parts.length<=i )break;
+            var part = parts.slice(parts.length-i).join('');
+            if( !isNaN(part) )return this._add_to_parsed(parsed, i, 'zip', parts.slice(parts.length-i).join('-'));
+        }
+        return parsed;
+    }
+
+    async parse_address(parts){
+        var parsed = {parts: parts};
+        parsed = await this.get_zipcode(parsed);
+        parsed = await this.get_country_name(parsed);
+        parsed = await this.get_zipcode(parsed);
+        parsed = await this.get_state_name(parsed);
+        parsed = await this.get_city_name(parsed);
+        return parsed;
     }
 
 }
 
 var dobj = new data();
-// dobj.load_countries(); //this will not be ready until sometime
 module.exports = dobj;

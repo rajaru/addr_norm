@@ -19,6 +19,8 @@
   "dependencies": {
     "csv": "^5.3.1",
     "js-yaml": "^3.13.1",
-    "unzipper": "^0.10.5"
+    "request": "^2.88.0",
+    "unzipper": "^0.10.5",
+    "yargs": "^15.1.0"
   }
 }
