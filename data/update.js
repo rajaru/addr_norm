@@ -63,7 +63,17 @@ class update {
 
     _add_city_details(rec){
         for(var key in rec )rec[key] = (rec[key]||'').toLowerCase();
-        if( rec.city  )this.country.cities[rec.city ] = 1;
+        if( rec.city  ){
+            if( this.country.cities[rec.city] ){
+                if( this.country.cities[rec.city] instanceof Array )
+                    this.country.cities[rec.city].push(rec.state_code || 1);
+                else
+                    this.country.cities[rec.city] = [ this.country.cities[rec.city], rec.state_code||1];
+            }
+            else
+                this.country.cities[rec.city] = rec.state_code || 1;
+        }
+        
         if( rec.state )this.country.states[rec.state] = rec.state_code;
         if( rec.region)this.country.regions[rec.region]=1;
         if( rec.place )this.country.places[rec.place] = 1;

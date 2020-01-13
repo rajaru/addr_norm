@@ -43,10 +43,12 @@ class address{
             str = this._apply_regex_params( str, rex[i].exp, rex[i].count);
 
         var parts = str.split(/\s+/g) || [];
-        return data.parse_address( parts );
+        return data.parse_address( parts.filter(Boolean) );
     }
 }
-module.exports = address;
+module.exports = new address();
+
+/* for CLI */
 yargs.option('addr', {describe: 'Address to parse'});
 yargs.option('update', {describe: 'Update all or specific data set'});
 setTimeout(async ()=>{
