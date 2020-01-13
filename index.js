@@ -56,6 +56,6 @@ setTimeout(async ()=>{
     }
     if( yargs.argv.update ){
         await update.cities();
-        await update.street_abbreviations();
+        //await update.street_abbreviations();
     }
 }, 1);

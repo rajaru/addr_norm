@@ -6,7 +6,7 @@ const utils= require('./utils');
 
 const tmp = "z:\\tmp\\out";
 const countries = [
-    'GB_full.csv', 'NL_full.csv', 'US', 'IN'
+    'US', 'IN', 'GB_full.csv', 'NL_full.csv',
 ];
 
 class update {
@@ -33,6 +33,34 @@ class update {
         });
     }
 
+    _add_zipcode(country, zip){
+        if( !country || !zip )return;
+        if( !this.zip ){
+            var fname = path.join(__dirname, 'zip.json');
+            if( fs.existsSync(fname) )this.zip = JSON.parse( fs.readFileSync(fname, 'utf8') );
+            else this.zip = {};
+        }
+        if( !this.zip.hasOwnProperty(zip) )
+            this.zip[zip] = country;
+        else{
+            if( !(this.zip[zip] instanceof Array) ){
+                if( this.zip[zip] != country ){
+                    this.zip[zip] = [this.zip[zip], country];
+                }
+                else{
+                    // already present, ignore
+                }
+            }
+            else{
+                if( this.zip[zip].indexOf(country)<0 )
+                    this.zip[zip].push(country);
+            }
+
+        }
+        // if( !this.zip.hasOwnProperty(zip) )this.zip[zip] = [];
+        // if( this.zip[zip].indexOf(country)<0 )this.zip[zip].push(country);
+    }
+
     _add_city_details(rec){
         for(var key in rec )rec[key] = (rec[key]||'').toLowerCase();
         if( rec.city  )this.country.cities[rec.city ] = 1;
@@ -41,10 +69,11 @@ class update {
         if( rec.place )this.country.places[rec.place] = 1;
         if( rec.state_code && !Number.isInteger(rec.state_code) )
             this.country.statecodes[rec.state_code] = rec.state;
+
     }
 
     async _parse_cities_geonames(fname){
-        var columns = [false, false, 'city', 'state', 'state_code', 'region', false, 'place', false, false, false, false];
+        var columns = ['country', 'zip', 'city', 'state', 'state_code', 'region', false, 'place', false, false, false, false];
         var options = {delimiter: '\t', quote: null, columns: columns, raw: false, info: false};
         try{
             var cities = await utils.csv_to_array(fname, options);
@@ -52,6 +81,7 @@ class update {
             for(var city of cities ){
                 //this._add_city_details( city.city, city.state, city.region, city.place);
                 this._add_city_details( city );
+                this._add_zipcode(city.country, city.zip);
             }
         }catch(e){
             console.log(e);
@@ -66,7 +96,7 @@ class update {
 
         var zipFile = path.join(cityFolder, c+'.zip');
         var url = "http://download.geonames.org/export/zip/"+c+'.zip';
-        
+        console.log('downloading...', url);
         try{
             this.country = {
                 states: {},
@@ -92,6 +122,10 @@ class update {
             if( folder ){
                 var jsfile = path.join(folder, c.replace('_full.csv', '').toLowerCase()+'.json');
                 fs.writeFileSync(jsfile, JSON.stringify(this.country), null, 2);
+                if( this.zip ){
+                    jsfile = path.join(folder, 'zip.json');
+                    fs.writeFileSync(jsfile, JSON.stringify(this.zip), null, 2);
+                }
             }
             // utils.rmFile(zipFile);
         }catch(e){
@@ -103,13 +137,13 @@ class update {
     async cities(){
         var fname = path.join(__dirname, 'country-codes.csv');
         var records = await utils.csv_to_json(fname);
-        var countries = records.map(x=>({
+        var clist = records.map(x=>({
             name: x.official_name_en,
             alpha2: x["ISO3166-1-Alpha-2"],
             alpha3: x["ISO3166-1-Alpha-3"],
         }));
         fname = path.join(__dirname, 'country-codes.json');
-        fs.writeFileSync(fname, JSON.stringify(countries));
+        fs.writeFileSync(fname, JSON.stringify(clist));
 
         for(var c of countries )
             await this._update_country_geonames(c, __dirname);

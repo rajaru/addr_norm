@@ -2,7 +2,23 @@ const fs   = require('fs');
 const path = require('path');
 const utils= require('./utils');
 
-
+const ordinals = {
+    '1st' : 'first',
+    '2nd' : 'second',
+    '3rd' : 'third',
+    '4th' : 'fourrh',
+    '5th' : 'fifth',
+    '6th' : 'sixth',
+    '7th' : 'seventh',
+    '8th' : 'eigth',
+    '9th' : 'nineth',
+    '10th': 'tenthh',
+    'I'   : 'first',
+    'II'  : 'second',
+    'III' : 'third',
+    'IV'  : 'fourth',
+    'V'   : 'fifth',
+}
 
 class data {
     constructor(){
@@ -46,7 +62,6 @@ class data {
 
     _locate_state_by_name(parts, geo){
         var name = parts.join(' ');
-        console.log(name, geo.states[name]);
         if( geo.states[name] )return name;
         return null;
     }
@@ -159,6 +174,30 @@ class data {
         return parsed;
     }
 
+    fix_ordinals(parsed){
+        var parts = parsed.parts;
+        for(var i=0; i<parts.length; i++){
+            if( ordinals[parts[i]] )parts[i] = ordinals[parts[i]];
+        }
+        return parsed;
+    }
+
+    fix_ambiguity(parsed){
+        if( parsed.country && !parsed.state && !parsed.city ){
+            if( parsed.zip ){
+
+            }
+            else{
+                // check if there is a US state with the same name
+                var geo = this._load_country_states('us');
+                if( geo.states[parsed.country] ){
+                    parsed.state   = parsed.country;
+                    parsed.country = 'us';
+                }
+            }
+        }
+    }
+
     parse_address(parts){
         var parsed = {parts: parts};
         parsed = this.get_zipcode(parsed);
@@ -167,6 +206,7 @@ class data {
         parsed = this.get_state_name(parsed);
         parsed = this.get_city_name(parsed);
         parsed = this.fix_abbreviations(parsed);
+        parsed = this.fix_ordinals(parsed);
         return parsed;
     }
 
