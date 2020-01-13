@@ -148,17 +148,39 @@ class data {
 
         this._load_zip_codes();     // load if not already loaded
 
-        if( this.zipcodes[zip] )return this.zipcodes[zip];
+        //if( this.zipcodes[zip] )return this.zipcodes[zip];
+        if( this.zipcodes[zip] )return this.zipcodes[zip].split(',')[0];
         
         // if zip has two parts, try the first part alone.
         var parts = zip.split('-');
         if( parts.length > 1 && this.zipcodes[ parts[0] ])
-            return this.zipcodes[parts[0]];
+            return this.zipcodes[parts[0]].split(',')[0];
 
         return '';
     }
 
+    _locate_state_from_zip(zip){
+        if( !zip )return '';
+
+        this._load_zip_codes();     // load if not already loaded
+        var cntrystate = this.zipcodes[zip];
+        if( !cntrystate ){
+            var parts = zip.split('-');
+            if( parts.length > 1 )cntrystate = this.zipcodes[parts[0]];
+        }
+        // console.log('_locate_state_from_zip: ', zip, cntrystate);
+        if( !cntrystate )return '';
+        var parts = cntrystate.split(',');
+        if( parts.length>1 )return parts[1];
+        return '';
+    }
+
+
+
     _add_to_parsed(parsed, count, key, val){
+        var remove = parsed.parts.slice(parsed.parts.length-count);
+        for(var part of remove )this.address = this.address.replace(part, '');
+
         parsed.parts = parsed.parts.slice(0, parsed.parts.length-count);
         parsed[key] = val;
         return parsed;
@@ -235,12 +257,22 @@ class data {
         if( parsed.country && parsed.city && !parsed.state ){
             var geo = this._load_country_states(parsed.country);
             var states = geo.cities[parsed.city];
+            // console.log('states for city:', parsed.city, '=>', states)
+            
             // if city belongs to one state, we can fix it here
             if( states && typeof states == 'string')parsed.state = states;
+            else parsed.state = this._locate_state_from_zip(parsed.zip);
         }
     }
 
-    parse_address(parts){
+    parse_street(parsed){
+        var re = /^\d+\w*\s*(?:(?:[\-\/]?\s*)?\d*(?:\s*\d+\/\s*)?\d+)?\s+/;
+        parsed.street = this.address.split(' ').filter(Boolean).join(' ');
+        console.log( parsed.street.match(re) );
+    }
+
+    parse_address(parts, str){
+        this.address = str || '';
         var parsed = {parts: parts};
         parsed = this.get_zipcode(parsed);
         parsed = this.get_country_name(parsed);
@@ -251,6 +283,7 @@ class data {
         parsed = this.fix_abbreviations(parsed);
         parsed = this.fix_ordinals(parsed);
         this.fix_ambiguity(parsed);
+        this.parse_street(parsed);
         return parsed;
     }
 

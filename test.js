@@ -16,7 +16,6 @@ var cases = {
     },
     'avenida brigadeiro faria lima 3064, 3Â° andar  sao paulo  brazil':{
         country: 'br',
-        city: 'andar',
         state: 'sao paulo'
     },
     '23 hunter street - 601 level 6, currency house  sydney   2000':{
@@ -32,7 +31,7 @@ var cases = {
         country: 'us',
         zip: '19312-2405',
         city: 'berwyn',
-        state: 'il'
+        state: 'pa'
     },
 
 };

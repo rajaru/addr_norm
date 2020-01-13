@@ -6,7 +6,7 @@ const utils= require('./utils');
 
 const tmp = "z:\\tmp\\out";
 const countries = [
-    'US', 'IN', 'GB_full.csv', 'NL_full.csv',
+    'US', 'IN', 'GB_full.csv', 'AU', 'BR', 'SG', 'NL_full.csv',
 ];
 
 class update {
@@ -33,45 +33,51 @@ class update {
         });
     }
 
-    _add_zipcode(country, zip){
+    _add_zipcode(country, statecode, zip){
         if( !country || !zip )return;
+        var data = country+','+(statecode||'');
         if( !this.zip ){
             var fname = path.join(__dirname, 'zip.json');
             if( fs.existsSync(fname) )this.zip = JSON.parse( fs.readFileSync(fname, 'utf8') );
             else this.zip = {};
         }
         if( !this.zip.hasOwnProperty(zip) )
-            this.zip[zip] = country;
+            this.zip[zip] = data;
         else{
             if( !(this.zip[zip] instanceof Array) ){
-                if( this.zip[zip] != country ){
-                    this.zip[zip] = [this.zip[zip], country];
+                if( this.zip[zip] != data ){
+                    this.zip[zip] = [this.zip[zip], data];
                 }
                 else{
                     // already present, ignore
                 }
             }
             else{
-                if( this.zip[zip].indexOf(country)<0 )
-                    this.zip[zip].push(country);
+                if( this.zip[zip].indexOf(data)<0 )
+                    this.zip[zip].push(data);
             }
-
         }
-        // if( !this.zip.hasOwnProperty(zip) )this.zip[zip] = [];
-        // if( this.zip[zip].indexOf(country)<0 )this.zip[zip].push(country);
     }
 
     _add_city_details(rec){
         for(var key in rec )rec[key] = (rec[key]||'').toLowerCase();
         if( rec.city  ){
-            if( this.country.cities[rec.city] ){
-                if( this.country.cities[rec.city] instanceof Array )
-                    this.country.cities[rec.city].push(rec.state_code || 1);
+            var states = this.country.cities[rec.city];
+            var state_code = rec.state_code || 1;
+
+            if( states ){
+                if( state_code == states ){
+                    // same as what is already there
+                }
+                else if( states instanceof Array ){
+                    if( states.indexOf(state_code)<0 )states.push(state_code);
+                    //else its already there in the array
+                }
                 else
-                    this.country.cities[rec.city] = [ this.country.cities[rec.city], rec.state_code||1];
+                    this.country.cities[rec.city] = [states, state_code];
             }
             else
-                this.country.cities[rec.city] = rec.state_code || 1;
+                this.country.cities[rec.city] = state_code;
         }
         
         if( rec.state )this.country.states[rec.state] = rec.state_code;
@@ -91,7 +97,7 @@ class update {
             for(var city of cities ){
                 //this._add_city_details( city.city, city.state, city.region, city.place);
                 this._add_city_details( city );
-                this._add_zipcode(city.country, city.zip);
+                this._add_zipcode(city.country, city.state_code, city.zip);
             }
         }catch(e){
             console.log(e);
@@ -106,7 +112,7 @@ class update {
 
         var zipFile = path.join(cityFolder, c+'.zip');
         var url = "http://download.geonames.org/export/zip/"+c+'.zip';
-        console.log('downloading...', url);
+        
         try{
             this.country = {
                 states: {},
@@ -115,8 +121,10 @@ class update {
                 places: {},
                 statecodes: {}
             };
-            if( !fs.existsSync(zipFile) )
+            if( !fs.existsSync(zipFile) ){
+                console.log('downloading...', url);
                 fs.writeFileSync(zipFile, await this.aget(url));
+            }
             await this.unzip(zipFile, cityFolder);
 
             var txtFile = path.join(cityFolder, c+'.txt');

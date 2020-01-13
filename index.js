@@ -43,7 +43,7 @@ class address{
             str = this._apply_regex_params( str, rex[i].exp, rex[i].count);
 
         var parts = str.split(/\s+/g) || [];
-        return data.parse_address( parts.filter(Boolean) );
+        return data.parse_address( parts.filter(Boolean), str.toLowerCase() );
     }
 }
 module.exports = new address();
@@ -58,6 +58,6 @@ setTimeout(async ()=>{
     }
     if( yargs.argv.update ){
         await update.cities();
-        //await update.street_abbreviations();
+        await update.street_abbreviations();
     }
 }, 1);
