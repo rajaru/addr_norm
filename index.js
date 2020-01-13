@@ -37,13 +37,14 @@ class address{
             {exp: /([\S|\s]*)(\S\S)\.([\S|\s]*)/g, count: 4}              //US.
         ];
         str = str.toLowerCase().trim();
+        var address = str;
         str = str.replace(/-/g, ' ');
         str = str.replace(/,/g, ' ');
         for(var i=0; i<rex.length; i++)
             str = this._apply_regex_params( str, rex[i].exp, rex[i].count);
 
         var parts = str.split(/\s+/g) || [];
-        return data.parse_address( parts.filter(Boolean), str.toLowerCase() );
+        return data.parse_address( parts.filter(Boolean), address );
     }
 }
 module.exports = new address();

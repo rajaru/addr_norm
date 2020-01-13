@@ -61,7 +61,7 @@ class update {
 
     _add_city_details(rec){
         for(var key in rec )rec[key] = (rec[key]||'').toLowerCase();
-        if( rec.city  ){
+        if( rec.city && rec.city != 'street' && rec.city != 'avenue' ){ // seriously?!!
             var states = this.country.cities[rec.city];
             var state_code = rec.state_code || 1;
 

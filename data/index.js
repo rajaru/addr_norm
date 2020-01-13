@@ -266,10 +266,18 @@ class data {
     }
 
     parse_street(parsed){
-        //var re = /^\d+\w*\s*(?:(?:[\-\/]?\s*)?\d*(?:\s*\d+\/\s*)?\d+)?\s+/;
-        var re = /^(\b#|\bno)?\s?\d+/i;
         parsed.street = this.address.split(' ').filter(Boolean).join(' ');
-        console.log( parsed.street.match(re) );
+        parsed.door = null;
+        //var re = /^(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+(\s+apt\s+#?\d+\w?(-\d+\w?)*)?/gi
+        //var re = /^(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+\s+(apt\s+#?\d+\w?)?/i;
+
+        const regex = /(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+(\s+apt\s+#?\d+\w?(-\d+\w?)*)?/gim;
+        var matches = parsed.street.match(regex);
+        if( matches && matches.length>0 ){
+            parsed.door = matches[0];
+            parsed.street = parsed.street.replace(parsed.door, '').trim();
+        }
+        
     }
 
     parse_address(parts, str){
