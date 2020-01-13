@@ -266,7 +266,8 @@ class data {
     }
 
     parse_street(parsed){
-        var re = /^\d+\w*\s*(?:(?:[\-\/]?\s*)?\d*(?:\s*\d+\/\s*)?\d+)?\s+/;
+        //var re = /^\d+\w*\s*(?:(?:[\-\/]?\s*)?\d*(?:\s*\d+\/\s*)?\d+)?\s+/;
+        var re = /^(\b#|\bno)?\s?\d+/i;
         parsed.street = this.address.split(' ').filter(Boolean).join(' ');
         console.log( parsed.street.match(re) );
     }
