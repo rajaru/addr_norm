@@ -148,14 +148,13 @@ class data {
 
         this._load_zip_codes();     // load if not already loaded
 
-        //if( this.zipcodes[zip] )return this.zipcodes[zip];
-        if( this.zipcodes[zip] )return this.zipcodes[zip].split(',')[0];
-        
-        // if zip has two parts, try the first part alone.
-        var parts = zip.split('-');
-        if( parts.length > 1 && this.zipcodes[ parts[0] ])
-            return this.zipcodes[parts[0]].split(',')[0];
+        var cstate = this.zipcodes[zip.split('-')[0]];
+        if( cstate ){
+            if( !(cstate instanceof Array) )
+                return cstate.split(',')[0];        // its country,state combo
 
+            // more than one country/state found. ambiguous
+        }
         return '';
     }
 
@@ -169,14 +168,16 @@ class data {
             if( parts.length > 1 )cntrystate = this.zipcodes[parts[0]];
         }
         // console.log('_locate_state_from_zip: ', zip, cntrystate);
-        if( !cntrystate )return '';
+        if( !cntrystate || (cntrystate instanceof Array) )return '';
         var parts = cntrystate.split(',');
         if( parts.length>1 )return parts[1];
         return '';
     }
 
 
-
+    // add the parsed out part to the result and remove from the rest of
+    // the address component
+    //
     _add_to_parsed(parsed, count, key, val){
         var remove = parsed.parts.slice(parsed.parts.length-count);
         for(var part of remove )this.address = this.address.replace(part, '');
@@ -278,6 +279,8 @@ class data {
             parsed.street = parsed.street.replace(parsed.door, '').trim();
         }
         
+        parsed.street = parsed.street.split(',').filter(Boolean).join(',');
+        parsed.street = parsed.street.split('-').filter(Boolean).join('-');
     }
 
     parse_address(parts, str){
