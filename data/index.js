@@ -218,7 +218,16 @@ class data {
         for(var i=2; i>0; i--){
             if( parts.length<=i )continue;
             var part = parts.slice(parts.length-i).join('');
-            if( !isNaN(part) )return this._add_to_parsed(parsed, i, 'zip', parts.slice(parts.length-i).join('-'));
+            if( !isNaN(part) )
+                return this._add_to_parsed(parsed, i, 'zip', parts.slice(parts.length-i).join('-'));
+            else {
+                // lookup zips to check if its valid
+                if( this._locate_country_from_zip(part) )
+                    return this._add_to_parsed(parsed, i, 'zip', part);
+                part = parts.slice(parts.length-i).join(' ');
+                if( this._locate_country_from_zip(part) )
+                    return this._add_to_parsed(parsed, i, 'zip', part);
+            }
         }
         return parsed;
     }
@@ -267,12 +276,12 @@ class data {
     }
 
     parse_street(parsed){
-        parsed.street = this.address.split(' ').filter(Boolean).join(' ');
+        parsed.street = this.address.split(' ').filter(Boolean).join(' ').trim();
         parsed.door = null;
         //var re = /^(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+(\s+apt\s+#?\d+\w?(-\d+\w?)*)?/gi
         //var re = /^(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+\s+(apt\s+#?\d+\w?)?/i;
 
-        const regex = /(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+(\s+apt\s+#?\d+\w?(-\d+\w?)*)?/gim;
+        const regex = /^(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+(\s+apt\s+#?\d+\w?(-\d+\w?)*)?/gim;
         var matches = parsed.street.match(regex);
         if( matches && matches.length>0 ){
             parsed.door = matches[0];

@@ -12,7 +12,8 @@ var cases = {
         country: 'us',
         city: 'cupertino',
         state: 'ca',
-        zip: 95014
+        zip: 95014,
+        door: "10144"
     },
     'avenida brigadeiro faria lima 3064, 3Â° andar  sao paulo  brazil':{
         country: 'br',
@@ -21,19 +22,46 @@ var cases = {
     '23 hunter street - 601 level 6, currency house  sydney   2000':{
         country: 'au',
         city: 'sydney',
+        door: "23"
     },
     '69 lawrence ln.  bay shore  united states 11706-8623':{
         country: 'us',
         zip: '11706-8623',
-        city: 'bay shore'
+        city: 'bay shore',
+        door: "69"
     },
     '200 berwyn park 920  berwyn   19312-2405':{
         country: 'us',
         zip: '19312-2405',
         city: 'berwyn',
-        state: 'pa'
+        state: 'pa',
+        door: "200"
     },
-
+    "saint martin's ct. 5th fl.  london  united kingdom ec4m 7ej":{
+        country: 'gb',
+        zip: 'ec4m 7ej',
+        city: 'london',
+    },
+    "4-22 rue marie-georges picquart  paris  france (european territory)":{
+        country: 'fr',
+        city: 'paris',
+        door: "4-22"
+    },
+    "new york  new york  usa":{
+        country: 'us',
+        city: 'new york',
+        state: "new york"
+    },
+    "800 third avenue  new york  usa":{
+        country: 'us',
+        city: 'new york',
+        state: "new york"
+    },
+    "105 wigmere st.  london  united kingdom w1u 1qj":{
+        country: 'gb',
+        zip: 'w1u 1qj',
+        city: 'london',
+    }
 };
 
 var count = 0, err=0;

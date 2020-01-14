@@ -27,6 +27,16 @@ class address{
         return str;
     }
 
+    _remove(str){
+        var rex = [
+            /\(?european\s+territory\)?/ig
+        ];
+        
+        for(var i=0; i<rex.length; i++)
+            str = str.replace(rex[i], '');
+        return str;
+    }
+
     // free form address text to be parsed and normalized
     //
     normalize(str){
@@ -37,6 +47,7 @@ class address{
             {exp: /([\S|\s]*)(\S\S)\.([\S|\s]*)/g, count: 4}              //US.
         ];
         str = str.toLowerCase().trim();
+        str = this._remove(str);
         var address = str;
         str = str.replace(/-/g, ' ');
         str = str.replace(/,/g, ' ');
