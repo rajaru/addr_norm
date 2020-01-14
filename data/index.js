@@ -116,7 +116,7 @@ class data {
         parsed.city = null;
         var geo = this._load_country_states(ccode);
         for(var i=4; i>0; i--){
-            if( parts.length<=i )continue;
+            if( parts.length<i )continue;
             var name = this._locate_city_by_name( parts.slice(parts.length-i), geo );
             
             if( name )return this._add_to_parsed(parsed, i, 'city', name);
@@ -143,17 +143,28 @@ class data {
         return null;
     }
 
-    _locate_country_from_zip(zip){
+    _locate_country_from_zip(zip, parsed){
+        
         if( !zip )return '';
 
         this._load_zip_codes();     // load if not already loaded
 
         var cstate = this.zipcodes[zip.split('-')[0]];
+        //console.log('_locate_country_from_zip: ', zip, cstate);
         if( cstate ){
             if( !(cstate instanceof Array) )
                 return cstate.split(',')[0];        // its country,state combo
 
             // more than one country/state found. ambiguous
+
+            // see if a matching city is found in any one of the cstate entries
+            if( parsed.city ){
+                for(var cs of cstate ){
+                    var country = cs.split(',')[0];
+                    var geo = this._load_country_states(country);
+                    if( geo.cities[parsed.city])return country;
+                }
+            }
         }
         return '';
     }
@@ -206,7 +217,7 @@ class data {
 
         // if we have a zip code, lets try and guess country from it
         if( parsed.zip )
-            parsed.country = this._locate_country_from_zip(parsed.zip) || null;
+            parsed.country = this._locate_country_from_zip(parsed.zip, parsed) || null;
 
         return parsed;
     }
@@ -222,10 +233,10 @@ class data {
                 return this._add_to_parsed(parsed, i, 'zip', parts.slice(parts.length-i).join('-'));
             else {
                 // lookup zips to check if its valid
-                if( this._locate_country_from_zip(part) )
+                if( this._locate_country_from_zip(part, parsed) )
                     return this._add_to_parsed(parsed, i, 'zip', part);
                 part = parts.slice(parts.length-i).join(' ');
-                if( this._locate_country_from_zip(part) )
+                if( this._locate_country_from_zip(part, parsed) )
                     return this._add_to_parsed(parsed, i, 'zip', part);
             }
         }
@@ -264,6 +275,10 @@ class data {
     }
 
     fix_ambiguity(parsed){
+        if( parsed.zip && parsed.city && !parsed.country ){
+            parsed.country = this._locate_country_from_zip(parsed.zip, parsed) || null;
+        }
+
         if( parsed.country && parsed.city && !parsed.state ){
             var geo = this._load_country_states(parsed.country);
             var states = geo.cities[parsed.city];
@@ -272,6 +287,16 @@ class data {
             // if city belongs to one state, we can fix it here
             if( states && typeof states == 'string')parsed.state = states;
             else parsed.state = this._locate_state_from_zip(parsed.zip);
+
+            if( !parsed.state ){
+                // look up and find if there is a state with same name as city
+                if( geo.states[parsed.city] )parsed.state = parsed.city;
+            }
+        }
+        else if( parsed.country && parsed.state && !parsed.city ){
+            var geo = this._load_country_states(parsed.country);
+            // check if we have a city with the same name as state
+            if( geo.cities[parsed.state] )parsed.city = parsed.state;
         }
     }
 
