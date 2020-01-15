@@ -348,6 +348,7 @@ class data {
             }
         }
         str += this.fix_abbreviation(word);
+        str = str.replace(/[\-\,\*]/ig, ' ').split(' ').filter(Boolean).join(' ');
         parsed.street = str;
     }
 

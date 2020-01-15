@@ -48,11 +48,12 @@ class address{
         ];
         str = str.toLowerCase().trim();
         str = this._remove(str);
+        for(var i=0; i<rex.length; i++)
+            str = this._apply_regex_params( str, rex[i].exp, rex[i].count);
+
         var address = str;
         str = str.replace(/-/g, ' ');
         str = str.replace(/,/g, ' ');
-        for(var i=0; i<rex.length; i++)
-            str = this._apply_regex_params( str, rex[i].exp, rex[i].count);
 
         var parts = str.split(/\s+/g) || [];
         return data.parse_address( parts.filter(Boolean), address );
