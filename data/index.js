@@ -61,9 +61,14 @@ class data {
     }
 
     _load_zip_codes(){
-        if( this.zipcodes )return;
-        var fname = path.join(__dirname, 'zip.json');
-        this.zipcodes = JSON.parse(fs.readFileSync(fname, 'utf8'));
+        if( !this.zipcodes ){
+            var fname = path.join(__dirname, 'zip.json');
+            this.zipcodes = JSON.parse(fs.readFileSync(fname, 'utf8'));
+        }
+        if( !this.ukzipcodes ){
+            var fname = path.join(__dirname, 'ukzip.json');
+            this.ukzipcodes = JSON.parse(fs.readFileSync(fname, 'utf8'));
+        }
     }
 
     _locate_state_by_name(parts, geo){
@@ -149,7 +154,11 @@ class data {
 
         this._load_zip_codes();     // load if not already loaded
 
-        var cstate = this.zipcodes[zip.split('-')[0]];
+        var zipcode = zip.split('-')[0];
+        var cstate = this.zipcodes[zipcode];
+
+        if( !cstate )cstate = this.ukzipcodes[zipcode];
+
         //console.log('_locate_country_from_zip: ', zip, cstate);
         if( cstate ){
             if( !(cstate instanceof Array) )

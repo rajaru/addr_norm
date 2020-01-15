@@ -41,11 +41,13 @@ var cases = {
         country: 'gb',
         zip: 'ec4m 7ej',
         city: 'london',
+        street: 'saint martin\'s court fifth floor'
     },
     "4-22 rue marie-georges picquart  paris  france (european territory)":{
         country: 'fr',
         city: 'paris',
-        door: "4-22"
+        door: "4-22",
+        street: 'rue marie-georges picquart'
     },
     "new york  new york  usa":{
         country: 'us',
@@ -61,6 +63,8 @@ var cases = {
         country: 'gb',
         zip: 'w1u 1qj',
         city: 'london',
+        door: '105',
+        street: 'wigmere street'
     }
 };
 
