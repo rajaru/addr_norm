@@ -106,6 +106,51 @@ class update {
         // console.log(cities);
     }
 
+    async _update_uk_zipcodes(folder){
+        var cityFolder = path.join(tmp, 'cities');
+        if( !fs.existsSync(cityFolder) )fs.mkdirSync( cityFolder );
+        var zipFile = path.join(cityFolder, 'ukzip.zip');
+        var url = "https://www.doogal.co.uk/files/postcodes.zip";
+        try{
+            if( !fs.existsSync(zipFile) ){
+                console.log('downloading...', url);
+                fs.writeFileSync(zipFile, await this.aget(url));
+            }
+            var txtFile = "g:\\temp\\postcodes.csv";
+            if( !fs.existsSync(txtFile) )
+                await this.unzip(zipFile, "g:\\temp");
+            
+            
+            if( !fs.existsSync(txtFile) ){
+                console.log('Could not locate ', txtFile);
+                return;
+            };
+
+            var columns = ['zip', 'inuse', null,null,null,null,null,null,'district',null,
+                null,null,'state',null,null,null,null,null,null,null,null,null,null,null,null,'region',
+                null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null, null, null, null];
+            var options = {delimiter: ',', quote: '"', columns: columns, raw: false, info: false, from: 1};
+            try{
+                var cities = await utils.csv_to_array(txtFile, options);
+                var ukzips = {};
+                var statecodes = {"england":"eng","l93000001":"","m83000003":"","northern ireland":"nir","scotland":"sct","wales":"wls"};
+
+                for(var city of cities ){
+                    ukzips[city.zip.toLowerCase()] = 'uk,'+(statecodes[city.state.toLowerCase()]||'');
+                }
+                var jsfile = path.join(__dirname, 'ukzip.json');
+                fs.writeFileSync(jsfile, JSON.stringify(ukzips), null, 2);
+            }catch(e){
+                console.log(e);
+            }
+        }catch(e){
+            console.log('exception:', e);
+            return null;
+        }
+
+    }
+
+
     async _update_country_geonames(c, folder){
         var cityFolder = path.join(tmp, 'cities');
         if( !fs.existsSync(cityFolder) )fs.mkdirSync( cityFolder );
@@ -165,6 +210,8 @@ class update {
 
         for(var c of countries )
             await this._update_country_geonames(c, __dirname);
+
+        // await this._update_uk_zipcodes();
     }
 
     async street_abbreviations(){

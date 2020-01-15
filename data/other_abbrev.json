@@ -12,5 +12,10 @@
     "pla": "placita",
     "rch": "rancho",
     "ver": "vereda",
-    "vis": "vista"
+    "vis": "vista",
+    "fl" : "floor",
+    "e"  : "east",
+    "w"  : "west",
+    "s"  : "south",
+    "n"  : "north"
 }

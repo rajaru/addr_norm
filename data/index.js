@@ -243,27 +243,40 @@ class data {
         return parsed;
     }
 
-    fix_abbreviations(parsed){
+    fix_abbreviation(word){
+        word = (word || '' ).trim();
+        if( !word )return word;
+        if( word[word.length-1] == '.' )word = word.substr(0, word.length-1)
+
         if( !this.abbrev ){
             var fname = path.join(__dirname, 'street_abbrev.json');
             this.abbrev = JSON.parse(fs.readFileSync(fname, 'utf8'));
         }
-        var parts = parsed.parts;
-        for(var i=0; i<parts.length; i++){
-            if( this.abbrev[parts[i]] )parts[i] = this.abbrev[parts[i]];
-        }
-
-        // spanish and other manually updated list
         if( !this.other_abbrev ){
             var fname = path.join(__dirname, 'other_abbrev.json');
             this.other_abbrev = JSON.parse(fs.readFileSync(fname, 'utf8'));
         }
+
+
+        if( this.abbrev[word] )word = this.abbrev[word];
+        if( this.other_abbrev[word] )word = this.other_abbrev[word];
+        if( ordinals[word] )word = ordinals[word];
+
+        return word;
+    }
+
+    /*
+    fix_abbreviations(parts){
+        
         for(var i=0; i<parts.length; i++){
-            if( this.other_abbrev[parts[i]] )parts[i] = this.other_abbrev[parts[i]];
+            parts[i] = this.fix_abbreviation(parts[i]);
         }
 
+        for(var i=0; i<parts.length; i++){
+            parts[i] = this.fix_abbreviation(parts[i]);
+        }
 
-        return parsed;
+        return parts;
     }
 
     fix_ordinals(parsed){
@@ -272,7 +285,7 @@ class data {
             if( ordinals[parts[i]] )parts[i] = ordinals[parts[i]];
         }
         return parsed;
-    }
+    }*/
 
     fix_ambiguity(parsed){
         if( parsed.zip && parsed.city && !parsed.country ){
@@ -312,9 +325,21 @@ class data {
             parsed.door = matches[0];
             parsed.street = parsed.street.replace(parsed.door, '').trim();
         }
-        
-        parsed.street = parsed.street.split(',').filter(Boolean).join(',');
-        parsed.street = parsed.street.split('-').filter(Boolean).join('-');
+
+        var str = '';
+        var word = '';
+        var separators = " \t\r\n-,";
+        for(var c of parsed.street){
+            if( separators.indexOf(c)>=0){
+                str += this.fix_abbreviation(word)+c;
+                word = '';
+            }
+            else{
+                word += c;
+            }
+        }
+        str += this.fix_abbreviation(word);
+        parsed.street = str;
     }
 
     parse_address(parts, str){
@@ -326,8 +351,9 @@ class data {
         parsed = this.get_state_name(parsed);
         parsed = this.get_city_name(parsed);
         
-        parsed = this.fix_abbreviations(parsed);
-        parsed = this.fix_ordinals(parsed);
+        // parsed = this.fix_abbreviations(parsed);
+        // parsed = this.fix_ordinals(parsed);
+
         this.fix_ambiguity(parsed);
         this.parse_street(parsed);
         return parsed;
