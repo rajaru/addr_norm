@@ -6,7 +6,7 @@ const utils= require('./utils');
 
 const tmp = "z:\\tmp\\out";
 const countries = [
-    'US', 'IN', 'GB_full.csv', 'AU', 'BR', 'SG', 'FR', 'NO', 'DE', 'NL_full.csv',
+    'US', 'IN', 'CA', 'GB_full.csv', 'AU', 'BR', 'SG', 'FR', 'NO', 'DE', 'NL_full.csv',
 ];
 
 class update {
