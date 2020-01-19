@@ -159,6 +159,13 @@ class data {
 
         if( !cstate )cstate = this.ukzipcodes[zipcode];
 
+        if( !cstate ){
+            // for canada we have only the first three letters
+            if( zip.indexOf(' ')>0 ){
+                cstate = this.zipcodes[zip.split(' ')[0]];
+            }
+        }
+
         //console.log('_locate_country_from_zip: ', zip, cstate);
         if( cstate ){
             if( !(cstate instanceof Array) )
