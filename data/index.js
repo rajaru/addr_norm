@@ -109,7 +109,8 @@ class data {
 
     _locate_city_by_name(parts, geo){
         var name = parts.join(' ');
-        //console.log('_locate_city_by_name:', name);
+        name = name.replace(/[\(\)]/g, '');
+        console.log('_locate_city_by_name:', name);
         if( geo.cities[name] )return name;
         return null;
     }
@@ -182,6 +183,15 @@ class data {
                 }
             }
         }
+
+        // lets make a guess from the zip format
+        if( zip.match(/^\d\d\d[\- ]\d\d\d\d/) ){
+            return 'jp';
+        }
+        if( zip.match(/^[a-z0-9][a-z0-9][a-z0-9]?[a-z0-9]? [a-z0-9][a-z0-9][a-z0-9]/) ){
+            return 'gb';
+        }
+
         return '';
     }
 
