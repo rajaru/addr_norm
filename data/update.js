@@ -106,6 +106,39 @@ class update {
         // console.log(cities);
     }
 
+
+    _fix_state_suffixes(jpjson, recs){
+        var states = recs.reduce((a,x)=>{a[x.state] = x.state; return a;}, {});
+        var statecodes = {...states};
+        for(var rec of recs ){
+            states[rec.state+' ken'] = rec.state;
+            states[rec.state+' to'] = rec.state;
+            states[rec.state+' fu'] = rec.state;
+        }
+
+
+        jpjson.statecodes = statecodes;
+    }
+
+    async _update_jp_zipcodes(){
+        var columns = ['zip', 'state', 'city'];
+        var options = {delimiter: ',', quote: '"', columns: columns, raw: false, info: false, from: 1};
+        var recs = await utils.csv_to_array(path.join(__dirname, 'jpzips.csv'), options);
+        var jpjson = JSON.parse(fs.readFileSync(path.join(__dirname, 'jp.json')));
+        for(var rec of recs ){
+            jpjson.statecodes[ rec.state ] = rec.state;
+            jpjson.states[ rec.state ] = rec.state;
+            if( !jpjson.cities.hasOwnProperty(rec.city) )jpjson.cities[rec.city] = rec.state;
+            else if( jpjson.cities[rec.city] instanceof Array ){
+                if( jpjson.cities[rec.city].indexOf(rec.state)<0 )jpjson.cities[rec.city].push(rec.state);
+            }
+            else if( jpjson.cities[rec.city] != rec.state )jpjson.cities[rec.city] = rec.state;
+        }
+
+        // fix state codes and state names
+    }
+
+
     async _update_uk_zipcodes(folder){
         var cityFolder = path.join(tmp, 'cities');
         if( !fs.existsSync(cityFolder) )fs.mkdirSync( cityFolder );
@@ -210,6 +243,8 @@ class update {
 
         for(var c of countries )
             await this._update_country_geonames(c, __dirname);
+
+        await this._update_jp_zipcodes();
 
         // await this._update_uk_zipcodes();
     }

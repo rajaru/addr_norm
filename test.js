@@ -65,6 +65,12 @@ var cases = {
         city: 'london',
         door: '105',
         street: 'wigmere street'
+    },
+    "midtown tower 9-7-1 akasaka minato-ku (tokyo)   107-6242":{
+        country: 'jp',
+        zip: '107-6242',
+        city: 'tokyo',
+        state:'tokyo',
     }
 };
 

@@ -69,6 +69,10 @@ class data {
             var fname = path.join(__dirname, 'ukzip.json');
             this.ukzipcodes = JSON.parse(fs.readFileSync(fname, 'utf8'));
         }
+        if( !this.jpzipcodes ){
+            var fname = path.join(__dirname, 'jpzip.json');
+            this.jpzipcodes = JSON.parse(fs.readFileSync(fname, 'utf8'));
+        }
     }
 
     _locate_state_by_name(parts, geo){
@@ -159,6 +163,7 @@ class data {
         var cstate = this.zipcodes[zipcode];
 
         if( !cstate )cstate = this.ukzipcodes[zipcode];
+        if( !cstate )cstate = this.jpzipcodes[zipcode];
 
         if( !cstate ){
             // for canada we have only the first three letters
@@ -204,7 +209,10 @@ class data {
             var parts = zip.split('-');
             if( parts.length > 1 )cntrystate = this.zipcodes[parts[0]];
         }
-        // console.log('_locate_state_from_zip: ', zip, cntrystate);
+        if( !cntrystate)this.ukzipcodes[zip];
+        if( !cntrystate)this.jpzipcodes[zip];
+
+        console.log('_locate_state_from_zip: ', zip, cntrystate);
         if( !cntrystate || (cntrystate instanceof Array) )return '';
         var parts = cntrystate.split(',');
         if( parts.length>1 )return parts[1];
@@ -336,6 +344,9 @@ class data {
             var geo = this._load_country_states(parsed.country);
             // check if we have a city with the same name as state
             if( geo.cities[parsed.state] )parsed.city = parsed.state;
+        }
+        else if( parsed.country && !parsed.state && !parsed.city && parsed.zip){
+            parsed.state = this._locate_state_from_zip(parsed.zip);
         }
     }
 
