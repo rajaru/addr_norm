@@ -4,11 +4,12 @@ const request = require('request');
 const unzip = require('unzipper');
 const utils= require('./utils');
 
-const tmp = "z:\\tmp\\out";
-const countries = [
-    'US', 'IN', 'CA', 'GB_full.csv', 'AU', 'BR', 'SG', 'FR', 'NO', 'DE', 'NL_full.csv', 'JP', 'MX', 'DK', 'ES'
-];
-
+const tmp = "g:\\tmp\\out";
+// const countries = [
+//     'US', 'IN', 'CA', 'GB_full.csv', 'AU', 'BR', 'SG', 'FR', 'NO', 'DE', 'NL_full.csv', 'JP', 'MX', 'DK', 'ES'
+// ];
+const countries = ['US'];
+    
 class update {
 
     async aget(url, headers, ignoreCertErrs){
@@ -201,7 +202,7 @@ class update {
                     ukzips[city.zip.toLowerCase()] = 'uk,'+(statecodes[city.state.toLowerCase()]||'');
                 }
                 var jsfile = path.join(__dirname, 'ukzip.json');
-                fs.writeFileSync(jsfile, JSON.stringify(ukzips), null, 2);
+                fs.writeFileSync(jsfile, JSON.stringify(ukzips, null, 2));
             }catch(e){
                 console.log(e);
             }
@@ -259,6 +260,177 @@ class update {
         }
     }
 
+    _add_city_state_details(country, city, altname, state){
+        country = country.toLowerCase();
+        city = city.toLowerCase();
+        state = state.toLowerCase();
+        altname = altname.toLowerCase();
+
+        var cstate = country+','+state+','+city;
+        if( !this.cities.hasOwnProperty(altname) ){
+            this.cities[altname] = cstate;
+        }
+        else if( this.cities[altname] instanceof Array ){
+            if( this.cities[altname].indexOf(cstate)<0)this.cities[altname].push(cstate);
+        }
+        else if( this.cities[altname] != cstate )
+            this.cities[altname] = [this.cities[altname], cstate];
+    }
+
+    /*
+    async _parse_cities_states(fname){
+        // var columns = ['geonameid', 'name', 'asciiname', 'alternatenames', false, false, 'fclass', 'fcode', 
+        //     'country', 'cc2', 'acode1', 'acode2', false, false, false, false, false, false, false];
+        var columns = [false, 'name', 'asciiname', 'alternatenames', false, false, false, false, 
+            false, false, 'acode1', false, false, false, false, false, false, false, false];
+
+        var options = {delimiter: '\t', quote: null, columns: columns, raw: false, info: false};
+        try{
+            var cities = await utils.csv_to_array(fname, options);
+            
+            for(var city of cities ){
+                this._add_city_state_details(city.asciiname, city.acode1);
+                var parts = city.alternatenames.split(',').filter(Boolean);
+                if( parts.length>0 ){
+                    for(var part of parts )this._add_city_state_details(part, city.acode1);
+                }
+            }
+        }catch(e){
+            console.log(e);
+        }
+        
+        // console.log(cities);
+    }
+
+
+    
+    async _update_city_states(c, folder){
+        var cityFolder = path.join(tmp, 'cstates');
+        if( !fs.existsSync(cityFolder) )fs.mkdirSync( cityFolder );
+
+        var zipFile = path.join(cityFolder, c+'.zip');
+        var url = "https://download.geonames.org/export/dump/"+c+'.zip';
+        
+        try{
+            this.country = {
+                cities: {},
+            };
+            if( !fs.existsSync(zipFile) ){
+                console.log('downloading...', url);
+                fs.writeFileSync(zipFile, await this.aget(url));
+            }
+            await this.unzip(zipFile, cityFolder);
+
+            var txtFile = path.join(cityFolder, c+'.txt');
+            if( !fs.existsSync(txtFile) ){
+                txtFile = path.join(cityFolder, c.replace('.csv', '')+'.txt');
+                if( !fs.existsSync(txtFile) ){
+                    console.log('Could not locate ', txtFile);
+                    return;
+                }
+            }
+            await this._parse_cities_states(txtFile);
+            
+            if( folder ){
+                var jsfile = path.join(folder, c.replace('_full.csv', '').toLowerCase()+'-cities.json');
+                console.log('writing to: ', jsfile);
+                fs.writeFileSync(jsfile, JSON.stringify(this.country, null, 2));
+            }
+            // utils.rmFile(zipFile);
+        }catch(e){
+            console.log('exception:', e);
+            return null;
+        }
+
+    }
+    */
+    async _parse_geo_cities(fname){
+        var columns = [false, 'name', 'asciiname', 'alternatenames', false, false, false, false, 
+            'country', false, 'acode1', false, false, false, false, false, false, false, false];
+
+        var options = {delimiter: '\t', quote: null, columns: columns, raw: false, info: false};
+        try{
+            var cities = await utils.csv_to_array(fname, options);
+            
+            for(var city of cities ){
+                var admin1Code = city.country+'.'+city.acode1;
+                var stateCode = this.adminCodes[admin1Code];
+                if( !stateCode ){
+                    // console.log('could not find admin1Code', admin1Code, city);
+                    continue;
+                }
+
+                this._add_city_state_details(city.country, city.asciiname, city.asciiname, stateCode);
+                var parts = city.alternatenames.split(',').filter(Boolean);
+                if( parts.length>0 ){
+                    for(var part of parts )this._add_city_state_details(city.country, city.asciiname, part, stateCode);
+                }
+            }
+        }catch(e){
+            console.log(e);
+        }
+        
+        // console.log(cities);
+    }
+
+    async _geo_admin_codes(){
+        var cityFolder = path.join(tmp, 'cstates');
+        if( !fs.existsSync(cityFolder) )fs.mkdirSync( cityFolder );
+        var txtFile = path.join(cityFolder, 'admin1codes.txt');
+        var url = "https://download.geonames.org/export/dump/admin1CodesASCII.txt";
+        try{
+            
+            if( !fs.existsSync(txtFile) ){
+                console.log('downloading...', url);
+                fs.writeFileSync(txtFile, await this.aget(url));
+            }
+
+            var columns = ['code', 'name', 'asciiname', 'geonameid'];
+            var options = {delimiter: '\t', quote: null, columns: columns, raw: false, info: false};
+            var adminCodes = await utils.csv_to_array(txtFile, options);
+            this.adminCodes = adminCodes.reduce( (a,x)=>{a[x.code]=x.asciiname; return a;}, {});
+        }catch(e){
+            console.log('exception:', e);
+            this.adminCodes = {};
+            return null;
+        }
+
+    }
+
+
+    async _update_geo_cities(c){
+        var cityFolder = path.join(tmp, 'cstates');
+        if( !fs.existsSync(cityFolder) )fs.mkdirSync( cityFolder );
+
+        var zipFile = path.join(cityFolder, c+'.zip');
+        var url = "https://download.geonames.org/export/dump/"+c+'.zip';
+        
+        try{
+            
+            if( !fs.existsSync(zipFile) ){
+                console.log('downloading...', url);
+                fs.writeFileSync(zipFile, await this.aget(url));
+            }
+            await this.unzip(zipFile, cityFolder);
+
+            var txtFile = path.join(cityFolder, c+'.txt');
+            if( !fs.existsSync(txtFile) ){
+                txtFile = path.join(cityFolder, c.replace('.csv', '')+'.txt');
+                if( !fs.existsSync(txtFile) ){
+                    console.log('Could not locate ', txtFile);
+                    return;
+                }
+            }
+            await this._parse_geo_cities(txtFile);
+            
+            // utils.rmFile(zipFile);
+        }catch(e){
+            console.log('exception:', e);
+            return null;
+        }
+    }
+
+
     async cities(){
         var fname = path.join(__dirname, 'country-codes.csv');
         var records = await utils.csv_to_json(fname);
@@ -270,12 +442,23 @@ class update {
         fname = path.join(__dirname, 'country-codes.json');
         fs.writeFileSync(fname, JSON.stringify(clist));
 
-        for(var c of countries )
-            await this._update_country_geonames(c, __dirname);
+        for(var c of countries ){
+            // await this._update_country_geonames(c, __dirname);
+        }
 
-        await this._update_jp_zipcodes();
+        // all cities
+        this.cities = {};
+        await this._geo_admin_codes();
+        for(var c of ['cities1000', 'cities500', 'cities15000', 'cities5000'] )await this._update_geo_cities(c);
 
-        // await this._update_uk_zipcodes();
+        var jsfile = path.join(__dirname, 'geo-cities.json');
+        console.log('writing to: ', jsfile);
+        fs.writeFileSync(jsfile, JSON.stringify(this.cities, null, 2));
+
+
+        //await this._update_jp_zipcodes();
+
+        //- await this._update_uk_zipcodes();
     }
 
     async street_abbreviations(){
