@@ -183,23 +183,32 @@ class data {
         }
 
         if( cstate ){
-            
+            if(this.dbg)console.log('_locate_country_from_zip: found ', zip, cstate);
             if( !(cstate instanceof Array) ){
-                if(this.dbg)console.log('_locate_country_from_zip: found ', zip, cstate);
                 return cstate.split(',')[0];        // its country,state combo
             }
 
             // more than one country/state found. ambiguous
 
             // see if a matching city is found in any one of the cstate entries
-            if( parsed.city ){
+            if( parsed.city || parsed.state ){
                 for(var cs of cstate ){
                     var country = cs.split(',')[0];
                     var geo = this._load_country_states(country);
-                    if( geo.cities[parsed.city]){
-                        if(this.dbg)console.log('_locate_country_from_zip: found ', zip, country);
-                        return country;
+                    if( parsed.city ){
+                        if( geo.cities[parsed.city]){
+                            if(this.dbg)console.log('_locate_country_from_zip: found ', zip, country);
+                            return country;
+                        }    
                     }
+                    else if( parsed.state ){
+                        if( geo.states[parsed.state] || geo.statecodes[parsed.state] ){
+                            if(this.dbg)console.log('_locate_country_from_zip: found ', zip, country);
+                            return country;
+                        }    
+
+                    }
+
                 }
             }
         }
@@ -335,7 +344,7 @@ class data {
     }
 
     fix_ambiguity(parsed){
-        if( parsed.zip && parsed.city && !parsed.country ){
+        if( parsed.zip /*&& parsed.city*/ && !parsed.country ){
             parsed.country = this._locate_country_from_zip(parsed.zip, parsed) || null;
         }
 
@@ -356,6 +365,7 @@ class data {
         else if( parsed.country && parsed.state && !parsed.city ){
             var geo = this._load_country_states(parsed.country);
             // check if we have a city with the same name as state
+            //if(this.dbg)console.log('city-state: ', geo.cities[parsed.state]);
             if( geo.cities[parsed.state] )parsed.city = parsed.state;
         }
         else if( parsed.country && !parsed.state && !parsed.city && parsed.zip){
