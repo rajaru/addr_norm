@@ -3,8 +3,8 @@ const update = require('./data/update');
 const yargs = require('yargs');
 
 class address{
-    constructor(){
-
+    constructor(dbg){
+        this.dbg = dbg || false;
     }
 
     _print_params(){
@@ -54,8 +54,10 @@ class address{
         var address = str;
         str = str.replace(/-/g, ' ');
         str = str.replace(/,/g, ' ');
+        str = str.replace(/[\(\)]/g, '');
 
         var parts = str.split(/\s+/g) || [];
+        if( this.dbg )data.dbg = true;
         return data.parse_address( parts.filter(Boolean), address );
     }
 }
@@ -64,9 +66,10 @@ module.exports = new address();
 /* for CLI */
 yargs.option('addr', {describe: 'Address to parse'});
 yargs.option('update', {describe: 'Update all or specific data set'});
+yargs.option('debug', {describe: 'Enable debug print'});
 setTimeout(async ()=>{
     if( yargs.argv.addr ){
-        var addr = new address();
+        var addr = new address(yargs.argv.debug);
         console.log(addr.normalize(yargs.argv.addr));
     }
     if( yargs.argv.update ){

@@ -21,7 +21,8 @@ const ordinals = {
 }
 
 class data {
-    constructor(){
+    constructor(dbg){
+        this.dbg = dbg || false;
         this.countries = null;
         this.geo = {};
         this.cname = null;
@@ -77,6 +78,7 @@ class data {
 
     _locate_state_by_name(parts, geo){
         var name = parts.join(' ');
+        if(this.dbg)console.log('_locate_state_by_name: ', name);
         if( geo.states[name] )return name;
         return null;
     }
@@ -84,6 +86,7 @@ class data {
     get_state_name(parsed){
         var parts = parsed.parts;
         var ccode = parsed.country || 'us';
+        
         var geo = this._load_country_states(ccode);
         for(var i=4; i>0; i--){
             if( parts.length<=i )continue;
@@ -111,23 +114,30 @@ class data {
         return parsed;
     }
 
-    _locate_city_by_name(parts, geo){
+    _locate_city_by_name(parts, geo, country){
         var name = parts.join(' ');
-        name = name.replace(/[\(\)]/g, '');
-        console.log('_locate_city_by_name:', name);
+        if(this.dbg)console.log('_locate_city_by_name:', name);
         if( geo.cities[name] )return name;
+
+        if(country == 'jp'){
+            // leave a space in the front
+            var suffix = [' ken', ' to', ' fu', ' do', ' gun', ' shi', ' ku', ' machi', ' cho', ' mura', ' son'];
+            for(var suf of suffix ){
+                var aname = name.replace(suf, '');
+                if( geo.cities[aname] )return aname;
+            }
+        }
         return null;
     }
     
     get_city_name(parsed){
-        //console.log('get_city:', parsed.parts);
         var parts = parsed.parts;
         var ccode = parsed.country || 'us';
         parsed.city = null;
         var geo = this._load_country_states(ccode);
         for(var i=4; i>0; i--){
             if( parts.length<i )continue;
-            var name = this._locate_city_by_name( parts.slice(parts.length-i), geo );
+            var name = this._locate_city_by_name( parts.slice(parts.length-i), geo, ccode );
             
             if( name )return this._add_to_parsed(parsed, i, 'city', name);
         }
@@ -154,7 +164,7 @@ class data {
     }
 
     _locate_country_from_zip(zip, parsed){
-        
+        if(this.dbg)console.log('_locate_country_from_zip: ', zip);
         if( !zip )return '';
 
         this._load_zip_codes();     // load if not already loaded
@@ -172,10 +182,12 @@ class data {
             }
         }
 
-        //console.log('_locate_country_from_zip: ', zip, cstate);
         if( cstate ){
-            if( !(cstate instanceof Array) )
+            
+            if( !(cstate instanceof Array) ){
+                if(this.dbg)console.log('_locate_country_from_zip: found ', zip, cstate);
                 return cstate.split(',')[0];        // its country,state combo
+            }
 
             // more than one country/state found. ambiguous
 
@@ -184,25 +196,34 @@ class data {
                 for(var cs of cstate ){
                     var country = cs.split(',')[0];
                     var geo = this._load_country_states(country);
-                    if( geo.cities[parsed.city])return country;
+                    if( geo.cities[parsed.city]){
+                        if(this.dbg)console.log('_locate_country_from_zip: found ', zip, country);
+                        return country;
+                    }
                 }
             }
         }
 
         // lets make a guess from the zip format
-        if( zip.match(/^\d\d\d[\- ]\d\d\d\d/) ){
+        if( zip.match(/^\d\d\d[\- ]\d\d\d\d$/) ){
+            if(this.dbg)console.log('_locate_country_from_zip: found jp: ', zip);
             return 'jp';
         }
-        if( zip.match(/^[a-z0-9][a-z0-9][a-z0-9]?[a-z0-9]? [a-z0-9][a-z0-9][a-z0-9]/) ){
-            return 'gb';
-        }
+
+
+        // this matches things like york usa
+        // if( zip.match(/^[a-z0-9][a-z0-9][a-z0-9]?[a-z0-9]? [a-z0-9][a-z0-9][a-z0-9]$/) ){
+        //     if(this.dbg)console.log('_locate_country_from_zip: found gb: ', zip);
+        //     return 'gb';
+        // }
 
         return '';
     }
 
-    _locate_state_from_zip(zip){
+    _locate_state_from_zip(zip, country){
         if( !zip )return '';
 
+        if(this.dbg)console.log('_locate_state_from_zip:', zip);
         this._load_zip_codes();     // load if not already loaded
         var cntrystate = this.zipcodes[zip];
         if( !cntrystate ){
@@ -212,8 +233,20 @@ class data {
         if( !cntrystate)this.ukzipcodes[zip];
         if( !cntrystate)this.jpzipcodes[zip];
 
-        console.log('_locate_state_from_zip: ', zip, cntrystate);
-        if( !cntrystate || (cntrystate instanceof Array) )return '';
+        if(this.dbg)console.log('_locate_state_from_zip: ', zip, cntrystate);
+        if( !cntrystate )return '';
+
+        if( (cntrystate instanceof Array) ){
+            // check if we have a unique state for this country
+            if( !country )return '';
+            var cstate = cntrystate.filter( x=>x.split(',')[0]==country);
+            if( cstate.length!=1 ){
+                if(this.dbg)console.log('_locate_state_from_zip: more than one state found', zip, cstate);
+                return '';    //we need to find exactly one match
+            }
+            cntrystate = cstate[0];
+        }
+        
         var parts = cntrystate.split(',');
         if( parts.length>1 )return parts[1];
         return '';
@@ -263,8 +296,10 @@ class data {
         for(var i=2; i>0; i--){
             if( parts.length<=i )continue;
             var part = parts.slice(parts.length-i).join('');
-            if( !isNaN(part) )
+            if( !isNaN(part) ){
+                if(this.dbg)console.log('get_zipcode: ', part);
                 return this._add_to_parsed(parsed, i, 'zip', parts.slice(parts.length-i).join('-'));
+            }
             else {
                 // lookup zips to check if its valid
                 if( this._locate_country_from_zip(part, parsed) )
@@ -299,28 +334,6 @@ class data {
         return word;
     }
 
-    /*
-    fix_abbreviations(parts){
-        
-        for(var i=0; i<parts.length; i++){
-            parts[i] = this.fix_abbreviation(parts[i]);
-        }
-
-        for(var i=0; i<parts.length; i++){
-            parts[i] = this.fix_abbreviation(parts[i]);
-        }
-
-        return parts;
-    }
-
-    fix_ordinals(parsed){
-        var parts = parsed.parts;
-        for(var i=0; i<parts.length; i++){
-            if( ordinals[parts[i]] )parts[i] = ordinals[parts[i]];
-        }
-        return parsed;
-    }*/
-
     fix_ambiguity(parsed){
         if( parsed.zip && parsed.city && !parsed.country ){
             parsed.country = this._locate_country_from_zip(parsed.zip, parsed) || null;
@@ -333,7 +346,7 @@ class data {
             
             // if city belongs to one state, we can fix it here
             if( states && typeof states == 'string')parsed.state = states;
-            else parsed.state = this._locate_state_from_zip(parsed.zip);
+            else parsed.state = this._locate_state_from_zip(parsed.zip, parsed.country);
 
             if( !parsed.state ){
                 // look up and find if there is a state with same name as city
@@ -346,22 +359,45 @@ class data {
             if( geo.cities[parsed.state] )parsed.city = parsed.state;
         }
         else if( parsed.country && !parsed.state && !parsed.city && parsed.zip){
-            parsed.state = this._locate_state_from_zip(parsed.zip);
+            parsed.state = this._locate_state_from_zip(parsed.zip, parsed.country);
         }
     }
 
     parse_street(parsed){
         parsed.street = this.address.split(' ').filter(Boolean).join(' ').trim();
         parsed.door = null;
-        //var re = /^(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+(\s+apt\s+#?\d+\w?(-\d+\w?)*)?/gi
-        //var re = /^(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+\s+(apt\s+#?\d+\w?)?/i;
 
-        const regex = /^(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+(\s+apt\s+#?\d+\w?(-\d+\w?)*)?/gim;
-        var matches = parsed.street.match(regex);
-        if( matches && matches.length>0 ){
-            parsed.door = matches[0];
-            parsed.street = parsed.street.replace(parsed.door, '').trim();
+        const dregexs = [
+            /^(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+(\s+apt\s+#?\d+\w?(-\d+\w?)*)?/gim,
+            /\s*(\d+\-\d+(?:\-\d+)?)\s*/
+        ];
+
+        for(var rex of dregexs){
+            var matches = parsed.street.match(rex);
+            if( matches && matches.length>0 ){
+                parsed.door = matches[0].trim();
+                parsed.street = parsed.street.replace(parsed.door, '').trim();
+                break;
+            }
         }
+
+        // const regex = /^(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+(\s+apt\s+#?\d+\w?(-\d+\w?)*)?/gim;
+        // var matches = parsed.street.match(regex);
+        // if( matches && matches.length>0 ){
+        //     parsed.door = matches[0];
+        //     parsed.street = parsed.street.replace(parsed.door, '').trim();
+        // }
+
+        // if( !parsed.door ){
+        //     // try number format nn-nn-nn
+        //     const dregex = /\s+(\d+\-\d+(?:\-\d+)?)\s*/
+        //     var matches = parsed.street.match(dregex);
+        //     if( matches && matches.length>0 ){
+        //         parsed.door = matches[0];
+        //         parsed.street = parsed.street.replace(parsed.door, '').trim();
+        //     }
+        // }
+
 
         var str = '';
         var word = '';
@@ -376,7 +412,9 @@ class data {
             }
         }
         str += this.fix_abbreviation(word);
+        str = str.replace(/[\(\)]/g, '');
         str = str.replace(/[\-\,\*]/ig, ' ').split(' ').filter(Boolean).join(' ');
+        
         parsed.street = str;
     }
 

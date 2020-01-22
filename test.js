@@ -47,7 +47,7 @@ var cases = {
         country: 'fr',
         city: 'paris',
         door: "4-22",
-        street: 'rue marie-georges picquart'
+        street: 'rue marie georges picquart'
     },
     "new york  new york  usa":{
         country: 'us',
@@ -69,7 +69,7 @@ var cases = {
     "midtown tower 9-7-1 akasaka minato-ku (tokyo)   107-6242":{
         country: 'jp',
         zip: '107-6242',
-        city: 'tokyo',
+        city: 'minato',
         state:'tokyo',
     }
 };

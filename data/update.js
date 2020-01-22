@@ -110,18 +110,45 @@ class update {
     _fix_state_suffixes(jpjson, recs){
         var states = recs.reduce((a,x)=>{a[x.state] = x.state; return a;}, {});
         var statecodes = {...states};
+        var cities = {};
         for(var rec of recs ){
             states[rec.state+' ken'] = rec.state;
             states[rec.state+' to'] = rec.state;
             states[rec.state+' fu'] = rec.state;
+            states[rec.state+' do'] = rec.state;
+        }
+        for(var city in jpjson.cities){
+            var cstates = [];
+            if( jpjson.cities[city] instanceof Array ){
+                for(var stcode of jpjson.cities[city] ){
+                    var st = jpjson.statecodes[stcode];
+                    if( st && states[st] )cstates.push(states[st]);
+                }
+                if( cstates.length == 0 )cstates = null;
+            }
+            else{
+                var stcode = jpjson.cities[city];
+                var st = jpjson.statecodes[stcode];
+                if( st && states[st] )cstates = states[st];
+            }
+            if( cstates )cities[city] = cstates;
         }
 
+        for(var rec of recs ){
+            if( !cities.hasOwnProperty(rec.city) )cities[rec.city] = rec.state;
+            else if( cities[rec.city] instanceof Array ){
+                if( cities[rec.city].indexOf(rec.state)<0 )cities[rec.city].push(rec.state);
+            }
+            else if( cities[rec.city] != rec.state )cities[rec.city] = rec.state;
+        }
 
+        jpjson.states = states;
+        jpjson.cities = cities;
         jpjson.statecodes = statecodes;
     }
 
     async _update_jp_zipcodes(){
-        var columns = ['zip', 'state', 'city'];
+        var columns = ['zip', 'state', 'city', 'other'];
         var options = {delimiter: ',', quote: '"', columns: columns, raw: false, info: false, from: 1};
         var recs = await utils.csv_to_array(path.join(__dirname, 'jpzips.csv'), options);
         var jpjson = JSON.parse(fs.readFileSync(path.join(__dirname, 'jp.json')));
@@ -136,6 +163,8 @@ class update {
         }
 
         // fix state codes and state names
+        this._fix_state_suffixes(jpjson, recs);
+        fs.writeFileSync(path.join(__dirname, 'jp.json'), JSON.stringify(jpjson, null, 2));
     }
 
 
