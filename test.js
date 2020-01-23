@@ -71,6 +71,12 @@ var cases = {
         zip: '107-6242',
         city: 'minato',
         state:'tokyo',
+    },
+    "10 sasco hill road  fairfield   06430": {
+        country: 'us',
+        zip: '06430',
+        city: 'fairfield',
+        state:'ct',
     }
 };
 

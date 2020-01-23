@@ -20,7 +20,7 @@ const ordinals = {
     'V'   : 'fifth',
 }
 
-
+/*
 const us_zip_range = {
     'al' : ['35801', '35816'],
     'ak' : ['99501', '99524'],
@@ -85,7 +85,7 @@ function is_in_us_zip_range(zip){
     }
     return null;
 }
-
+*/
 
 class data {
     constructor(dbg){
@@ -141,6 +141,10 @@ class data {
         if( !this.jpzipcodes ){
             var fname = path.join(__dirname, 'jpzip.json');
             this.jpzipcodes = JSON.parse(fs.readFileSync(fname, 'utf8'));
+        }
+        if( !this.uszipcodes ){
+            var fname = path.join(__dirname, 'uszip.json');
+            this.uszipcodes = JSON.parse(fs.readFileSync(fname, 'utf8'));
         }
     }
 
@@ -202,9 +206,14 @@ class data {
                 this.geo_citites = JSON.parse( fs.readFileSync(path.join(__dirname, 'geo-cities.json'), 'utf-8') );
             }catch(e){}
         }
-        if(this.dbg)console.log('check in geo cities', name, this.geo_citites[name]);
+
         if( this.geo_citites[name] ){
-            return this.geo_citites[name];
+            // if(this.dbg)console.log('check in geo cities', name, this.geo_citites[name]);
+            var gc = this.geo_citites[name];
+            if( !(gc instanceof Array) ){
+                if(this.dbg)console.log('found in geo cities', name, gc.split(',')[2]);
+                return gc.split(',')[2];
+            }
         }
 
         return null;
@@ -243,8 +252,8 @@ class data {
         return null;
     }
 
-    _locate_country_from_zip(zip, parsed){
-        if(this.dbg)console.log('_locate_country_from_zip: ', zip);
+    _locate_country_from_zip(zip, parsed, fixothers){
+        if(this.dbg)console.log('locate_country_from_zip: ', zip);
         if( !zip )return '';
 
         this._load_zip_codes();     // load if not already loaded
@@ -254,6 +263,7 @@ class data {
 
         if( !cstate )cstate = this.ukzipcodes[zipcode];
         if( !cstate )cstate = this.jpzipcodes[zipcode];
+        
 
         if( !cstate ){
             // for canada we have only the first three letters
@@ -263,8 +273,9 @@ class data {
         }
 
         if( cstate ){
-            if(this.dbg)console.log('_locate_country_from_zip: found ', zip, cstate);
+            
             if( !(cstate instanceof Array) ){
+                if(this.dbg)console.log('locate_country_from_zip: found ', zip, cstate);
                 return cstate.split(',')[0];        // its country,state combo
             }
 
@@ -274,16 +285,18 @@ class data {
             if( parsed.city || parsed.state ){
                 for(var cs of cstate ){
                     var country = cs.split(',')[0];
+                    var state   = cs.split(',')[1];
                     var geo = this._load_country_states(country);
                     if( parsed.city ){
                         if( geo.cities[parsed.city]){
-                            if(this.dbg)console.log('_locate_country_from_zip: found ', zip, country);
+                            if(this.dbg)console.log('locate_country_from_zip: found ', zip, country);
+                            if( fixothers && !parsed.state )parsed.state = state;
                             return country;
                         }    
                     }
                     else if( parsed.state ){
                         if( geo.states[parsed.state] || geo.statecodes[parsed.state] ){
-                            if(this.dbg)console.log('_locate_country_from_zip: found ', zip, country);
+                            if(this.dbg)console.log('locate_country_from_zip: found ', zip, country);
                             return country;
                         }    
 
@@ -295,16 +308,29 @@ class data {
 
         // lets make a guess from the zip format
         if( zip.match(/^\d\d\d[\- ]\d\d\d\d$/) ){
-            if(this.dbg)console.log('_locate_country_from_zip: found jp: ', zip);
+            if(this.dbg)console.log('locate_country_from_zip: found jp: ', zip);
             return 'jp';
         }
 
 
         // this matches things like york usa
         // if( zip.match(/^[a-z0-9][a-z0-9][a-z0-9]?[a-z0-9]? [a-z0-9][a-z0-9][a-z0-9]$/) ){
-        //     if(this.dbg)console.log('_locate_country_from_zip: found gb: ', zip);
+        //     if(this.dbg)console.log('locate_country_from_zip: found gb: ', zip);
         //     return 'gb';
         // }
+
+        if( fixothers ){
+            cstate = this.uszipcodes[zipcode];
+            
+            if( cstate ){
+                if( !(cstate instanceof Array) ){
+                    var parts = cstate.split(',');
+                    if( !parsed.state )parsed.state = parts[1];
+                    if( !parsed.city  )parsed.city = parts[2];
+                    return parts[0];
+                }
+            }
+        }
 
         return '';
     }
@@ -425,13 +451,13 @@ class data {
 
     fix_ambiguity(parsed){
         if( parsed.zip /*&& parsed.city*/ && !parsed.country ){
-            parsed.country = this._locate_country_from_zip(parsed.zip, parsed) || null;
+            parsed.country = this._locate_country_from_zip(parsed.zip, parsed, true) || null;
         }
 
-        if( parsed.zip && !parsed.country && !parsed.state ){
-            parsed.state = is_in_us_zip_range(parsed.zip);
-            if(this.dbg && parsed.state )console.log('found state from us zip range ', parsed.zip, parsed.state);
-        }
+        // if( parsed.zip && !parsed.country && !parsed.state ){
+        //     parsed.state = is_in_us_zip_range(parsed.zip);
+        //     if(this.dbg && parsed.state )console.log('found state from us zip range ', parsed.zip, parsed.state);
+        // }
 
         if( parsed.country && parsed.city && !parsed.state ){
             var geo = this._load_country_states(parsed.country);

@@ -168,6 +168,17 @@ class update {
         fs.writeFileSync(path.join(__dirname, 'jp.json'), JSON.stringify(jpjson, null, 2));
     }
 
+    async _update_us_zipcodes(folder){
+        var zips = JSON.parse( fs.readFileSync(path.join(__dirname,'us-zip-code-latitude-and-longitude.json'), 'utf-8' ) );
+        var uszips = {};
+        for(var zip of zips ){
+            if( uszips.hasOwnProperty(zip.fields.zip))console.log('duplicate', zip.fields.zip)
+            uszips[zip.fields.zip] = 'us,'+zip.fields.state.toLowerCase()+','+zip.fields.city.toLowerCase();
+        }
+        var jsfile = path.join(__dirname, 'uszip.json');
+        fs.writeFileSync(jsfile, JSON.stringify(uszips, null, 2));
+
+    }
 
     async _update_uk_zipcodes(folder){
         var cityFolder = path.join(tmp, 'cities');
@@ -431,7 +442,7 @@ class update {
     }
 
 
-    async cities(){
+    async cities(){        
         var fname = path.join(__dirname, 'country-codes.csv');
         var records = await utils.csv_to_json(fname);
         var clist = records.map(x=>({
@@ -443,7 +454,7 @@ class update {
         fs.writeFileSync(fname, JSON.stringify(clist));
 
         for(var c of countries ){
-            // await this._update_country_geonames(c, __dirname);
+            await this._update_country_geonames(c, __dirname);
         }
 
         // all cities
@@ -455,8 +466,9 @@ class update {
         console.log('writing to: ', jsfile);
         fs.writeFileSync(jsfile, JSON.stringify(this.cities, null, 2));
 
-
-        //await this._update_jp_zipcodes();
+        await this._update_jp_zipcodes();
+        
+        await this._update_us_zipcodes();
 
         //- await this._update_uk_zipcodes();
     }
