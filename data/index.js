@@ -20,6 +20,73 @@ const ordinals = {
     'V'   : 'fifth',
 }
 
+
+const us_zip_range = {
+    'al' : ['35801', '35816'],
+    'ak' : ['99501', '99524'],
+    'az' : ['85001', '85055'],
+    'ar' : ['72201', '72217'],
+    'ca' : ['94203', '94209', '90001', '90089', '90209', '90213'],
+    'co' : ['80201', '80239'],
+    "ct" : ["06101", "06112"],
+    "de" : ["19901", "19905"],
+    "dc" : ["20001", "20020"],
+    "fl" : ["32501", "32509","33124","33190","32801","32837"],
+    "ga" : ["30301", "30381"],
+    "hi" : ["96801", "96830"],
+    "id" : ["83254", "83254"],
+    "il" : ["60601", "60641", "62701","62709"],
+    "in" : ["46201", "46209"],
+    "ia" : ["52801", "52809", "50301","50323"],
+    "ks" : ["67201", "67221"],
+    "ky" : ["41701", "41702"],
+    "la" : ["70112", "70119"],
+    "me" : ["04032", "04034"],
+    "md" : ["21201", "21237"],
+    "ma" : ["02101", "02137"],
+    "mi" : ["49036", "49036", "49734","49735"],
+    "mn" : ["55801", "55808"],
+    "ms" : ["39530", "39535"],
+    "mo" : ["63101", "63141"],
+    "mt" : ["59044", "59044"],
+    "ne ": ["68901", "68902"],
+    "nv" : ["89501", "89513"],
+    "nh" : ["03217", "03217"],
+    "nj" : ["07039", "07039"],
+    "nm" : ["87500", "87506"],
+    "ny" : ["10001", "10048"],
+    "nc" : ["27565", "27565"],
+    "nd" : ["58282", "58282"],
+    "oh" : ["44101", "44179"],
+    "ok" : ["74101", "74110"],
+    "or" : ["97201", "97225"],
+    "pa" : ["15201", "15244"],
+    "ri" : ["02840", "02841"],
+    "sc" : ["29020", "29020"],
+    "sd" : ["57401", "57402"],
+    "tn" : ["37201", "37222"],
+    "tx" : ["78701", "78705"],
+    "ut" : ["84321", "84323"],
+    "vt" : ["05751", "05751"],
+    "va" : ["24517", "24517"],
+    "va" : ["98004", "98009"],
+    "wv" : ["25813", "25813"],
+    "wi" : ["53201", "53228"],
+    "wy" : ["82941", "82941"],
+};
+
+function is_in_us_zip_range(zip){
+    var part = zip.split('-')[0];
+    for(var state in us_zip_range){
+        var zrange = us_zip_range[state];
+        for(var i=0; i<zrange.length; i+=2 ){
+            if( part >= zrange[i] && part <= zrange[i] )return state;
+        }
+    }
+    return null;
+}
+
+
 class data {
     constructor(dbg){
         this.dbg = dbg || false;
@@ -29,6 +96,7 @@ class data {
         this.alpha2= null;
         this.alpha3= null;
         this.abbrev= null;
+        this.geo_citites = null;
     }
 
     load_countries(){
@@ -127,6 +195,18 @@ class data {
                 if( geo.cities[aname] )return aname;
             }
         }
+
+        if(this.geo_citites === null ){
+            this.geo_citites = {};
+            try{
+                this.geo_citites = JSON.parse( fs.readFileSync(path.join(__dirname, 'geo-cities.json'), 'utf-8') );
+            }catch(e){}
+        }
+        if(this.dbg)console.log('check in geo cities', name, this.geo_citites[name]);
+        if( this.geo_citites[name] ){
+            return this.geo_citites[name];
+        }
+
         return null;
     }
     
@@ -346,6 +426,11 @@ class data {
     fix_ambiguity(parsed){
         if( parsed.zip /*&& parsed.city*/ && !parsed.country ){
             parsed.country = this._locate_country_from_zip(parsed.zip, parsed) || null;
+        }
+
+        if( parsed.zip && !parsed.country && !parsed.state ){
+            parsed.state = is_in_us_zip_range(parsed.zip);
+            if(this.dbg && parsed.state )console.log('found state from us zip range ', parsed.zip, parsed.state);
         }
 
         if( parsed.country && parsed.city && !parsed.state ){
