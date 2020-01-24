@@ -5,10 +5,24 @@ const unzip = require('unzipper');
 const utils= require('./utils');
 
 const tmp = "g:\\tmp\\out";
-// const countries = [
-//     'US', 'IN', 'CA', 'GB_full.csv', 'AU', 'BR', 'SG', 'FR', 'NO', 'DE', 'NL_full.csv', 'JP', 'MX', 'DK', 'ES'
-// ];
-const countries = ['US'];
+const countries = [
+    'US', 'IN', 'CA', 'GB_full.csv', 'AU', 'BR', 'SG', 
+    'FR', 
+    'NO', 
+    'DE',   // Germany
+    'NL_full.csv', 'JP', 
+    'MX',   // Mexico
+    'DK',   // Denmark
+    'ES',   // Spain
+    'MY',   // Malaysia
+    'CH',   // Switzerland
+    'SE',   // Sweden
+    // 'TW',   // Taiwan,
+    'AT',   // Austria,
+    // 'HK',   // Hongkong - not available
+    'FI',   // Finland
+];
+// const countries = ['FR'];
     
 class update {
 
@@ -96,6 +110,8 @@ class update {
             var cities = await utils.csv_to_array(fname, options);
             
             for(var city of cities ){
+                if( city.zip && city.zip.indexOf(' CEDEX')>0 )
+                    city.zip = city.zip.substr(0, city.zip.indexOf(' CEDEX')).trim();
                 //this._add_city_details( city.city, city.state, city.region, city.place);
                 this._add_city_details( city );
                 this._add_zipcode(city.country, city.state_code, city.zip);
@@ -258,10 +274,10 @@ class update {
             
             if( folder ){
                 var jsfile = path.join(folder, c.replace('_full.csv', '').toLowerCase()+'.json');
-                fs.writeFileSync(jsfile, JSON.stringify(this.country), null, 2);
+                fs.writeFileSync(jsfile, JSON.stringify(this.country, null, 2));
                 if( this.zip ){
                     jsfile = path.join(folder, 'zip.json');
-                    fs.writeFileSync(jsfile, JSON.stringify(this.zip), null, 2);
+                    fs.writeFileSync(jsfile, JSON.stringify(this.zip, null, 2));
                 }
             }
             // utils.rmFile(zipFile);
@@ -381,7 +397,7 @@ class update {
             console.log(e);
         }
         
-        // console.log(cities);
+        console.log(fname, 'done');
     }
 
     async _geo_admin_codes(){
@@ -461,9 +477,7 @@ class update {
         this.cities = {};
         await this._geo_admin_codes();
         for(var c of ['cities1000', 'cities500', 'cities15000', 'cities5000'] )await this._update_geo_cities(c);
-
         var jsfile = path.join(__dirname, 'geo-cities.json');
-        console.log('writing to: ', jsfile);
         fs.writeFileSync(jsfile, JSON.stringify(this.cities, null, 2));
 
         await this._update_jp_zipcodes();

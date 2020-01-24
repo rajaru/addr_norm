@@ -87,6 +87,19 @@ function is_in_us_zip_range(zip){
 }
 */
 
+const twzips = {
+    '100' : 'tw,taipei',
+    '220' : 'tw,taipei',
+    '800' : 'tw,kaohsiung',
+    '200' : 'tw,keelung',
+    '300' : 'tw,hsinchu',
+    '400' : 'tw,taichung',
+    '600' : 'tw,chiayi',
+    '700' : 'tw,tainan',
+}
+
+
+
 class data {
     constructor(dbg){
         this.dbg = dbg || false;
@@ -252,6 +265,13 @@ class data {
         return null;
     }
 
+    _get_cstate_from_zip(zipcode){
+        var cstate = this.zipcodes[zipcode];
+        if( !cstate )cstate = this.ukzipcodes[zipcode];
+        if( !cstate )cstate = this.jpzipcodes[zipcode];
+        return cstate;
+    }
+
     _locate_country_from_zip(zip, parsed, fixothers){
         if(this.dbg)console.log('locate_country_from_zip: ', zip);
         if( !zip )return '';
@@ -259,18 +279,31 @@ class data {
         this._load_zip_codes();     // load if not already loaded
 
         var zipcode = zip.split('-')[0];
-        var cstate = this.zipcodes[zipcode];
+        var cstate = this._get_cstate_from_zip(zipcode);
+        if( !cstate){ zipcode=zip.split(' ')[0]; cstate = this._get_cstate_from_zip(zipcode);}
+        if( !cstate){ zipcode=zip.split('-').join(''); cstate = this._get_cstate_from_zip(zipcode);}
+        if( !cstate){ zipcode=zip.split(' ').join(''); cstate = this._get_cstate_from_zip(zipcode);}
 
-        if( !cstate )cstate = this.ukzipcodes[zipcode];
-        if( !cstate )cstate = this.jpzipcodes[zipcode];
+        if(this.dbg)console.log('locate_country_from_zip: found ', zip, zipcode, cstate);
+
+        // var zipcode = zip.split('-')[0];
+        // var cstate = this.zipcodes[zipcode];
+
+        // if( !cstate )cstate = this.ukzipcodes[zipcode];
+        // if( !cstate )cstate = this.jpzipcodes[zipcode];
         
 
-        if( !cstate ){
-            // for canada we have only the first three letters
-            if( zip.indexOf(' ')>0 ){
-                cstate = this.zipcodes[zip.split(' ')[0]];
-            }
-        }
+        // if( !cstate ){
+        //     // for canada we have only the first three letters
+        //     if( zip.indexOf(' ')>0 ){
+        //         cstate = this.zipcodes[zip.split(' ')[0]];
+        //     }
+        //     else if( zip.indexOf('-')>0 ){
+        //         cstate = this.zipcodes[zip.split('-')[0]];
+        //         if(this.dbg)console.log('locate_country_from_zip: trying ', zip, zip.split('-')[0]);
+                
+        //     }
+        // }
 
         if( cstate ){
             
@@ -280,12 +313,14 @@ class data {
             }
 
             // more than one country/state found. ambiguous
+            if(this.dbg)console.log('locate_country_from_zip: more found ', zip, cstate);
 
             // see if a matching city is found in any one of the cstate entries
             if( parsed.city || parsed.state ){
                 for(var cs of cstate ){
-                    var country = cs.split(',')[0];
-                    var state   = cs.split(',')[1];
+                    var parts = cs.split(',');
+                    var country = parts[0];
+                    var state   = parts[1];
                     var geo = this._load_country_states(country);
                     if( parsed.city ){
                         if( geo.cities[parsed.city]){
@@ -303,6 +338,37 @@ class data {
                     }
 
                 }
+
+                // try and locate from global cities lists
+                for(var cs of cstate ){
+                    var parts = cs.split(',');
+                    var country = parts[0];
+                    var state   = parts[1];
+
+                    if( parsed.city ){
+                        var cstates = this.geo_citites[parsed.city];
+                        if( cstates ){
+                            if(this.dbg)console.log('locate_country_from_zip: found in global cities', zip, cstates);
+                            if( !(cstates instanceof Array) ){
+                                if( fixothers ){
+                                    if( !parsed.state )parsed.state = cstates.split(',')[1];
+                                }
+                                return country;
+                            }
+                            else{
+                                var fstates = cstates.filter(x=>x.split(',')[0]==country);
+                                if( fstates.length==1 ){
+                                    if(this.dbg)console.log('locate_country_from_zip: found in global cities (matching country)', zip, fstates);
+                                    if( !parsed.state )parsed.state = fstates[0].split(',')[1];
+                                    return country;
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+
             }
         }
 
@@ -482,6 +548,23 @@ class data {
         else if( parsed.country && !parsed.state && !parsed.city && parsed.zip){
             parsed.state = this._locate_state_from_zip(parsed.zip, parsed.country);
         }
+        else if( parsed.city && !parsed.country ){
+            var cstates = this.geo_citites[parsed.city];
+            if( cstates ){
+                if(this.dbg)console.log('fix from city: found in global cities', parsed.city, cstates);
+                if( !(cstates instanceof Array) ){
+                    var parts = cstates.split(',');
+                    parsed.country = parts[0];
+                    if( !parsed.state )parsed.state = parts[1];
+                }
+                else{
+                    if(this.dbg)console.log('fix from city: multiple found in global cities', parsed.city, cstates);
+                }
+
+            }
+
+        }
+        
     }
 
     parse_street(parsed){
@@ -539,6 +622,15 @@ class data {
         parsed.street = str;
     }
 
+    fix_zip_code(parsed){
+        if( !parsed.zip )return;
+        if( parsed.country == 'in' )
+            parsed.zip = parsed.zip.split('-').join('');
+        else if( parsed.country == 'us' )
+            parsed.zip = parsed.zip.split('-')[0];
+    }
+
+
     parse_address(parts, str){
         this.address = str || '';
         var parsed = {parts: parts};
@@ -553,6 +645,8 @@ class data {
 
         this.fix_ambiguity(parsed);
         this.parse_street(parsed);
+        this.fix_zip_code(parsed);
+
         return parsed;
     }
 

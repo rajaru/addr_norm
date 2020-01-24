@@ -50,144 +50,191 @@
     "aichi ken": "aichi",
     "aichi to": "aichi",
     "aichi fu": "aichi",
+    "aichi do": "aichi",
     "akita ken": "akita",
     "akita to": "akita",
     "akita fu": "akita",
+    "akita do": "akita",
     "aomori ken": "aomori",
     "aomori to": "aomori",
     "aomori fu": "aomori",
+    "aomori do": "aomori",
     "chiba ken": "chiba",
     "chiba to": "chiba",
     "chiba fu": "chiba",
+    "chiba do": "chiba",
     "ehime ken": "ehime",
     "ehime to": "ehime",
     "ehime fu": "ehime",
+    "ehime do": "ehime",
     "fukui ken": "fukui",
     "fukui to": "fukui",
     "fukui fu": "fukui",
+    "fukui do": "fukui",
     "fukuoka ken": "fukuoka",
     "fukuoka to": "fukuoka",
     "fukuoka fu": "fukuoka",
+    "fukuoka do": "fukuoka",
     "fukushima ken": "fukushima",
     "fukushima to": "fukushima",
     "fukushima fu": "fukushima",
+    "fukushima do": "fukushima",
     "gifu ken": "gifu",
     "gifu to": "gifu",
     "gifu fu": "gifu",
+    "gifu do": "gifu",
     "gunma ken": "gunma",
     "gunma to": "gunma",
     "gunma fu": "gunma",
+    "gunma do": "gunma",
     "hiroshima ken": "hiroshima",
     "hiroshima to": "hiroshima",
     "hiroshima fu": "hiroshima",
+    "hiroshima do": "hiroshima",
     "hokkaido ken": "hokkaido",
     "hokkaido to": "hokkaido",
     "hokkaido fu": "hokkaido",
+    "hokkaido do": "hokkaido",
     "hyogo ken": "hyogo",
     "hyogo to": "hyogo",
     "hyogo fu": "hyogo",
+    "hyogo do": "hyogo",
     "ibaraki ken": "ibaraki",
     "ibaraki to": "ibaraki",
     "ibaraki fu": "ibaraki",
+    "ibaraki do": "ibaraki",
     "ishikawa ken": "ishikawa",
     "ishikawa to": "ishikawa",
     "ishikawa fu": "ishikawa",
+    "ishikawa do": "ishikawa",
     "iwate ken": "iwate",
     "iwate to": "iwate",
     "iwate fu": "iwate",
+    "iwate do": "iwate",
     "kagawa ken": "kagawa",
     "kagawa to": "kagawa",
     "kagawa fu": "kagawa",
+    "kagawa do": "kagawa",
     "kagoshima ken": "kagoshima",
     "kagoshima to": "kagoshima",
     "kagoshima fu": "kagoshima",
+    "kagoshima do": "kagoshima",
     "kanagawa ken": "kanagawa",
     "kanagawa to": "kanagawa",
     "kanagawa fu": "kanagawa",
+    "kanagawa do": "kanagawa",
     "kochi ken": "kochi",
     "kochi to": "kochi",
     "kochi fu": "kochi",
+    "kochi do": "kochi",
     "kumamoto ken": "kumamoto",
     "kumamoto to": "kumamoto",
     "kumamoto fu": "kumamoto",
+    "kumamoto do": "kumamoto",
     "kyoto ken": "kyoto",
     "kyoto to": "kyoto",
     "kyoto fu": "kyoto",
+    "kyoto do": "kyoto",
     "mie ken": "mie",
     "mie to": "mie",
     "mie fu": "mie",
+    "mie do": "mie",
     "miyagi ken": "miyagi",
     "miyagi to": "miyagi",
     "miyagi fu": "miyagi",
+    "miyagi do": "miyagi",
     "miyazaki ken": "miyazaki",
     "miyazaki to": "miyazaki",
     "miyazaki fu": "miyazaki",
+    "miyazaki do": "miyazaki",
     "nagano ken": "nagano",
     "nagano to": "nagano",
     "nagano fu": "nagano",
+    "nagano do": "nagano",
     "nagasaki ken": "nagasaki",
     "nagasaki to": "nagasaki",
     "nagasaki fu": "nagasaki",
+    "nagasaki do": "nagasaki",
     "nara ken": "nara",
     "nara to": "nara",
     "nara fu": "nara",
+    "nara do": "nara",
     "niigata ken": "niigata",
     "niigata to": "niigata",
     "niigata fu": "niigata",
+    "niigata do": "niigata",
     "oita ken": "oita",
     "oita to": "oita",
     "oita fu": "oita",
+    "oita do": "oita",
     "okayama ken": "okayama",
     "okayama to": "okayama",
     "okayama fu": "okayama",
+    "okayama do": "okayama",
     "okinawa ken": "okinawa",
     "okinawa to": "okinawa",
     "okinawa fu": "okinawa",
+    "okinawa do": "okinawa",
     "osaka ken": "osaka",
     "osaka to": "osaka",
     "osaka fu": "osaka",
+    "osaka do": "osaka",
     "saga ken": "saga",
     "saga to": "saga",
     "saga fu": "saga",
+    "saga do": "saga",
     "saitama ken": "saitama",
     "saitama to": "saitama",
     "saitama fu": "saitama",
+    "saitama do": "saitama",
     "shiga ken": "shiga",
     "shiga to": "shiga",
     "shiga fu": "shiga",
+    "shiga do": "shiga",
     "shimane ken": "shimane",
     "shimane to": "shimane",
     "shimane fu": "shimane",
+    "shimane do": "shimane",
     "shizuoka ken": "shizuoka",
     "shizuoka to": "shizuoka",
     "shizuoka fu": "shizuoka",
+    "shizuoka do": "shizuoka",
     "tochigi ken": "tochigi",
     "tochigi to": "tochigi",
     "tochigi fu": "tochigi",
+    "tochigi do": "tochigi",
     "tokushima ken": "tokushima",
     "tokushima to": "tokushima",
     "tokushima fu": "tokushima",
+    "tokushima do": "tokushima",
     "tokyo ken": "tokyo",
     "tokyo to": "tokyo",
     "tokyo fu": "tokyo",
+    "tokyo do": "tokyo",
     "tottori ken": "tottori",
     "tottori to": "tottori",
     "tottori fu": "tottori",
+    "tottori do": "tottori",
     "toyama ken": "toyama",
     "toyama to": "toyama",
     "toyama fu": "toyama",
+    "toyama do": "toyama",
     "wakayama ken": "wakayama",
     "wakayama to": "wakayama",
     "wakayama fu": "wakayama",
+    "wakayama do": "wakayama",
     "yamagata ken": "yamagata",
     "yamagata to": "yamagata",
     "yamagata fu": "yamagata",
+    "yamagata do": "yamagata",
     "yamaguchi ken": "yamaguchi",
     "yamaguchi to": "yamaguchi",
     "yamaguchi fu": "yamaguchi",
+    "yamaguchi do": "yamaguchi",
     "yamanashi ken": "yamanashi",
     "yamanashi to": "yamanashi",
-    "yamanashi fu": "yamanashi"
+    "yamanashi fu": "yamanashi",
+    "yamanashi do": "yamanashi"
   },
   "cities": {
     "rokujocho": [
@@ -236,6 +283,7 @@
     "nishishijimi": "aichi",
     "taketa": [
       "aichi",
+      "oita",
       "oita"
     ],
     "ikanikeisaiganaibaai": [
@@ -406,6 +454,7 @@
       "shiga",
       "tokyo",
       "tottori",
+      "aichi",
       "hiroshima",
       "tokushima"
     ],
@@ -623,6 +672,7 @@
       "aichi",
       "fukuoka",
       "fukushima",
+      "aichi",
       "nagasaki"
     ],
     "shingai": [
@@ -635,6 +685,7 @@
     "nikko": [
       "aichi",
       "fukui",
+      "tochigi",
       "tochigi"
     ],
     "shimogiricho": [
@@ -2666,7 +2717,8 @@
       "niigata",
       "saitama",
       "wakayama",
-      "okinawa"
+      "okinawa",
+      "saitama"
     ],
     "moricho": [
       "aichi",
@@ -4017,7 +4069,8 @@
       "saitama",
       "shizuoka",
       "tokyo",
-      "tottori"
+      "tottori",
+      "nagano"
     ],
     "suwanishimachi": "aichi",
     "ueno": [
@@ -4576,7 +4629,8 @@
       "iwate",
       "kumamoto",
       "saga",
-      "yamagata"
+      "yamagata",
+      "aichi"
     ],
     "kosugaya": [
       "aichi",
@@ -5181,7 +5235,8 @@
       "aichi",
       "chiba",
       "ibaraki",
-      "miyagi"
+      "miyagi",
+      "chiba"
     ],
     "hiyoshi": [
       "aichi",
@@ -5206,7 +5261,8 @@
       "shiga",
       "tottori",
       "wakayama",
-      "yamagata"
+      "yamagata",
+      "saitama"
     ],
     "imichi.okuimichi.uchiimichi": "aichi",
     "nihommatsu": [
@@ -5248,7 +5304,8 @@
       "yamagata",
       "yamaguchi",
       "yamanashi",
-      "okinawa"
+      "okinawa",
+      "nagano"
     ],
     "katsuobuchi": "aichi",
     "sakurabuchi": [
@@ -5308,6 +5365,7 @@
     "tomioka(yashikichiku)": "aichi",
     "yanai": [
       "aichi",
+      "yamaguchi",
       "yamaguchi"
     ],
     "hitokuwada": "aichi",
@@ -5365,7 +5423,8 @@
       "toyama",
       "wakayama",
       "yamagata",
-      "yamaguchi"
+      "yamaguchi",
+      "chiba"
     ],
     "noda(ueichiba)": "aichi",
     "toyoshima": [
@@ -5620,7 +5679,8 @@
       "yamagata",
       "yamaguchi",
       "yamanashi",
-      "fukui"
+      "fukui",
+      "hyogo"
     ],
     "ishiro": "aichi",
     "shimoyoshida": [
@@ -7429,7 +7489,8 @@
       "toyama",
       "wakayama",
       "yamagata",
-      "yamaguchi"
+      "yamaguchi",
+      "nagano"
     ],
     "mutsuguri": "aichi",
     "kamimutsuguri": "aichi",
@@ -7575,7 +7636,8 @@
       "niigata",
       "okayama",
       "shiga",
-      "toyama"
+      "toyama",
+      "aichi"
     ],
     "gogosho": "aichi",
     "horioseki": "aichi",
@@ -10635,7 +10697,8 @@
       "tottori",
       "toyama",
       "wakayama",
-      "yamagata"
+      "yamagata",
+      "osaka"
     ],
     "heiwa": [
       "aichi",
@@ -10696,7 +10759,8 @@
       "yamagata",
       "yamanashi",
       "okinawa",
-      "kagoshima"
+      "kagoshima",
+      "osaka"
     ],
     "daikancho": [
       "aichi",
@@ -11328,7 +11392,8 @@
       "nara",
       "niigata",
       "toyama",
-      "yamaguchi"
+      "yamaguchi",
+      "hyogo"
     ],
     "kawamiyacho": "aichi",
     "muramaecho": "aichi",
@@ -11831,6 +11896,7 @@
       "miyazaki",
       "niigata",
       "yamagata",
+      "aichi",
       "kochi",
       "shiga"
     ],
@@ -12026,6 +12092,7 @@
     "makinohara": [
       "aichi",
       "chiba",
+      "shizuoka",
       "shizuoka"
     ],
     "takabarihara": "aichi",
@@ -12504,6 +12571,7 @@
       "aichi",
       "ibaraki",
       "niigata",
+      "saitama",
       "saitama"
     ],
     "umegaoka": [
@@ -12597,7 +12665,8 @@
       "saitama",
       "shiga",
       "tottori",
-      "toyama"
+      "toyama",
+      "shiga"
     ],
     "gozembacho": "aichi",
     "onecho": "aichi",
@@ -12651,7 +12720,8 @@
       "shizuoka",
       "toyama",
       "wakayama",
-      "yamaguchi"
+      "yamaguchi",
+      "nagano"
     ],
     "iguchi": [
       "aichi",
@@ -13025,7 +13095,8 @@
       "toyama",
       "wakayama",
       "yamanashi",
-      "okinawa"
+      "okinawa",
+      "osaka"
     ],
     "nishihara": [
       "aichi",
@@ -13168,7 +13239,8 @@
       "shizuoka",
       "tokyo",
       "wakayama",
-      "yamagata"
+      "yamagata",
+      "shizuoka"
     ],
     "kitaguma": "aichi",
     "yoshigabasama": "aichi",
@@ -13708,7 +13780,8 @@
       "yamagata",
       "yamaguchi",
       "yamanashi",
-      "okinawa"
+      "okinawa",
+      "yamanashi"
     ],
     "kakewaricho": "aichi",
     "gonaka": [
@@ -13730,7 +13803,8 @@
       "kyoto",
       "nagano",
       "niigata",
-      "shimane"
+      "shimane",
+      "aichi"
     ],
     "sakurai": [
       "aichi",
@@ -13738,7 +13812,8 @@
       "gifu",
       "nagano",
       "nara",
-      "osaka"
+      "osaka",
+      "nara"
     ],
     "sakuraihommachi": "aichi",
     "jobushi": "aichi",
@@ -13884,7 +13959,9 @@
       "fukuoka",
       "ibaraki",
       "kumamoto",
-      "shiga"
+      "shiga",
+      "fukuoka",
+      "ibaraki"
     ],
     "shinoka": [
       "aichi",
@@ -13911,7 +13988,8 @@
       "tochigi",
       "tokyo",
       "tottori",
-      "yamagata"
+      "yamagata",
+      "saitama"
     ],
     "kamizue": "aichi",
     "gonishicho": "aichi",
@@ -14005,6 +14083,7 @@
     ],
     "matsudo": [
       "aichi",
+      "chiba",
       "chiba"
     ],
     "yatsuhashi": "aichi",
@@ -14118,7 +14197,8 @@
       "shizuoka",
       "tokyo",
       "yamagata",
-      "yamanashi"
+      "yamanashi",
+      "aomori"
     ],
     "komadate": "aichi",
     "shimokurogawa": "aichi",
@@ -14784,7 +14864,8 @@
     "inuyama": [
       "aichi",
       "fukui",
-      "toyama"
+      "toyama",
+      "aichi"
     ],
     "kitakoken": "aichi",
     "higashikoken": "aichi",
@@ -15125,7 +15206,8 @@
       "kanagawa",
       "nagano",
       "saitama",
-      "tokyo"
+      "tokyo",
+      "kanagawa"
     ],
     "kitahiratsuka": "aichi",
     "takichiyashiki": "aichi",
@@ -15783,7 +15865,8 @@
       "tottori",
       "toyama",
       "wakayama",
-      "yamanashi"
+      "yamanashi",
+      "chiba"
     ],
     "shimonumacho": "aichi",
     "betsumeicho": "aichi",
@@ -15815,7 +15898,8 @@
       "tokyo",
       "tottori",
       "yamaguchi",
-      "chiba"
+      "chiba",
+      "tochigi"
     ],
     "bunkyo": [
       "aichi",
@@ -15863,7 +15947,8 @@
       "mie",
       "niigata",
       "okayama",
-      "tokyo"
+      "tokyo",
+      "aichi"
     ],
     "inuicho": [
       "aichi",
@@ -17535,7 +17620,8 @@
     "miyazu": [
       "aichi",
       "kyoto",
-      "toyama"
+      "toyama",
+      "kyoto"
     ],
     "hagi": [
       "aichi",
@@ -17605,7 +17691,8 @@
     "sunagawa": [
       "aichi",
       "hokkaido",
-      "yamagata"
+      "yamagata",
+      "hokkaido"
     ],
     "hosei": [
       "aichi",
@@ -18676,7 +18763,8 @@
     "nishiichiba": "aichi",
     "kiyosu": [
       "aichi",
-      "osaka"
+      "osaka",
+      "aichi"
     ],
     "shinkiyosu": "aichi",
     "jojo": [
@@ -19613,7 +19701,8 @@
       "oita",
       "shiga",
       "toyama",
-      "okinawa"
+      "okinawa",
+      "shiga"
     ],
     "tamba": [
       "aichi",
@@ -20020,7 +20109,8 @@
       "shizuoka",
       "tochigi",
       "tokyo",
-      "yamanashi"
+      "yamanashi",
+      "saitama"
     ],
     "koganehara": [
       "akita",
@@ -20239,7 +20329,8 @@
       "shimane",
       "toyama",
       "wakayama",
-      "yamagata"
+      "yamagata",
+      "nagano"
     ],
     "uchidatemachi": "akita",
     "uchimachi": [
@@ -20872,7 +20963,8 @@
       "tokyo",
       "toyama",
       "wakayama",
-      "yamaguchi"
+      "yamaguchi",
+      "tochigi"
     ],
     "noaramachi": "akita",
     "yarida": "akita",
@@ -20937,7 +21029,8 @@
     ],
     "katagami": [
       "akita",
-      "niigata"
+      "niigata",
+      "akita"
     ],
     "kataguchi": [
       "akita",
@@ -21091,7 +21184,8 @@
       "toyama",
       "wakayama",
       "yamagata",
-      "yamanashi"
+      "yamanashi",
+      "saitama"
     ],
     "ienoshiro": "akita",
     "hitoichi": [
@@ -21146,6 +21240,7 @@
       "akita",
       "ehime",
       "ibaraki",
+      "kochi",
       "kochi"
     ],
     "tohinzawa": "akita",
@@ -22075,7 +22170,8 @@
     ],
     "odate": [
       "akita",
-      "miyagi"
+      "miyagi",
+      "akita"
     ],
     "iwase": [
       "akita",
@@ -22706,7 +22802,8 @@
       "fukushima",
       "miyagi",
       "osaka",
-      "yamagata"
+      "yamagata",
+      "fukushima"
     ],
     "nukazuka": [
       "akita",
@@ -22895,7 +22992,8 @@
       "shimane",
       "shizuoka",
       "yamagata",
-      "yamanashi"
+      "yamanashi",
+      "nagano"
     ],
     "omagari iidacho": "akita",
     "hirugawa": "akita",
@@ -22981,7 +23079,8 @@
       "tochigi",
       "tottori",
       "wakayama",
-      "yamagata"
+      "yamagata",
+      "wakayama"
     ],
     "takanashi": [
       "akita",
@@ -23497,7 +23596,8 @@
       "iwate",
       "niigata",
       "yamagata",
-      "yamanashi"
+      "yamanashi",
+      "akita"
     ],
     "yagyu": [
       "akita",
@@ -23976,7 +24076,8 @@
       "shizuoka",
       "tokushima",
       "tottori",
-      "wakayama"
+      "wakayama",
+      "osaka"
     ],
     "dempoji": "aomori",
     "kirida": "aomori",
@@ -24569,7 +24670,8 @@
       "osaka",
       "shimane",
       "tottori",
-      "wakayama"
+      "wakayama",
+      "shimane"
     ],
     "ichonokimae": "aomori",
     "ichonoki": "aomori",
@@ -24940,13 +25042,15 @@
       "aomori",
       "iwate",
       "kochi",
-      "okayama"
+      "okayama",
+      "aomori"
     ],
     "kodaikumachi": "aomori",
     "otsudaikumachi": "aomori",
     "ushirodaikumachi": "aomori",
     "fukuroi": [
       "aomori",
+      "shizuoka",
       "shizuoka"
     ],
     "okkonoki": "aomori",
@@ -26471,7 +26575,8 @@
       "nagano",
       "niigata",
       "tochigi",
-      "yamagata"
+      "yamagata",
+      "kanagawa"
     ],
     "osuke": "aomori",
     "soma": [
@@ -27420,7 +27525,8 @@
     "ishioka": [
       "aomori",
       "ibaraki",
-      "yamagata"
+      "yamagata",
+      "ibaraki"
     ],
     "mizuno": [
       "aomori",
@@ -27738,7 +27844,8 @@
       "nara",
       "oita",
       "tochigi",
-      "tottori"
+      "tottori",
+      "nara"
     ],
     "higashiono": [
       "aomori",
@@ -27834,7 +27941,8 @@
       "ibaraki",
       "kagawa",
       "osaka",
-      "tokyo"
+      "tokyo",
+      "ibaraki"
     ],
     "hamadate": "aomori",
     "toyama(sonota)": [
@@ -28440,6 +28548,7 @@
     "shiogama": [
       "aomori",
       "hokkaido",
+      "miyagi",
       "miyagi"
     ],
     "shimmori": [
@@ -28789,7 +28898,8 @@
       "nagano",
       "niigata",
       "osaka",
-      "tokyo"
+      "tokyo",
+      "nagano"
     ],
     "hogai": "chiba",
     "komoguchi": "chiba",
@@ -28880,7 +28990,8 @@
       "ibaraki",
       "miyagi",
       "nagasaki",
-      "yamagata"
+      "yamagata",
+      "chiba"
     ],
     "kamisanagura": "chiba",
     "takai": [
@@ -28897,6 +29008,7 @@
       "niigata",
       "saitama",
       "tokyo",
+      "yamanashi",
       "yamanashi"
     ],
     "aburi": "chiba",
@@ -28923,6 +29035,7 @@
       "fukuoka",
       "iwate",
       "yamaguchi",
+      "okinawa",
       "okinawa"
     ],
     "funakata": "chiba",
@@ -29066,7 +29179,8 @@
       "toyama",
       "yamaguchi",
       "yamanashi",
-      "okinawa"
+      "okinawa",
+      "tochigi"
     ],
     "mushirochi": [
       "chiba",
@@ -29319,7 +29433,8 @@
       "tokyo",
       "tottori",
       "wakayama",
-      "yamagata"
+      "yamagata",
+      "ibaraki"
     ],
     "omoi": "chiba",
     "nishihirai": [
@@ -29707,7 +29822,8 @@
       "shizuoka",
       "tokushima",
       "tottori",
-      "yamagata"
+      "yamagata",
+      "niigata"
     ],
     "kuradama": "chiba",
     "kiwadahata": "chiba",
@@ -29844,7 +29960,8 @@
     "kamiyue": "chiba",
     "kimitsu": [
       "chiba",
-      "okayama"
+      "okayama",
+      "chiba"
     ],
     "sakada": [
       "chiba",
@@ -30066,7 +30183,8 @@
       "fukushima",
       "ibaraki",
       "kagoshima",
-      "miyazaki"
+      "miyazaki",
+      "fukushima"
     ],
     "motokitakata": "chiba",
     "shimokaizuka": "chiba",
@@ -30362,6 +30480,7 @@
     "gyodacho": "chiba",
     "gyoda": [
       "chiba",
+      "saitama",
       "saitama"
     ],
     "yamate": [
@@ -30571,7 +30690,8 @@
       "osaka",
       "saitama",
       "tokyo",
-      "yamaguchi"
+      "yamaguchi",
+      "saitama"
     ],
     "hoshina": "chiba",
     "yonamoto(yonamotodanchi)": "chiba",
@@ -30994,6 +31114,7 @@
     "kiyodo": "chiba",
     "shishiba": "chiba",
     "shiroi": [
+      "chiba",
       "chiba"
     ],
     "fuku": [
@@ -31076,7 +31197,8 @@
     "niichiba": "chiba",
     "katori": [
       "chiba",
-      "tottori"
+      "tottori",
+      "chiba"
     ],
     "yorogo": "chiba",
     "kumiage": [
@@ -31160,7 +31282,8 @@
       "chiba",
       "ibaraki",
       "saitama",
-      "yamanashi"
+      "yamanashi",
+      "ibaraki"
     ],
     "iwabe": [
       "chiba",
@@ -31666,7 +31789,8 @@
       "miyagi",
       "niigata",
       "saitama",
-      "tochigi"
+      "tochigi",
+      "fukuoka"
     ],
     "uchida": [
       "chiba",
@@ -31685,6 +31809,7 @@
       "ishikawa",
       "kanagawa",
       "niigata",
+      "saitama",
       "saitama"
     ],
     "kinoko": [
@@ -31845,7 +31970,8 @@
       "iwate",
       "miyagi",
       "tochigi",
-      "yamagata"
+      "yamagata",
+      "chiba"
     ],
     "uingutsuchiya": "chiba",
     "kamicho": [
@@ -32220,14 +32346,16 @@
       "chiba",
       "ishikawa",
       "niigata",
-      "tochigi"
+      "tochigi",
+      "chiba"
     ],
     "mobara": [
       "chiba",
       "fukushima",
       "mie",
       "shiga",
-      "tochigi"
+      "tochigi",
+      "chiba"
     ],
     "chubu": [
       "chiba",
@@ -32540,7 +32668,8 @@
       "hokkaido",
       "ibaraki",
       "kyoto",
-      "okayama"
+      "okayama",
+      "ibaraki"
     ],
     "kitanaka": [
       "chiba",
@@ -32639,7 +32768,8 @@
       "ehime",
       "hokkaido",
       "kumamoto",
-      "saitama"
+      "saitama",
+      "chiba"
     ],
     "kashiwanakamurashita": "chiba",
     "tobarishinden": "chiba",
@@ -32700,7 +32830,8 @@
     "tomisato": [
       "chiba",
       "hokkaido",
-      "shizuoka"
+      "shizuoka",
+      "chiba"
     ],
     "hitachidai": "chiba",
     "shinkashiwa": "chiba",
@@ -32816,6 +32947,7 @@
     "kashiwanoha": "chiba",
     "isehara": [
       "chiba",
+      "kanagawa",
       "kanagawa"
     ],
     "nishikashiwadai": "chiba",
@@ -33525,7 +33657,8 @@
     "ichihara": [
       "chiba",
       "ishikawa",
-      "nara"
+      "nara",
+      "chiba"
     ],
     "monzen": [
       "chiba",
@@ -33543,6 +33676,7 @@
     "saihiro": "chiba",
     "soja": [
       "chiba",
+      "okayama",
       "okayama"
     ],
     "neda": [
@@ -33554,6 +33688,7 @@
       "chiba",
       "fukushima",
       "ibaraki",
+      "niigata",
       "niigata"
     ],
     "tsuiheiji": "chiba",
@@ -33684,7 +33819,8 @@
       "chiba",
       "hyogo",
       "shiga",
-      "okinawa"
+      "okinawa",
+      "hyogo"
     ],
     "iwa": [
       "chiba",
@@ -34227,7 +34363,8 @@
       "shimane",
       "shizuoka",
       "tottori",
-      "yamagata"
+      "yamagata",
+      "gifu"
     ],
     "oniwa": "chiba",
     "ozukura": "chiba",
@@ -34393,7 +34530,8 @@
       "tokyo",
       "toyama",
       "wakayama",
-      "yamagata"
+      "yamagata",
+      "fukuoka"
     ],
     "shiomigaokacho": "chiba",
     "higashichiba": "chiba",
@@ -34582,7 +34720,8 @@
       "niigata",
       "shizuoka",
       "tochigi",
-      "yamagata"
+      "yamagata",
+      "gifu"
     ],
     "takeishicho": "chiba",
     "makuharicho": "chiba",
@@ -34990,7 +35129,8 @@
     "abiko": [
       "chiba",
       "osaka",
-      "shiga"
+      "shiga",
+      "chiba"
     ],
     "shibasakidai": "chiba",
     "minamiaoyama": [
@@ -36571,7 +36711,8 @@
       "hiroshima",
       "ishikawa",
       "kumamoto",
-      "niigata"
+      "niigata",
+      "ehime"
     ],
     "nishiozu": "ehime",
     "hiranochonoda": "ehime",
@@ -37078,6 +37219,7 @@
       "osaka",
       "tokyo",
       "yamanashi",
+      "ibaraki",
       "saga"
     ],
     "hisage": [
@@ -37922,6 +38064,7 @@
     "usuki": [
       "ehime",
       "kagoshima",
+      "oita",
       "oita"
     ],
     "hongawa": [
@@ -40886,7 +41029,8 @@
       "oita",
       "osaka",
       "tokyo",
-      "wakayama"
+      "wakayama",
+      "tokyo"
     ],
     "higashidaido": "fukui",
     "nishidaido": "fukui",
@@ -41064,6 +41208,7 @@
       "fukui",
       "hiroshima",
       "okayama",
+      "wakayama",
       "wakayama"
     ],
     "mishono": "fukui",
@@ -41147,7 +41292,8 @@
       "kagoshima",
       "nara",
       "saitama",
-      "wakayama"
+      "wakayama",
+      "gifu"
     ],
     "shobayashi": "fukui",
     "nishiichi": [
@@ -42151,7 +42297,8 @@
       "hyogo",
       "mie",
       "okayama",
-      "osaka"
+      "osaka",
+      "mie"
     ],
     "sanrokucho": "fukui",
     "chosenjicho": "fukui",
@@ -42271,6 +42418,7 @@
       "kumamoto",
       "mie",
       "miyazaki",
+      "yamanashi",
       "yamanashi"
     ],
     "makomo": "fukuoka",
@@ -42733,7 +42881,8 @@
     "agano": [
       "fukuoka",
       "niigata",
-      "saitama"
+      "saitama",
+      "niigata"
     ],
     "kanada": [
       "fukuoka",
@@ -42902,6 +43051,7 @@
     ],
     "ashiya": [
       "fukuoka",
+      "hyogo",
       "hyogo"
     ],
     "yamaga": [
@@ -42909,7 +43059,8 @@
       "kumamoto",
       "oita",
       "saitama",
-      "yamanashi"
+      "yamanashi",
+      "kumamoto"
     ],
     "egawadai": "fukuoka",
     "hanamizaka": [
@@ -43107,7 +43258,8 @@
     "tokamachi": [
       "fukuoka",
       "niigata",
-      "yamagata"
+      "yamagata",
+      "niigata"
     ],
     "kametanimachi": "fukuoka",
     "sankomachi": "fukuoka",
@@ -43323,7 +43475,8 @@
       "fukuoka",
       "kagoshima",
       "okayama",
-      "okinawa"
+      "okinawa",
+      "fukuoka"
     ],
     "nagatsu": "fukuoka",
     "nakazuru": [
@@ -44908,6 +45061,7 @@
       "ibaraki",
       "ishikawa",
       "kyoto",
+      "wakayama",
       "wakayama"
     ],
     "kaminofu": "fukuoka",
@@ -45740,7 +45894,8 @@
     "mikasa": [
       "fukuoka",
       "hokkaido",
-      "nara"
+      "nara",
+      "hokkaido"
     ],
     "kitadani": [
       "fukuoka",
@@ -45755,7 +45910,8 @@
       "kagawa",
       "nagano",
       "nara",
-      "shiga"
+      "shiga",
+      "nara"
     ],
     "ozano": "fukuoka",
     "mukaizano": "fukuoka",
@@ -52731,7 +52887,8 @@
       "niigata",
       "saitama",
       "toyama",
-      "yamagata"
+      "yamagata",
+      "saitama"
     ],
     "takida": "gifu",
     "ohiraga": "gifu",
@@ -53199,6 +53356,7 @@
     "kadoma": [
       "gifu",
       "iwate",
+      "osaka",
       "osaka"
     ],
     "kamishimmachi": [
@@ -54287,7 +54445,8 @@
       "saitama",
       "shiga",
       "shizuoka",
-      "tokyo"
+      "tokyo",
+      "miyagi"
     ],
     "higashikanda": [
       "gifu",
@@ -55309,15 +55468,32 @@
       "kanagawa",
       "toyama"
     ],
+    "kokuwahara": [],
+    "ainota": [],
+    "shimotakao": [],
+    "hoshida": [],
+    "kimikawa": [],
+    "tajino": [],
+    "sogi": [],
+    "kamitakao": [],
+    "iwasome": [],
+    "minamigoka": [],
     "takumi": [
       "shizuoka"
     ],
+    "shimodakase": [],
+    "nakadakase": [],
+    "kamidakase": [],
+    "shimokuroiwa": [],
     "betsupo": [
       "shiga"
     ],
     "nanokaichi": [
       "niigata"
     ],
+    "myogimachi kamitakata": [],
+    "myogimachi shimotakata": [],
+    "myogimachi yagitsure": [],
     "kanohara": [
       "miyagi"
     ],
@@ -55330,15 +55506,31 @@
     "shimonyu": [
       "shiga"
     ],
-    "kanuma": [
-      "tochigi"
-    ],
+    "kannari": [],
+    "nanjai": [],
+    "kanuma": "tochigi",
+    "myogimachi myogi": [],
+    "myogimachi oushi": [],
+    "myogimachi take": [],
+    "myogimachi namezawa": [],
+    "myogimachi kitayama": [],
+    "myogimachi nakazato": [],
+    "myogimachi furutachi": [],
+    "myogimachi sugahara": [],
+    "myogimachi moroto": [],
+    "shori": [],
+    "aibara": [],
+    "aonashi": [],
     "kagahara": [
       "kanagawa"
     ],
+    "ozuku": [],
+    "nippa": [],
+    "nogurisawa": [],
     "kawawa": [
       "kanagawa"
     ],
+    "otchi": [],
     "nakaomachi": [
       "ishikawa",
       "nagasaki",
@@ -55347,12 +55539,20 @@
     "hidakamachi": [
       "oita"
     ],
+    "shimbotanakamachi": [],
+    "hamajirimachi": [],
+    "tonyamachinishi": [],
+    "shokanjimachi": [],
+    "kyomemachi": [],
     "osawamachi": [
       "tochigi"
     ],
     "hagiwaramachi": [
       "kumamoto"
     ],
+    "motoshimanamachi": [],
+    "shimanomachi": [],
+    "yajimamachi": [],
     "nishijimamachi": [
       "ishikawa"
     ],
@@ -55360,30 +55560,71 @@
       "ishikawa",
       "niigata"
     ],
+    "nishiyokotemachi": [],
+    "shukuyokotemachi": [],
+    "yawatabaramachi": [],
+    "shimosaidamachi": [],
+    "shimotakimachi": [],
+    "kamitakimachi": [],
+    "kamioruimachi": [],
+    "shukuoruimachi": [],
+    "nakaoruimachi": [],
+    "shimooruimachi": [],
+    "minamioruimachi": [],
+    "higashikaizawamachi": [],
+    "kaizawamachi": [],
+    "takazekimachi": [],
+    "iwaoshimachi": [],
+    "egimachi": [],
     "yumicho": [
       "niigata",
       "oita",
       "tokushima"
     ],
+    "rakancho": [],
+    "kitatorimachi": [],
     "motokonyamachi": [
       "yamanashi"
     ],
+    "kuzomachi": [],
+    "iidamamachi": [],
+    "shibazukamachi": [],
+    "ukechimachi": [],
     "iizukamachi": [
       "yamagata"
     ],
     "koyagimachi": [
       "nagasaki"
     ],
+    "oyagimachi": [],
+    "shimokotorimachi": [],
+    "tsukunawamachi": [],
+    "shimokobanamachi": [],
+    "kamikobanamachi": [],
+    "kamikotorimachi": [],
+    "hamagawamachi": [],
+    "kitaaranamimachi": [],
+    "minamiaranamimachi": [],
+    "kikujimachi": [],
+    "wagaminemachi": [],
     "okimachi": [
       "ishikawa",
       "kumamoto",
       "osaka",
       "yamagata"
     ],
+    "rakumamachi": [],
+    "gyorikimachi": [],
+    "kaminamiemachi": [],
+    "namiemachi": [],
+    "kamiwadamachi": [],
+    "utagawacho": [],
     "naritacho": [
       "ibaraki",
       "osaka"
     ],
+    "sekishirocho": [],
+    "akasakamachi": [],
     "yotsuyamachi": [
       "ishikawa",
       "niigata",
@@ -55395,10 +55636,12 @@
     "yoriaicho": [
       "niigata"
     ],
+    "nakakonyamachi": [],
     "renjakucho": [
       "saitama",
       "shizuoka"
     ],
+    "sunagacho": [],
     "shindemmachi": [
       "ishikawa",
       "nagasaki",
@@ -55409,12 +55652,34 @@
       "kyoto",
       "shimane"
     ],
+    "himonocho": [],
+    "kitafutabacho": [],
+    "wadatanakamachi": [],
+    "shigokamachi": [],
+    "shimowadamachi": [],
+    "kaminakaimachi": [],
     "nakaimachi": [
       "mie"
     ],
+    "shimonakaimachi": [],
+    "shimonojomachi": [],
+    "shimosanomachi": [],
+    "sanokubomachi": [],
+    "kamisanomachi": [],
+    "kataokamachi": [],
+    "hijiriishimachi": [],
+    "teraomachi": [],
+    "notsukemachi": [],
+    "hanadakamachi": [],
+    "kamitoyokamachi": [],
+    "kitakubomachi": [],
+    "shimotoyokamachi": [],
+    "nakatoyokamachi": [],
+    "fujizukamachi": [],
     "machiyamachi": [
       "ishikawa"
     ],
+    "kanaibuchimachi": [],
     "kenzakimachi": [
       "ishikawa"
     ],
@@ -55423,26 +55688,113 @@
       "nagano",
       "yamagata"
     ],
+    "wakatamachi": [],
+    "shimooshimamachi": [],
+    "kuraganomachi": [],
+    "yanakamachi": [],
+    "higashinakasatomachi": [],
     "kurizakimachi": [
       "kumamoto"
     ],
     "daishindemmachi": [
       "tochigi"
     ],
+    "watanukimachi": [],
+    "iwahanamachi": [],
+    "kibemachi": [],
+    "yamanamachi": [],
+    "negoyamachi": [],
+    "yoshiimachi nanyodai": [],
+    "yoshiimachi kogure": [],
+    "yoshiimachi iwai": [],
+    "yoshiimachi maniwa": [],
+    "yoshiimachi nakajima": [],
+    "yoshiimachi yata": [],
+    "yoshiimachi ike": [],
+    "yoshiimachi ogushi": [],
+    "yoshiimachi kurokuma": [],
+    "yoshiimachi fukasawa": [],
+    "yoshiimachi ishigami": [],
+    "yoshiimachi taira": [],
+    "yoshiimachi tago": [],
+    "yoshiimachi shimonagane": [],
+    "yoshiimachi taka": [],
+    "yoshiimachi jimbo": [],
+    "yoshiimachi shio": [],
+    "yoshiimachi osawa": [],
+    "yoshiimachi higashiya": [],
+    "yoshiimachi nagane": [],
+    "yoshiimachi hongo": [],
+    "yoshiimachi iwazaki": [],
+    "yoshiimachi yoshii": [],
+    "yoshiimachi yoshiikawa": [],
+    "yoshiimachi shiogawa": [],
+    "yoshiimachi katayama": [],
+    "yoshiimachi kotana": [],
+    "yoshiimachi sakaguchi": [],
+    "yoshiimachi shimokudaira": [],
+    "yoshiimachi kamiokudaira": [],
+    "misatomachi kashiwagizawa": [],
+    "misatomachi oibara": [],
+    "misatomachi shimoshiba": [],
+    "misatomachi kamishiba": [],
+    "misatomachi nishiakiya": [],
+    "misatomachi higashiakiya": [],
+    "misatomachi yabara": [],
+    "misatomachi nakano": [],
+    "misatomachi zenji": [],
+    "misatomachi matsunosawa": [],
+    "misatomachi kanashikidaira": [],
+    "misatomachi tomioka": [],
+    "misatomachi wadayama": [],
+    "misatomachi shirakawa": [],
+    "jumonjimachi": [],
+    "kamioshimamachi": [],
+    "godomachi": [],
+    "mitsugosawamachi": [],
+    "miyazawamachi": [],
+    "harunasammachi": [],
+    "shimomurodamachi": [],
+    "shimosatomimachi": [],
+    "nakasatomimachi": [],
+    "kamisatomimachi": [],
+    "kamimurodamachi": [],
+    "nakamurodamachi": [],
+    "harunakomachi": [],
+    "kurabuchimachi gonda": [],
+    "kurabuchimachi sannokura": [],
+    "kurabuchimachi mizunuma": [],
+    "kurabuchimachi iwakori": [],
+    "kurabuchimachi kawaura": [],
+    "kanekomachi": [],
+    "nishikokubumachi": [],
     "kitaharamachi": [
       "kumamoto"
     ],
+    "higashikokubumachi": [],
     "tsukadamachi": [
       "ishikawa",
       "nagano"
     ],
+    "tokadaimachi": [],
+    "hikimamachi": [],
+    "ushirohikimamachi": [],
+    "hiyamizumachi": [],
+    "munadakamachi": [],
+    "sugayamachi": [],
     "fukushimamachi": [
       "ishikawa",
       "niigata"
     ],
+    "nakaizumimachi": [],
+    "mitsuderamachi": [],
+    "ashikadomachi": [],
     "nakazatomachi": [
       "nagasaki"
     ],
+    "hodotamachi": [],
+    "idemachi": [],
+    "yagihara": [],
     "handa": [
       "ibaraki",
       "kyoto",
@@ -55458,6 +55810,9 @@
       "kanagawa",
       "kochi"
     ],
+    "miyukida": [],
+    "ubashima": [],
+    "nammoku": [],
     "kanai": [
       "ibaraki",
       "nagano",
@@ -55470,13 +55825,55 @@
       "kanagawa",
       "yamagata"
     ],
+    "hokkitsumachi akagisan": [],
+    "hokkitsumachi kamihakoda": [],
+    "hokkitsumachi hakoda": [],
+    "hokkitsumachi shimonamuro": [],
+    "hokkitsumachi kaminamuro": [],
+    "hokkitsumachi shimohakoda": [],
+    "hokkitsumachi makabe": [],
+    "hokkitsumachi bungohassaki": [],
+    "hokkitsumachi hassaki": [],
+    "hokkitsumachi komuro": [],
+    "ikahomachi yunakago": [],
+    "ikahomachi ikaho": [],
+    "ikahomachi mizusawa": [],
+    "kamishiroi": [],
+    "fukiya": [],
+    "kitamoku": [],
+    "onoko": [],
+    "akagimachi tanashita": [],
+    "akagimachi nagaiogawada": [],
+    "akagimachi tsukuda": [],
+    "akagimachi shikishima": [],
+    "akagimachi kitaueno": [],
+    "akagimachi kitaakagisan": [],
+    "akagimachi miyama": [],
+    "akagimachi minamiakagisan": [],
+    "akagimachi sakae": [],
+    "akagimachi mizoroki": [],
+    "akagimachi mochikashiwagi": [],
+    "akagimachi miyada": [],
+    "akagimachi katsuhozawa": [],
+    "akagimachi mitachi": [],
+    "akagimachi takizawa": [],
+    "akagimachi kamimiharada": [],
+    "akagimachi miharada": [],
+    "akagimachi taru": [],
     "higoshi": [
       "niigata"
     ],
+    "kamifukushima": [],
+    "nangyoku": [],
     "shimonomiya": [
       "hyogo",
       "ibaraki"
     ],
+    "hakoishi": [],
+    "kamiiijima": [],
+    "tsunobuchi": [],
+    "unuki": [],
+    "kaminote": [],
     "shimoshinden": [
       "kanagawa",
       "miyagi",
@@ -55484,26 +55881,84 @@
       "niigata",
       "saitama"
     ],
+    "yorokubu": [],
     "itai": [
       "niigata",
       "saitama"
     ],
+    "nitta tenracho": [],
+    "nitta kokincho": [],
+    "nitta koganaicho": [],
+    "nitta ichicho": [],
+    "nitta tamurashindencho": [],
+    "nitta ichinokuracho": [],
+    "nitta mizukicho": [],
+    "nitta muratacho": [],
+    "nitta sorimachicho": [],
+    "nitta ichinoicho": [],
+    "nitta kizakicho": [],
+    "nitta akaboricho": [],
+    "nitta nakaedacho": [],
+    "nitta shimoedacho": [],
+    "nitta takaocho": [],
+    "nitta kanaicho": [],
+    "nitta kamiedacho": [],
+    "nitta shimodanakacho": [],
+    "nitta hayakawacho": [],
+    "nitta hanakazukacho": [],
+    "nitta kamidanakacho": [],
+    "nitta onecho": [],
+    "nitta ocho": [],
+    "nitta kanecho": [],
+    "nitta kaminakacho": [],
+    "nitta tameikecho": [],
+    "nitta gonemoncho": [],
+    "nitta hagicho": [],
+    "akutsucho": [],
+    "iwamatsucho": [],
     "bizenjimacho": [
       "kyoto"
     ],
+    "oshikiricho": [],
+    "maegoyacho": [],
+    "suzukakecho": [],
+    "horiguchicho": [],
     "maejimacho": [
       "hyogo"
     ],
+    "futatsugoyacho": [],
+    "musashijimacho": [],
+    "kasukawacho": [],
+    "otachicho": [],
+    "idezukacho": [],
+    "seradacho": [],
+    "kozumidacho": [],
+    "nishinagaokacho": [],
+    "sugashiocho": [],
+    "kitakanaicho": [],
+    "narizukacho": [],
+    "tsurudacho": [],
+    "tadakaricho": [],
+    "kiyoharacho": [],
+    "uekinocho": [],
+    "yataboricho": [],
     "yoshizawacho": [
       "ibaraki"
     ],
+    "higashikanaicho": [],
+    "tomiwakacho": [],
+    "kamikobayashicho": [],
+    "subarucho": [],
     "niragawacho": [
       "tochigi"
     ],
+    "wakiyacho": [],
     "nishihoncho": [
       "niigata",
       "shizuoka"
     ],
+    "fujiagucho": [],
+    "fujikuracho": [],
     "yuracho": [
       "kagawa"
     ],
@@ -55514,6 +55969,8 @@
     "nishinoyacho": [
       "kanagawa"
     ],
+    "kamitajimacho": [],
+    "tenracho": [],
     "teraicho": [
       "kagawa"
     ],
@@ -55521,18 +55978,51 @@
       "hyogo",
       "nagasaki"
     ],
+    "toriyamakamicho": [],
+    "toriyamanakacho": [],
+    "toriyamashimocho": [],
     "harajukucho": [
       "yamaguchi"
     ],
+    "takazecho": [],
+    "kamigodocho": [],
+    "owashicho": [],
+    "dainogocho": [],
+    "yabashimmachi": [],
+    "okinogocho": [],
+    "yaegasacho": [],
+    "ryumaicho": [],
+    "shimokobayashicho": [],
+    "motegicho": [],
+    "yasuraokacho": [],
+    "higashinagaokacho": [],
+    "uchigashimacho": [],
+    "higashiyajimacho": [],
+    "komaigicho": [],
+    "niijimacho": [],
+    "shimohamadacho": [],
+    "shoyamachi": [],
+    "nishiyajimacho": [],
+    "takahayashi kotobukicho": [],
+    "takahayashi higashicho": [],
+    "furutocho": [],
+    "takahayashi minamicho": [],
+    "takahayashi nishicho": [],
+    "takahayashi kitacho": [],
     "fukuzawacho": [
       "hyogo"
     ],
     "ushizawacho": [
       "saitama"
     ],
+    "iwasegawacho": [],
     "yonezawacho": [
       "ibaraki"
     ],
+    "shimotajimacho": [],
+    "minamiyajimacho": [],
+    "yabuzukacho": [],
+    "rokusengokucho": [],
     "nabeya": [
       "okayama"
     ],
@@ -55542,6 +56032,7 @@
       "niigata",
       "okayama"
     ],
+    "maigi": [],
     "shimpukuji": [
       "ibaraki",
       "osaka",
@@ -55550,6 +56041,8 @@
     "kamikoizumi": [
       "toyama"
     ],
+    "shimokoizumi": [],
+    "shironochi": [],
     "kokai": [
       "yamaguchi"
     ],
@@ -55559,6 +56052,7 @@
       "yamagata",
       "okayama"
     ],
+    "yorikido": [],
     "furukori": [
       "mie",
       "saitama",
@@ -55575,39 +56069,141 @@
     "ishiuchi": [
       "niigata"
     ],
+    "akizuma": [],
+    "uzurashinden": [],
+    "shinnakano": [],
+    "mujinazuka": [],
     "akahori": [
       "mie"
     ],
+    "shinozuka": [],
     "kozenji": [
       "iwate",
       "yamanashi"
     ],
+    "minamioshima": [],
+    "kamieguro": [],
+    "shimoeguro": [],
+    "togota": [],
+    "irikaya": [],
     "yajima": [
       "ibaraki",
       "niigata",
       "saitama"
     ],
+    "umebara": [],
+    "ozanuki": [],
+    "shimonakamori": [],
+    "kaminakamori": [],
+    "kamigoka": [],
+    "sedoi": [],
+    "yokegawa": [],
     "hanare": [
       "ibaraki"
     ],
+    "onimba": [],
+    "nishiokashinden": [],
+    "ebise": [],
     "asahino": [
       "hokkaido"
     ],
+    "shimogoka": [],
+    "otakashima": [],
+    "momiya": [],
+    "uchikurashinden": [],
+    "ikehatamachi": [],
+    "kamiaonashimachi": [],
+    "aonashimachi": [],
+    "kiyonomachi": [],
+    "ogikubomachi": [],
+    "kameizumimachi": [],
+    "horinoshitamachi": [],
+    "ishizekimachi": [],
+    "kamiizumimachi": [],
+    "shimokimachi": [],
     "higashikatakaimachi": [
       "niigata"
     ],
     "nishikatakaimachi": [
       "niigata"
     ],
+    "mitsumatamachi": [],
+    "shimokoidemachi": [],
+    "kokuryomachi": [],
     "iwagamimachi": [
       "ishikawa"
     ],
+    "kamikoidemachi": [],
+    "nichirinjimachi": [],
+    "nankitsumachi": [],
+    "aramakimachi": [],
+    "sekinemachi": [],
+    "taguchimachi": [],
+    "kamihosoimachi": [],
+    "kamiokimachi": [],
+    "kozukamachi": [],
+    "shimohosoimachi": [],
+    "kitashirotamachi": [],
+    "ryuzojimachi": [],
+    "fujimimachi akagisan": [],
+    "fujimimachi minazawa": [],
+    "fujimimachi kogure": [],
+    "fujimimachi tokizawa": [],
+    "fujimimachi ishii": [],
+    "fujimimachi ichinokiba": [],
+    "fujimimachi yamaguchi": [],
+    "fujimimachi komeno": [],
+    "fujimimachi hikida": [],
+    "fujimimachi urukubo": [],
+    "fujimimachi tajima": [],
+    "fujimimachi ozawa": [],
+    "fujimimachi haranogo": [],
+    "fujimimachi yokomuro": [],
+    "kanamarumachi": [],
+    "kozakashimachi": [],
+    "takahanadai": [],
+    "katsusawamachi": [],
     "minemachi": [
       "tochigi"
     ],
+    "tottorimachi": [],
+    "godaimachi": [],
+    "hakemachi": [],
+    "kojimmeimachi": [],
+    "kasukawamachi nakanosawa": [],
+    "kasukawamachi murosawa": [],
+    "kasukawamachi tsukida": [],
+    "kasukawamachi zen": [],
+    "kasukawamachi naka": [],
+    "kasukawamachi araya": [],
+    "kasukawamachi inasato": [],
+    "kasukawamachi kamihigashitanabo": [],
+    "kasukawamachi shimohigashitanabo": [],
+    "kasukawamachi hitoichi": [],
+    "kasukawamachi onabuchi": [],
+    "kasukawamachi fukazu": [],
+    "kasukawamachi komigaito": [],
+    "kasukawamachi nishitanabo": [],
+    "kasukawamachi maegaito": [],
+    "higoshimachi": [],
+    "kamioyamachi": [],
+    "ogomachi": [],
+    "kawarahamamachi": [],
+    "horikoshimachi": [],
+    "motogimachi": [],
+    "yokozawamachi": [],
+    "higashikanamarumachi": [],
+    "takikubomachi": [],
+    "naegashimamachi": [],
+    "omaetamachi": [],
+    "hanageishimachi": [],
+    "ichinosekimachi": [],
     "kashiwaguramachi": [
       "tochigi"
     ],
+    "miyosawamachi": [],
+    "amagawamachi": [],
+    "amagawa baramachi": [],
     "rokkumachi": [
       "yamagata"
     ],
@@ -55619,47 +56215,100 @@
       "kumamoto",
       "niigata"
     ],
+    "shimosadorimachi": [],
+    "kamisadorimachi": [],
+    "nudejimamachi": [],
     "kamishindemmachi": [
       "niigata"
     ],
+    "shimoshindemmachi": [],
+    "kawamagarimachi": [],
+    "tokashindemmachi": [],
+    "otonemachi": [],
+    "koaigimachi": [],
+    "gokemachi": [],
+    "maehakodamachi": [],
     "edamachi": [
       "ishikawa",
       "oita"
     ],
+    "hakodamachi": [],
     "ishikuramachi": [
       "toyama"
     ],
+    "shimoishikuramachi": [],
+    "shimmaebashimachi": [],
     "furuichimachi": [
       "kochi",
       "oita"
     ],
+    "toribamachi": [],
+    "motosojamachi": [],
+    "odomomachi": [],
+    "sojamachi ueno": [],
+    "sojamachi soja": [],
     "sojamachi": [
       "tochigi"
     ],
+    "owatarimachi": [],
+    "sojamachi takai": [],
+    "sojamachi sakuragaoka": [],
+    "izumisawamachi": [],
+    "shimooyamachi": [],
+    "kanzawanomori": [],
+    "nishiomuromachi": [],
+    "higashiomuromachi": [],
+    "arakuchimachi": [],
+    "tsurugayamachi": [],
+    "iidoimachi": [],
+    "shimomasudamachi": [],
+    "kamimasudamachi": [],
+    "utsuboimachi": [],
     "imaimachi": [
       "nara"
     ],
     "ninomiyamachi": [
       "ishikawa"
     ],
+    "koyaharamachi": [],
+    "komagatamachi": [],
     "sannomachi": [
       "ishikawa",
       "toyama",
       "yamagata"
     ],
+    "nishizemmachi": [],
+    "higashizemmachi": [],
+    "nakauchimachi": [],
     "tokumarumachi": [
       "ishikawa"
     ],
     "bomarumachi": [
       "ishikawa"
     ],
+    "tsurukojimachi": [],
+    "shimoauchimachi": [],
+    "niiborimachi": [],
+    "shimokawamachi": [],
+    "kudemmachi": [],
+    "kamesatomachi": [],
+    "shimonagaisomachi": [],
+    "amagawa oshimamachi": [],
     "tomidamachi": [
       "tokushima"
     ],
+    "kojimatamachi": [],
+    "onayamachi": [],
+    "higashiuenomachi": [],
+    "kaminagaisomachi": [],
+    "yamakoda": [],
+    "hirobaba": [],
     "urushibara": [
       "miyagi",
       "tottori"
     ],
+    "minamishimo": [],
+    "kitashimo": [],
     "kaminoda": [
       "kochi",
       "okayama",
@@ -55668,18 +56317,34 @@
     "todoroku": [
       "tochigi"
     ],
+    "akihata": [],
+    "kunimine": [],
+    "zenkeiji": [],
     "shirakura": [
       "yamagata"
     ],
+    "niwaya": [],
+    "tsukuriishi": [],
+    "amabiki": [],
+    "shimonita": [],
     "mayama": [
       "nagano"
     ],
+    "aokura": [],
+    "okuwahara": [],
+    "kazakuchi": [],
+    "miyamuro": [],
+    "kamiosaka": [],
     "nakaosaka": [
       "saitama"
     ],
+    "higashinomaki": [],
     "motojuku": [
       "saitama"
     ],
+    "minaminomaki": [],
+    "nishinomaki": [],
+    "oshiozawa": [],
     "chihara": [
       "hyogo",
       "nara",
@@ -55696,12 +56361,42 @@
     "ohinata": [
       "nagano"
     ],
+    "mukuruma": [],
     "hazawa": [
       "tokyo"
     ],
     "hoshio": [
       "wakayama"
     ],
+    "sakai higashiarai": [],
+    "sakai kamifuchina": [],
+    "sakai shimofuchina": [],
+    "sakai kijima": [],
+    "sakai iyoku": [],
+    "sakai kamiyajima": [],
+    "sakai nishiimai": [],
+    "sakai mitsugi": [],
+    "sakai shinei": [],
+    "sakai mihara": [],
+    "sakai dodohigashi": [],
+    "sakai dodo": [],
+    "sakai onazuka": [],
+    "sakai sakae": [],
+    "sakai azuma": [],
+    "sakai hagiwara": [],
+    "sakai shimotakeshi": [],
+    "sakai kamitakeshi": [],
+    "sakai hozumi": [],
+    "sakai yoneoka": [],
+    "sakai hirazuka": [],
+    "sakai nakajima": [],
+    "sakai shimamura": [],
+    "sakai okonogi": [],
+    "hashiemachi": [],
+    "tsutsumi nishimachi": [],
+    "kezojimachi": [],
+    "tsutsumi shitacho": [],
+    "amborimachi": [],
     "sanwacho": [
       "hiroshima",
       "kagoshima",
@@ -55716,9 +56411,19 @@
       "tochigi",
       "toyama"
     ],
+    "kamiuekihommachi": [],
+    "honsekicho": [],
+    "kamisuwacho": [],
+    "shimoekicho": [],
+    "kitasengicho": [],
+    "minamisengicho": [],
     "moromachi": [
       "oita"
     ],
+    "morominamicho": [],
+    "mimorocho": [],
+    "munetakacho": [],
+    "kuruwacho": [],
     "miyakomachi": [
       "hiroshima",
       "miyazaki",
@@ -55726,14 +56431,32 @@
       "oita",
       "yamaguchi"
     ],
+    "tanakajimamachi": [],
+    "miyafurumachi": [],
+    "tsunatorimachi": [],
+    "nirazukamachi": [],
+    "higashikaminomiyamachi": [],
+    "nishikaminomiyamachi": [],
+    "tsunatori hommachi": [],
+    "tsunatori motomachi": [],
+    "amidaijimachi": [],
     "shibamachi": [
       "hyogo",
       "kanagawa"
     ],
+    "toyazukamachi": [],
     "fukujimamachi": [
       "nagano",
       "niigata"
     ],
+    "yattajimamachi": [],
+    "yogecho": [],
+    "tomizukacho": [],
+    "horiguchimachi": [],
+    "mamizukamachi": [],
+    "gedojicho": [],
+    "kamihasucho": [],
+    "shimohasucho": [],
     "kokuryocho": [
       "tokyo"
     ],
@@ -55745,14 +56468,34 @@
     "naganumamachi": [
       "tokyo"
     ],
+    "ainoyacho": [],
+    "akaborikashimacho": [],
+    "magarisawacho": [],
     "nishikubocho": [
       "hiroshima",
       "kanagawa"
     ],
+    "nocho": [],
+    "horishitacho": [],
+    "gomeushicho": [],
+    "shimofureicho": [],
+    "akaboriimaicho": [],
     "isocho": [
       "mie",
       "shimane"
     ],
+    "kunisadamachi": [],
+    "tabeicho": [],
+    "nishiobokatacho": [],
+    "kamidacho": [],
+    "higashiobokatacho": [],
+    "mimurocho": [],
+    "hachisucho": [],
+    "okazaki(eboshi<harunakohan>)": [],
+    "izumisawa(eboshi(harunakohan).ebosh": [],
+    "kawado(eboshi<harunakohan>)": [],
+    "hakojima": [],
+    "okazaki(sonota)": [],
     "gochoda": [
       "ibaraki"
     ],
@@ -55761,10 +56504,23 @@
       "tochigi",
       "yamagata"
     ],
+    "arigawa": [],
+    "ichishiro": [],
+    "nakanojomachi": [],
+    "nishinakanojo": [],
+    "orida(sonota)": [],
     "yamada(sonota)": [
       "kumamoto",
       "miyagi"
     ],
+    "kamisawatari": [],
+    "shimosawatari": [],
+    "yamada(jishabara.hoso)": [],
+    "orida (sendo)": [],
+    "shittaka": [],
+    "kawado(sonota)": [],
+    "ueguri": [],
+    "izumisawa(sonota)": [],
     "gobara": [
       "tottori"
     ],
@@ -55778,31 +56534,65 @@
       "kanagawa",
       "tokyo"
     ],
+    "okashiwagi": [],
     "kawarahata": [
       "yamanashi"
     ],
+    "kawarayu": [],
+    "yokokabe": [],
     "naganohara": [
       "nagano"
     ],
+    "yokiya": [],
+    "furumori": [],
     "haneo": [
       "kanagawa",
       "nagano",
       "saitama"
     ],
+    "okuwa (dokohara)": [],
+    "kambara(okukaruizawa)": [],
+    "kambara(oninosensui)": [],
+    "kambara(ayamegahara)": [],
+    "kambara(okaishiko)": [],
+    "kambara(moroshiko<asamaen>)": [],
+    "okuwa(sonota)": [],
     "kitakaruizawa": [
       "kanagawa"
     ],
+    "omae(hosohara2259-)": [],
+    "fukurogura": [],
+    "ashiuda": [],
+    "kambara(sonota)": [],
+    "saikubo": [],
+    "kadogai": [],
+    "hoshimata(agatsumakozan.manzaonsen)": [],
+    "hoshimata(sonota)": [],
+    "omae(sonota)": [],
+    "kambara (fujiwara)": [],
+    "kambara (kashiwagizuka)": [],
+    "kambara (gummazaka)": [],
     "iriyama": [
       "nagano"
     ],
+    "namasu": [],
+    "kosame": [],
     "kusatsu": [
       "shiga",
-      "yamagata"
+      "yamagata",
+      "shiga"
     ],
+    "maeguchi": [],
+    "kambara(takaminekogen)": [],
+    "kawabayubara": [],
+    "hagimuro": [],
+    "tatsuiwa": [],
+    "namashina": [],
     "sukagawa": [
       "tochigi",
       "fukushima"
     ],
+    "mizanori": [],
     "suganuma": [
       "niigata",
       "saitama",
@@ -55821,9 +56611,13 @@
     "shimodaira": [
       "iwate"
     ],
+    "surubuchi": [],
+    "hanasaku": [],
     "hariyama": [
       "ishikawa"
     ],
+    "tsuchiide": [],
+    "koshimoto": [],
     "higashiogawa": [
       "saitama"
     ],
@@ -55838,6 +56632,7 @@
       "niigata",
       "saitama"
     ],
+    "kainose": [],
     "itoi": [
       "hokkaido",
       "hyogo"
@@ -55850,9 +56645,12 @@
     "kawahake": [
       "nagano"
     ],
+    "akagihara": [],
     "namezawa": [
       "yamagata"
     ],
+    "kamimoku": [],
+    "shimomoku": [],
     "gokan": [
       "nagano",
       "okayama"
@@ -55879,21 +56677,44 @@
     "tsukiyono": [
       "yamanashi"
     ],
+    "shimozu": [],
+    "kamizu": [],
+    "sarugakyoonsen": [],
     "aimata": [
       "shizuoka",
       "yamanashi"
     ],
+    "yujukuonsen": [],
+    "moroda": [],
+    "nishiminesukawa": [],
+    "irisukawa": [],
+    "higashimine": [],
+    "sukawa": [],
     "yoshimoto": [
       "kumamoto"
     ],
     "kanosawa": [
       "yamagata"
     ],
+    "obinata": [],
+    "takahinata": [],
+    "terama": [],
+    "konita": [],
+    "yubara": [],
+    "anogawa": [],
     "tanigawa": [
       "miyazaki",
       "osaka",
       "tottori"
     ],
+    "awazawa": [],
+    "tsunago": [],
+    "oana": [],
+    "yubiso": [],
+    "nishikamiakima": [],
+    "higashikamiakima": [],
+    "nakaakima": [],
+    "shimoakima": [],
     "omata": [
       "ishikawa",
       "kyoto",
@@ -55904,25 +56725,68 @@
       "wakayama",
       "yamagata"
     ],
+    "shimogokan": [],
+    "nakagokan": [],
+    "kamigokan": [],
+    "akimaminorigaoka": [],
+    "itahana": [],
     "nodono": [
       "ibaraki",
       "kyoto"
     ],
-    "annaka": [
-      "gunma"
-    ],
+    "annaka": "gunma",
+    "shimomanita": [],
+    "kamimanita": [],
     "saginomiya": [
       "tokyo"
     ],
     "nakanoya": [
       "ibaraki"
     ],
+    "nishikamiisobe": [],
+    "higashikamiisobe": [],
+    "shimoisobe": [],
+    "kobetsuto": [],
     "haraichi": [
       "saitama"
     ],
+    "matsuidamachi kamimasuda": [],
+    "matsuidamachi shimomasuda": [],
+    "matsuidamachi obinata": [],
+    "matsuidamachi kokuga": [],
+    "matsuidamachi takanashi": [],
+    "matsuidamachi arai": [],
+    "matsuidamachi hijishio": [],
+    "matsuidamachi niibori": [],
+    "matsuidamachi matsuida": [],
+    "matsuidamachi nikenzaike": [],
+    "matsuidamachi hitomi": [],
+    "matsuidamachi yashiro": [],
+    "matsuidamachi okunada": [],
+    "matsuidamachi yokokawa": [],
+    "matsuidamachi goryo": [],
+    "matsuidamachi nishinomaki": [],
+    "matsuidamachi kitanomaki": [],
+    "matsuidamachi iriyama": [],
+    "matsuidamachi hara": [],
+    "matsuidamachi sakamoto": [],
+    "matsuidamachi toge": [],
     "yuzurihara": [
       "yamanashi"
     ],
+    "hominoyama": [],
+    "sakahara": [],
+    "sambagawa": [],
+    "joboji": [],
+    "tatsuishi": [],
+    "tatsuishishinden": [],
+    "morishinden": [],
+    "okanogo": [],
+    "shimotozuka": [],
+    "kamitozuka": [],
+    "shimokurisu": [],
+    "nakakurisu": [],
+    "kamikurisu": [],
     "fujioka": [
       "shizuoka",
       "yamagata",
@@ -55935,6 +56799,17 @@
     "kawayoke": [
       "hyogo"
     ],
+    "ushita": [],
+    "homi": [],
+    "sambogi": [],
+    "ayugawa": [],
+    "higashihirai": [],
+    "shimohino": [],
+    "kamihino": [],
+    "motoyurugido": [],
+    "shimoozuka": [],
+    "nakaozuka": [],
+    "kamiozuka": [],
     "mitsugi": [
       "ibaraki",
       "saitama"
@@ -55945,6 +56820,8 @@
       "shizuoka",
       "tokyo"
     ],
+    "sakainocho": [],
+    "komecho": [],
     "shinshuku": [
       "saitama",
       "shizuoka"
@@ -55955,6 +56832,9 @@
       "miyagi",
       "yamagata"
     ],
+    "hirosawacho": [],
+    "hirosawachoainoshima": [],
+    "orihimecho": [],
     "kiyosecho": [
       "shimane",
       "yamaguchi"
@@ -55965,9 +56845,70 @@
     "kosonecho": [
       "hyogo"
     ],
+    "higashihisakatacho": [],
+    "nishihisakatacho": [],
+    "niisatocho nikkawa": [],
+    "niisatocho no": [],
+    "niisatocho takei": [],
+    "niisatocho kobayashi": [],
+    "niisatocho yamakami": [],
+    "niisatocho okuzawa": [],
+    "niisatocho tsurugaya": [],
+    "niisatocho okubo": [],
+    "niisatocho seki": [],
+    "niisatocho takaizumi": [],
+    "niisatocho itabashi": [],
+    "niisatocho akagisan": [],
+    "kurohonecho mizunuma": [],
+    "kurohonecho yagihara": [],
+    "kurohonecho shukumeguri": [],
+    "kurohonecho shimotazawa": [],
+    "kurohonecho kamitazawa": [],
+    "omamacho omama": [],
+    "omamacho kiribara": [],
+    "omamacho shimokambai": [],
+    "omamacho kamikambai": [],
+    "omamacho odaira": [],
+    "omamacho nagaone": [],
+    "omamacho takatsudo": [],
+    "omamacho asabara": [],
+    "omamacho shiobara": [],
+    "omamacho shiozawa": [],
+    "azumacho sori": [],
+    "azumacho kusagi": [],
+    "azumacho zama": [],
+    "azumacho godo": [],
+    "azumacho sayado": [],
+    "azumacho ogihara": [],
+    "azumacho hanawa": [],
+    "azumacho konaka": [],
+    "kasakakecho azami": [],
+    "kasakakecho kugu": [],
+    "kasakakecho shika": [],
+    "kasakakecho saishikada": [],
+    "tokamimachi": [],
+    "yokozukamachi": [],
+    "kamikuyamachi": [],
+    "shimokuyamachi": [],
+    "kuyaharamachi": [],
+    "kaminumasumachi": [],
+    "numasumachi": [],
+    "toganomachi": [],
+    "boshindemmachi": [],
     "iwamotomachi": [
       "ishikawa"
     ],
+    "yakatabaramachi": [],
+    "sasaomachi": [],
+    "shimokawadamachi": [],
+    "kamikawadamachi": [],
+    "usunemachi": [],
+    "suzuridamachi": [],
+    "ondamachi": [],
+    "idonoemachi": [],
+    "harunamachi": [],
+    "nishikurauchimachi": [],
+    "higashikurauchimachi": [],
     "shimonocho": [
       "hiroshima",
       "ibaraki",
@@ -55977,22 +56918,100 @@
       "osaka",
       "shizuoka"
     ],
+    "higashiharashimmachi": [],
+    "nishiharashimmachi": [],
+    "takahashibamachi": [],
+    "okayamachi": [],
     "machidamachi": [
       "niigata"
     ],
+    "shimonumatamachi": [],
+    "zenkeijimachi": [],
+    "horimegurimachi": [],
+    "ogamamachi": [],
+    "usoimachi": [],
+    "kamihotchimachi": [],
+    "nakahotchimachi": [],
+    "hotchishindemmachi": [],
+    "shimohotchimachi": [],
+    "akizukamachi": [],
+    "ishizumimachi": [],
+    "sayamamachi": [],
+    "shirasawamachi takahira": [],
+    "shirasawamachi namae": [],
+    "shirasawamachi iwamuro": [],
+    "shirasawamachi oai": [],
+    "shirasawamachi hiraide": [],
+    "shirasawamachi kamikokobu": [],
+    "shirasawamachi shimokokobu": [],
+    "tonemachi hiragawa": [],
+    "tonemachi chidori": [],
+    "tonemachi okkai": [],
+    "tonemachi oyo": [],
+    "tonemachi anabara": [],
+    "tonemachi hinatanango": [],
+    "tonemachi kakidaira": [],
+    "tonemachi komatsu": [],
+    "tonemachi neri": [],
+    "tonemachi hikagenango": [],
+    "tonemachi aoki": [],
+    "tonemachi sunagawa": [],
+    "tonemachi nihommatsu": [],
+    "tonemachi tana": [],
+    "tonemachi takatoya": [],
+    "tonemachi oigami": [],
+    "tonemachi ohara": [],
+    "tonemachi sonohara": [],
+    "tonemachi wakumi": [],
+    "tonemachi ishidoshinden": [],
     "hanayamacho": [
       "hyogo",
       "ibaraki"
     ],
+    "hosochicho": [],
+    "chizukacho": [],
+    "hanetsukucho": [],
+    "hanetsukuasahicho": [],
+    "akodacho": [],
+    "akodahoncho": [],
+    "kamiakodacho": [],
+    "tsutsujicho": [],
     "obikicho": [
       "hiroshima"
     ],
+    "sedoyacho": [],
+    "kaboshicho": [],
+    "higashimisonocho": [],
+    "minamimisonocho": [],
+    "horikucho": [],
+    "bumbukucho": [],
+    "kokuwabaracho": [],
     "nishimisonocho": [
       "hyogo"
     ],
+    "fujiharacho": [],
+    "kondocho": [],
+    "naegicho": [],
+    "shimomibayashicho": [],
+    "irikayacho": [],
+    "kamimibayashicho": [],
+    "nobecho": [],
+    "akatsuchicho": [],
+    "narushimacho": [],
+    "matsunumacho": [],
+    "kitanarushimacho": [],
+    "higashihirochicho": [],
     "hirochicho": [
       "kanagawa"
     ],
+    "okanocho": [],
+    "daijukucho": [],
+    "shimosagawadacho": [],
+    "ashitsugicho": [],
+    "nishitakanecho": [],
+    "hinatacho": [],
+    "hojitsukacho": [],
+    "kamisagawadacho": [],
     "imayoshida": "hiroshima",
     "azaka": "hiroshima",
     "yoshiki(sonota)": "hiroshima",
@@ -62762,7 +63781,8 @@
     "niimi": [
       "hokkaido",
       "okayama",
-      "tottori"
+      "tottori",
+      "okayama"
     ],
     "kitanojo": "hokkaido",
     "sappinai": "hokkaido",
@@ -64694,6 +65714,7 @@
     "tonami": [
       "hokkaido",
       "niigata",
+      "toyama",
       "toyama"
     ],
     "naibuchi": "hokkaido",
@@ -65791,7 +66812,8 @@
       "hyogo",
       "osaka",
       "shizuoka",
-      "wakayama"
+      "wakayama",
+      "hyogo"
     ],
     "kodaicho": "hyogo",
     "komoe": "hyogo",
@@ -67116,7 +68138,8 @@
       "hyogo",
       "nara",
       "osaka",
-      "wakayama"
+      "wakayama",
+      "nara"
     ],
     "nijoji": "hyogo",
     "shimizuhigashi": "hyogo",
@@ -67366,7 +68389,8 @@
     "higashiarioka": "hyogo",
     "itami": [
       "hyogo",
-      "ibaraki"
+      "ibaraki",
+      "hyogo"
     ],
     "gogazuka": "hyogo",
     "gyogicho": "hyogo",
@@ -70930,7 +71954,8 @@
     "ishidera": "ibaraki",
     "kasama": [
       "ibaraki",
-      "kanagawa"
+      "kanagawa",
+      "ibaraki"
     ],
     "hikusaba": "ibaraki",
     "tegoshi": [
@@ -71099,6 +72124,7 @@
     ],
     "yaita": [
       "ibaraki",
+      "tochigi",
       "tochigi"
     ],
     "nebi": "ibaraki",
@@ -72414,7 +73440,8 @@
     "kamioshima": "ibaraki",
     "tsukuba": [
       "ibaraki",
-      "saitama"
+      "saitama",
+      "ibaraki"
     ],
     "kunimatsu": "ibaraki",
     "harukazedai": "ibaraki",
@@ -73825,6 +74852,7 @@
     "kasamai": "ishikawa",
     "kikugawa": [
       "ishikawa",
+      "shizuoka",
       "shizuoka"
     ],
     "urokomachi": "ishikawa",
@@ -74568,7 +75596,8 @@
     "nomi": [
       "ishikawa",
       "kochi",
-      "toyama"
+      "toyama",
+      "ishikawa"
     ],
     "komoro": "nagano",
     "kommachi": "ishikawa",
@@ -79332,6 +80361,7 @@
     "morisaki": "kanagawa",
     "oyabe": [
       "kanagawa",
+      "toyama",
       "toyama"
     ],
     "kinukasacho": "kanagawa",
@@ -80789,6 +81819,7 @@
     "kitakaname": "kanagawa",
     "fujimino": [
       "kanagawa",
+      "saitama",
       "saitama"
     ],
     "teradanawa": "kanagawa",
@@ -80991,6 +82022,7 @@
     ],
     "iiyama": [
       "kanagawa",
+      "nagano",
       "nagano"
     ],
     "shimofurusawa": "kanagawa",
@@ -81091,7 +82123,8 @@
     "numama": "kanagawa",
     "zushi": [
       "kanagawa",
-      "osaka"
+      "osaka",
+      "kanagawa"
     ],
     "kotsubo": "kanagawa",
     "higashikashiwagaya": "kanagawa",
@@ -81457,6 +82490,7 @@
     "kinokawa": [
       "kochi",
       "saitama",
+      "wakayama",
       "wakayama"
     ],
     "shimoka": "kochi",
@@ -83175,7 +84209,8 @@
     "tobimachi": "kumamoto",
     "arao": [
       "kumamoto",
-      "oita"
+      "oita",
+      "kumamoto"
     ],
     "noguchimachi": "kumamoto",
     "tomiaimachi ofunate": "kumamoto",
@@ -84225,7 +85260,8 @@
     "myojocho": "kyoto",
     "uji": [
       "kyoto",
-      "tottori"
+      "tottori",
+      "kyoto"
     ],
     "oriidai": "kyoto",
     "biwadai": "kyoto",
@@ -90896,6 +91932,7 @@
     "ishigaki": [
       "mie",
       "toyama",
+      "okinawa",
       "okinawa"
     ],
     "kishitacho": "mie",
@@ -94461,6 +95498,7 @@
     "oharikawahari": "miyagi",
     "kosai": [
       "miyagi",
+      "shizuoka",
       "shizuoka"
     ],
     "shikama": [
@@ -95564,7 +96602,8 @@
     "kushima": [
       "miyazaki",
       "nagasaki",
-      "niigata"
+      "niigata",
+      "miyazaki"
     ],
     "sakida": "miyazaki",
     "terazato": "miyazaki",
@@ -96831,7 +97870,8 @@
     "kamigomyo": "nagano",
     "chino": [
       "nagano",
-      "shiga"
+      "shiga",
+      "nagano"
     ],
     "kohigashi": "nagano",
     "kitayama(shibugotenyu.shibunoyu)": "nagano",
@@ -100476,6 +101516,7 @@
     "oshimawashi": "niigata",
     "soka": [
       "niigata",
+      "saitama",
       "saitama"
     ],
     "kosanji": "niigata",
@@ -110804,6 +111845,7 @@
     "ofukuroshinden": "saitama",
     "musashino": [
       "saitama",
+      "tokyo",
       "tokyo"
     ],
     "masukata": [
@@ -111106,7 +112148,8 @@
     "kaminaotake kamibun": "saitama",
     "hanno": [
       "saitama",
-      "shizuoka"
+      "shizuoka",
+      "saitama"
     ],
     "kosedo": "saitama",
     "kusumi": [
@@ -111703,7 +112746,8 @@
     "yashio": [
       "saitama",
       "tochigi",
-      "tokyo"
+      "tokyo",
+      "saitama"
     ],
     "iseno": [
       "saitama",

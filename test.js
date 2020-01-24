@@ -26,13 +26,13 @@ var cases = {
     },
     '69 lawrence ln.  bay shore  united states 11706-8623':{
         country: 'us',
-        zip: '11706-8623',
+        zip: '11706',
         city: 'bay shore',
         door: "69"
     },
     '200 berwyn park 920  berwyn   19312-2405':{
         country: 'us',
-        zip: '19312-2405',
+        zip: '19312',
         city: 'berwyn',
         state: 'pa',
         door: "200"
@@ -77,6 +77,11 @@ var cases = {
         zip: '06430',
         city: 'fairfield',
         state:'ct',
+    },
+    "charles-de-gaulle-platz 1  cologne   50679": {
+        country: 'de',
+        zip: '50679',
+        city: 'cologne',
     }
 };
 
