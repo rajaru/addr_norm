@@ -52,7 +52,8 @@ class address{
             str = this._apply_regex_params( str, rex[i].exp, rex[i].count);
 
         var address = str;
-        str = str.replace(/-/g, ' ');
+        str = str.replace(/[-\u2043\u2010\u2011\u2012\u2013\u2014\u2015]/g, ' ');
+        str = str.replace(/[\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b]/g, ' ');
         str = str.replace(/,/g, ' ');
         str = str.replace(/[\(\)]/g, '');
 
