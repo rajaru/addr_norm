@@ -114,7 +114,17 @@ var cases = {
     " bockenheimer landstrasse 10  frankfurt   60323":{
         country: 'de',
         zip: '60323',
-        city: 'frankfurt'        
+        city: 'frankfurt'
+    },
+    "level 25 19 grenfell street adelaide   5000": {
+        country: 'au',
+        zip: '5000',
+        city: 'adelaide'
+    },
+    "george's court townsend street dublin   2":{
+        country: 'ie',
+        city: 'dublin 2',
+        state: 'dublin'
     }
 };
 

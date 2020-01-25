@@ -1,0 +1,43 @@
+{
+  "states": {
+    "devonshire parish": "01",
+    "hamilton": "03",
+    "paget parish": "04",
+    "pembroke parish": "05",
+    "saint george": "06",
+    "saint george’s parish": "07",
+    "sandys parish": "08",
+    "smith’s parish": "09",
+    "southampton parish": "10",
+    "warwick parish": "11"
+  },
+  "cities": {
+    "devonshire": "01",
+    "hamilton parish": "02",
+    "city of hamilton": "03",
+    "paget": "04",
+    "pembroke": "05",
+    "town of st. george": "06",
+    "st. george": "06",
+    "st. george's": "07",
+    "sandys": "08",
+    "smith’s": "09",
+    "southampton": "10",
+    "warwick": "11"
+  },
+  "regions": {},
+  "places": {},
+  "statecodes": {
+    "10": "southampton parish",
+    "11": "warwick parish",
+    "01": "devonshire parish",
+    "02": "hamilton",
+    "03": "hamilton",
+    "04": "paget parish",
+    "05": "pembroke parish",
+    "06": "saint george",
+    "07": "saint george’s parish",
+    "08": "sandys parish",
+    "09": "smith’s parish"
+  }
+}

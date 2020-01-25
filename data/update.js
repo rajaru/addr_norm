@@ -21,19 +21,31 @@ const countries = [
     'SE',   // Sweden
     // 'TW',   // Taiwan,
     'AT',   // Austria,
+    'AR',   // Argentina,
     // 'HK',   // Hongkong - not available
     'FI',   // Finland,
     'IE',   // Ireland
     'IT',   // Italy
     'BE',   // Belgium
+    'BM',   // Bermuda
+    'PT',   // Portugal
+    'ZA',   // South africa
 ];
 // const countries = ['FR'];
 
 function fix_city_name(city){
     var remexp = [/ am main/,
-        /an der havel/];
-    for(var r of remexp )
-        city = city.replace(r, '').trim();
+        /an der havel/,
+        /am Rhein/,
+        /an der Lahn/,
+        // /de ballesteros/,
+        // /de ballesteros/,
+        /de morcin/,
+        /(\(.*\))/,
+        
+    ];
+    for(var r of remexp )city = city.replace(r, '');
+    city = city.replace(/\s+/g, ' ').trim();
     return city;
 }
 
@@ -64,7 +76,7 @@ class update {
 
     _add_zipcode(country, statecode, zip, city){
         if( !country || !zip )return;
-        zip = zip.trim().replace(' ', '-');
+        zip = zip.trim().replace(' ', '-').replace('-000', '');
 
         var data = country+','+(statecode||'');//+','+(city||'');
         if( !this.zip ){
@@ -501,12 +513,23 @@ class update {
 
         await this._merge_other_zips();
 
-        // all cities
+        // all cities from geo cities
         this.cities = {};
         await this._geo_admin_codes();
         for(var c of ['cities1000', 'cities500', 'cities15000', 'cities5000'] )await this._update_geo_cities(c);
+
+        // add our custom made list
+        var othercities = JSON.parse( fs.readFileSync(path.join(__dirname, 'other_cities.json'), 'utf-8') );
+        for(var c in othercities ){
+            var parts = othercities[c].split(',');
+            this._add_city_state_details(parts[0], c, parts[2], parts[1]);
+        }
+
         var jsfile = path.join(__dirname, 'geo-cities.json');
         fs.writeFileSync(jsfile, JSON.stringify(this.cities, null, 2));
+        // other cities --
+
+
 
         await this._update_jp_zipcodes();
         

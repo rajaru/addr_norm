@@ -203,7 +203,7 @@ class data {
         return parsed;
     }
 
-    _locate_city_by_name(parts, geo, country){
+    _locate_city_by_name(parts, geo, country, zip){
         var name = parts.join(' ');
         if(this.dbg)console.log('_locate_city_by_name:', name);
         if( geo.cities[name] )return name;
@@ -231,13 +231,48 @@ class data {
                 if(this.dbg)console.log('found in geo cities', name, gc.split(',')[2]);
                 return gc.split(',')[2];
             }
-            if(this.dbg)console.log('more found in geo cities', name, gc);
+            if(this.dbg)console.log('more found in geo cities', name, gc, "(", country, zip, ")");
             if( country ){
                 var ctities = gc.filter(x=>x.split(',')[0]==country);
                 if( ctities.length==1 ){
                     if(this.dbg)console.log('found in geo cities (A)', name, ctities[0].split(',')[2]);
                     return ctities[0].split(',')[2];
                 }
+            }
+
+            if( zip ){
+                var {cstate,zipcode} = this._get_country_state_list_from_zip(zip);
+                var gc = this.geo_citites[name];
+                if( cstate && gc ){
+                    if(this.dbg)console.log(' x reference with zip', name, cstate);
+
+                    if( !(cstate instanceof Array) )cstate = [cstate];
+                    if( !(gc instanceof Array) )gc = [gc];
+    
+                    var zipz = [];
+                    for(var c of gc ){
+                        var ctry = c.split(',')[0];
+                        for(var cs of cstate ){
+                            var sctry = cs.split(',')[0];
+                            if( sctry == ctry && zipz.indexOf(c)<0 )zipz.push(sctry);
+                        }
+                    }
+                    if( zipz.length==1 ){
+                        console.log('found a possible match at ', zipz[0]);
+                        return name;//zipz[0].split(',')[0];
+                    }
+                    else if( zipz.length>1 ){
+                        // if all of them have same country, we are good to go
+                        var ctry = zipz.filter( x => x!=zipz[0] );
+                        if( ctry.length==0 )return name;
+                        console.log('found more possible matches at ', zipz, ctry);
+                    }
+                }
+            }
+            var cstate = gc.filter( x=>x.split(',')[2]==name );
+            if( cstate.length==1 ){
+                console.log('found one with city name match ', cstate);
+                return name;
             }
         }
 
@@ -251,7 +286,7 @@ class data {
         var geo = this._load_country_states(ccode);
         for(var i=4; i>0; i--){
             if( parts.length<i )continue;
-            var name = this._locate_city_by_name( parts.slice(parts.length-i), geo, ccode );
+            var name = this._locate_city_by_name( parts.slice(parts.length-i), geo, ccode, parsed.zip );
             
             if( name )return this._add_to_parsed(parsed, i, 'city', name);
         }
@@ -286,17 +321,29 @@ class data {
         return cstate;
     }
 
+    _get_country_state_list_from_zip(zip){
+        zip = zip.replace('-000', '');
+        var zipcode = zip.split('-')[0];
+        var cstate = this._get_cstate_from_zip(zipcode);
+        if( !cstate){ zipcode=zip.split(' ')[0]; cstate = this._get_cstate_from_zip(zipcode);}
+        if( !cstate){ zipcode=zip.split('-').join(''); cstate = this._get_cstate_from_zip(zipcode);}
+        if( !cstate){ zipcode=zip.split(' ').join(''); cstate = this._get_cstate_from_zip(zipcode);}
+        return {cstate, zipcode};
+    }
+
     _locate_country_from_zip(zip, parsed, fixothers){
         if(this.dbg)console.log('locate_country_from_zip:', zip);
         if( !zip )return '';
 
         this._load_zip_codes();     // load if not already loaded
 
-        var zipcode = zip.split('-')[0];
-        var cstate = this._get_cstate_from_zip(zipcode);
-        if( !cstate){ zipcode=zip.split(' ')[0]; cstate = this._get_cstate_from_zip(zipcode);}
-        if( !cstate){ zipcode=zip.split('-').join(''); cstate = this._get_cstate_from_zip(zipcode);}
-        if( !cstate){ zipcode=zip.split(' ').join(''); cstate = this._get_cstate_from_zip(zipcode);}
+        var {cstate,zipcode}  = this._get_country_state_list_from_zip(zip);
+
+        // var zipcode = zip.split('-')[0];
+        // var cstate = this._get_cstate_from_zip(zipcode);
+        // if( !cstate){ zipcode=zip.split(' ')[0]; cstate = this._get_cstate_from_zip(zipcode);}
+        // if( !cstate){ zipcode=zip.split('-').join(''); cstate = this._get_cstate_from_zip(zipcode);}
+        // if( !cstate){ zipcode=zip.split(' ').join(''); cstate = this._get_cstate_from_zip(zipcode);}
 
         // if(this.dbg)console.log('locate_country_from_zip: found ', zip, zipcode, cstate);
 
@@ -371,6 +418,11 @@ class data {
                             }
                             else{
                                 var fstates = cstates.filter(x=>x.split(',')[0]==country);
+
+                                // if we have more cities matched check if we have one with exact city name match
+                                if( fstates.length>1 && parsed.city )
+                                    fstates = cstates.filter(x=>x.split(',')[2]==parsed.city );
+
                                 if( fstates.length==1 ){
                                     if(this.dbg)console.log('locate_country_from_zip: found city in global cities (matching country)', fstates);
                                     if( !parsed.state )parsed.state = fstates[0].split(',')[1];
@@ -574,7 +626,27 @@ class data {
                     if( !parsed.state )parsed.state = parts[1];
                 }
                 else{
-                    if(this.dbg)console.log('fix from city: multiple found in global cities', parsed.city, cstates);
+                    if( !parsed.zip && !parsed.state ){
+                        var matches = cstates.map( x=>x.split(',')[0] );
+                        if( matches.length>1 ){
+                            var ctry = matches.filter(x=>x!=matches[0]);
+                            if( ctry.length==0 ){
+                                parsed.country = matches[0];
+                            }
+                        }
+                    }
+
+                    if( !parsed.zip || parsed.zip.length == 5 || parsed.zip.length==9 ){
+                        if(this.dbg)console.log('fix from city: multiple found in global cities force US', parsed.city, cstates);
+                        // lets force US on this if found
+                        var usmatch = cstates.filter( x=>x.split(',')[0]=='us');
+                        if( usmatch.length == 1 ){
+                            var parts = usmatch[0].split(',');
+                            parsed.country = parts[0];
+                            if( !parsed.state )parsed.state = parts[1];
+                        }
+    
+                    }
                 }
 
             }
@@ -587,15 +659,18 @@ class data {
         parsed.street = this.address.split(' ').filter(Boolean).join(' ').trim();
         parsed.door = null;
 
+        // \b word boundaries
+
         const dregexs = [
             /^(\b#|\bno)?\.?\s?(\d+[\-|\/]?\w?)+(\s+apt\s+#?\d+\w?(-\d+\w?)*)?/gim,
-            /\s*(\d+\-\d+(?:\-\d+)?)\s*/
+            /\s*(\d+\-\d+(?:\-\d+)?)\s*/,                                                   // ...nnn-mmm(-xxx)...
+            /^\s*level\s+(\d+[[,\-\s]+\d+]?)\s*/im                                   // level nnn(,- mmm)....
         ];
 
         for(var rex of dregexs){
             var matches = parsed.street.match(rex);
             if( matches && matches.length>0 ){
-                parsed.door = matches[0].trim();
+                parsed.door = matches.length>1 ? matches[1].trim() : matches[0].trim();
                 parsed.street = parsed.street.replace(parsed.door, '').trim();
                 break;
             }
