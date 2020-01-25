@@ -28,7 +28,16 @@ const countries = [
     'BE',   // Belgium
 ];
 // const countries = ['FR'];
-    
+
+function fix_city_name(city){
+    var remexp = [/ am main/,
+        /an der havel/];
+    for(var r of remexp )
+        city = city.replace(r, '').trim();
+    return city;
+}
+
+
 class update {
 
     async aget(url, headers, ignoreCertErrs){
@@ -295,9 +304,9 @@ class update {
 
     _add_city_state_details(country, city, altname, state){
         country = country.toLowerCase();
-        city = city.toLowerCase();
+        city = fix_city_name(city.toLowerCase());
         state = state.toLowerCase();
-        altname = altname.toLowerCase();
+        altname = fix_city_name(altname.toLowerCase());
 
         var cstate = country+','+state+','+city;
         if( !this.cities.hasOwnProperty(altname) ){

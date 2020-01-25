@@ -231,6 +231,7 @@ class data {
                 if(this.dbg)console.log('found in geo cities', name, gc.split(',')[2]);
                 return gc.split(',')[2];
             }
+            if(this.dbg)console.log('more found in geo cities', name, gc);
             if( country ){
                 var ctities = gc.filter(x=>x.split(',')[0]==country);
                 if( ctities.length==1 ){

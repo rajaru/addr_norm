@@ -110,7 +110,11 @@ var cases = {
         country: 'de',
         zip: '60323',
         city: 'frankfurt'
-
+    },
+    " bockenheimer landstrasse 10  frankfurt   60323":{
+        country: 'de',
+        zip: '60323',
+        city: 'frankfurt'        
     }
 };
 
