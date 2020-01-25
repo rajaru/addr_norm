@@ -6,9 +6,11 @@ const utils= require('./utils');
 
 const tmp = "g:\\tmp\\out";
 const countries = [
-    'US', 'IN', 'CA', 'GB_full.csv', 'AU', 'BR', 'SG', 
-    'FR', 
-    'NO', 
+    'US', 'IN', 'CA', 'GB_full.csv', 'AU', 
+    'BR',   // Brazil
+    'SG',   // Singaport
+    'FR',   // France
+    'NO',   
     'DE',   // Germany
     'NL_full.csv', 'JP', 
     'MX',   // Mexico
@@ -20,7 +22,10 @@ const countries = [
     // 'TW',   // Taiwan,
     'AT',   // Austria,
     // 'HK',   // Hongkong - not available
-    'FI',   // Finland
+    'FI',   // Finland,
+    'IE',   // Ireland
+    'IT',   // Italy
+    'BE',   // Belgium
 ];
 // const countries = ['FR'];
     
@@ -48,9 +53,11 @@ class update {
         });
     }
 
-    _add_zipcode(country, statecode, zip){
+    _add_zipcode(country, statecode, zip, city){
         if( !country || !zip )return;
-        var data = country+','+(statecode||'');
+        zip = zip.trim().replace(' ', '-');
+
+        var data = country+','+(statecode||'');//+','+(city||'');
         if( !this.zip ){
             var fname = path.join(__dirname, 'zip.json');
             if( fs.existsSync(fname) )this.zip = JSON.parse( fs.readFileSync(fname, 'utf8') );
@@ -112,9 +119,8 @@ class update {
             for(var city of cities ){
                 if( city.zip && city.zip.indexOf(' CEDEX')>0 )
                     city.zip = city.zip.substr(0, city.zip.indexOf(' CEDEX')).trim();
-                //this._add_city_details( city.city, city.state, city.region, city.place);
                 this._add_city_details( city );
-                this._add_zipcode(city.country, city.state_code, city.zip);
+                this._add_zipcode(city.country, city.state_code, city.zip, city.city);
             }
         }catch(e){
             console.log(e);
@@ -271,7 +277,7 @@ class update {
                 }
             }
             await this._parse_cities_geonames(txtFile);
-            
+            console.log(c, 'completed');
             if( folder ){
                 var jsfile = path.join(folder, c.replace('_full.csv', '').toLowerCase()+'.json');
                 fs.writeFileSync(jsfile, JSON.stringify(this.country, null, 2));
@@ -457,6 +463,17 @@ class update {
         }
     }
 
+    async _merge_other_zips(){
+        var fname = path.join(__dirname, 'otherzip.json');
+        var otherzipcodes = JSON.parse(fs.readFileSync(fname, 'utf8'));
+        for(var zip in otherzipcodes ){
+            var parts = otherzipcodes[zip].split(',');
+            this._add_zipcode(parts[0], parts[1], zip, parts[2]);
+        }
+        var jsfile = path.join(__dirname, 'zip.json');
+        fs.writeFileSync(jsfile, JSON.stringify(this.zip, null, 2));
+    }
+
 
     async cities(){        
         var fname = path.join(__dirname, 'country-codes.csv');
@@ -472,6 +489,8 @@ class update {
         for(var c of countries ){
             await this._update_country_geonames(c, __dirname);
         }
+
+        await this._merge_other_zips();
 
         // all cities
         this.cities = {};

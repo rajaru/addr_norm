@@ -82,6 +82,29 @@ var cases = {
         country: 'de',
         zip: '50679',
         city: 'cologne',
+    },
+    "shelbourne buildings shelbourne road ballsbridge 4 dublin d04 w3v6":{
+        country: 'ie',
+        zip: 'd04 w3v6',
+        city: 'dublin',
+    },
+    "101 federal street - 1900  boston  02100": {
+        country: 'us',
+        zip: '02100',
+        city: 'boston',
+        state: 'ma'
+    },
+    "belgielei 49-53, antwerpen  aalter   2018":{
+        country: 'be',
+        zip: '2018',
+        city: 'aalter',
+        state: 'vlg'
+    },
+    "landsvagen 40, sundbyberg  stockholm   105 34":{
+        country: 'se',
+        zip: '105-34',
+        state: 'stockholm',
+        city: 'sundbyberg'
     }
 };
 

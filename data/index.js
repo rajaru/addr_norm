@@ -159,6 +159,10 @@ class data {
             var fname = path.join(__dirname, 'uszip.json');
             this.uszipcodes = JSON.parse(fs.readFileSync(fname, 'utf8'));
         }
+        // if( !this.otherzipcodes ){
+        //     var fname = path.join(__dirname, 'otherzip.json');
+        //     this.otherzipcodes = JSON.parse(fs.readFileSync(fname, 'utf8'));
+        // }
     }
 
     _locate_state_by_name(parts, geo){
@@ -227,6 +231,13 @@ class data {
                 if(this.dbg)console.log('found in geo cities', name, gc.split(',')[2]);
                 return gc.split(',')[2];
             }
+            if( country ){
+                var ctities = gc.filter(x=>x.split(',')[0]==country);
+                if( ctities.length==1 ){
+                    if(this.dbg)console.log('found in geo cities (A)', name, ctities[0].split(',')[2]);
+                    return ctities[0].split(',')[2];
+                }
+            }
         }
 
         return null;
@@ -266,14 +277,16 @@ class data {
     }
 
     _get_cstate_from_zip(zipcode){
+        // console.log('checking ', zipcode, this.zipcodes[zipcode])
         var cstate = this.zipcodes[zipcode];
         if( !cstate )cstate = this.ukzipcodes[zipcode];
         if( !cstate )cstate = this.jpzipcodes[zipcode];
+        //if( !cstate )cstate = this.otherzipcodes[zipcode];
         return cstate;
     }
 
     _locate_country_from_zip(zip, parsed, fixothers){
-        if(this.dbg)console.log('locate_country_from_zip: ', zip);
+        if(this.dbg)console.log('locate_country_from_zip:', zip);
         if( !zip )return '';
 
         this._load_zip_codes();     // load if not already loaded
@@ -284,7 +297,7 @@ class data {
         if( !cstate){ zipcode=zip.split('-').join(''); cstate = this._get_cstate_from_zip(zipcode);}
         if( !cstate){ zipcode=zip.split(' ').join(''); cstate = this._get_cstate_from_zip(zipcode);}
 
-        if(this.dbg)console.log('locate_country_from_zip: found ', zip, zipcode, cstate);
+        // if(this.dbg)console.log('locate_country_from_zip: found ', zip, zipcode, cstate);
 
         // var zipcode = zip.split('-')[0];
         // var cstate = this.zipcodes[zipcode];
@@ -348,7 +361,7 @@ class data {
                     if( parsed.city ){
                         var cstates = this.geo_citites[parsed.city];
                         if( cstates ){
-                            if(this.dbg)console.log('locate_country_from_zip: found in global cities', zip, cstates);
+                            if(this.dbg)console.log('locate_country_from_zip: found city in global cities', cstates);
                             if( !(cstates instanceof Array) ){
                                 if( fixothers ){
                                     if( !parsed.state )parsed.state = cstates.split(',')[1];
@@ -358,7 +371,7 @@ class data {
                             else{
                                 var fstates = cstates.filter(x=>x.split(',')[0]==country);
                                 if( fstates.length==1 ){
-                                    if(this.dbg)console.log('locate_country_from_zip: found in global cities (matching country)', zip, fstates);
+                                    if(this.dbg)console.log('locate_country_from_zip: found city in global cities (matching country)', fstates);
                                     if( !parsed.state )parsed.state = fstates[0].split(',')[1];
                                     return country;
                                 }

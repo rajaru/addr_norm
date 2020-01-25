@@ -33,7 +33,7 @@ class utils {
         return new Promise((resolve, reject)=>{
             utils._csv_to_json_cb(fname, options, (headers, data)=>{
             if( data ){
-                process.stderr.write(' done                                                  \n');
+                process.stderr.write('\rdone                                                  \n');
                 resolve(data);
             }
             else
@@ -69,7 +69,7 @@ class utils {
         return new Promise((resolve, reject)=>{
             utils._csv_to_array_cb(fname, options, (headers, data)=>{
             if( data ){
-                process.stderr.write(' done                                                  \n');
+                process.stderr.write('\rdone                                                  \n');
                 resolve(data);
             }
             else
