@@ -105,6 +105,12 @@ var cases = {
         zip: '105-34',
         state: 'stockholm',
         city: 'sundbyberg'
+    },
+    "bockenheimer landstrasse 42-44  frankfurt   60323": {
+        country: 'de',
+        zip: '60323',
+        city: 'frankfurt'
+
     }
 };
 

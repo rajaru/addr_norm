@@ -490,6 +490,8 @@ class data {
         for(var i=2; i>0; i--){
             if( parts.length<=i )continue;
             var part = parts.slice(parts.length-i).join('');
+            if( part.length<3 )continue;
+            
             if( !isNaN(part) ){
                 if(this.dbg)console.log('get_zipcode: ', part);
                 return this._add_to_parsed(parsed, i, 'zip', parts.slice(parts.length-i).join('-'));
