@@ -33,6 +33,8 @@ const countries = [
 ];
 // const countries = ['FR'];
 
+
+
 function fix_city_name(city){
     var remexp = [/ am main/,
         /an der havel/,

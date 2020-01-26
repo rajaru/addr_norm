@@ -1,6 +1,7 @@
 const fs   = require('fs');
 const path = require('path');
 const utils= require('./utils');
+const argentina= require('./argentina');
 
 const ordinals = {
     '1st' : 'first',
@@ -323,11 +324,14 @@ class data {
 
     _get_country_state_list_from_zip(zip){
         zip = zip.replace('-000', '');
-        var zipcode = zip.split('-')[0];
-        var cstate = this._get_cstate_from_zip(zipcode);
+        var zipcode= null;
+        var cstate = null;
+        if( !cstate){ zipcode=zip.replace(' ', '-'); cstate = this._get_cstate_from_zip(zipcode);}
+        if( !cstate){ zipcode=zip.split('-')[0]; cstate = this._get_cstate_from_zip(zipcode);}
         if( !cstate){ zipcode=zip.split(' ')[0]; cstate = this._get_cstate_from_zip(zipcode);}
         if( !cstate){ zipcode=zip.split('-').join(''); cstate = this._get_cstate_from_zip(zipcode);}
         if( !cstate){ zipcode=zip.split(' ').join(''); cstate = this._get_cstate_from_zip(zipcode);}
+        if( !cstate){ zipcode=zip; cstate = argentina(zip)};
         return {cstate, zipcode};
     }
 
@@ -338,33 +342,6 @@ class data {
         this._load_zip_codes();     // load if not already loaded
 
         var {cstate,zipcode}  = this._get_country_state_list_from_zip(zip);
-
-        // var zipcode = zip.split('-')[0];
-        // var cstate = this._get_cstate_from_zip(zipcode);
-        // if( !cstate){ zipcode=zip.split(' ')[0]; cstate = this._get_cstate_from_zip(zipcode);}
-        // if( !cstate){ zipcode=zip.split('-').join(''); cstate = this._get_cstate_from_zip(zipcode);}
-        // if( !cstate){ zipcode=zip.split(' ').join(''); cstate = this._get_cstate_from_zip(zipcode);}
-
-        // if(this.dbg)console.log('locate_country_from_zip: found ', zip, zipcode, cstate);
-
-        // var zipcode = zip.split('-')[0];
-        // var cstate = this.zipcodes[zipcode];
-
-        // if( !cstate )cstate = this.ukzipcodes[zipcode];
-        // if( !cstate )cstate = this.jpzipcodes[zipcode];
-        
-
-        // if( !cstate ){
-        //     // for canada we have only the first three letters
-        //     if( zip.indexOf(' ')>0 ){
-        //         cstate = this.zipcodes[zip.split(' ')[0]];
-        //     }
-        //     else if( zip.indexOf('-')>0 ){
-        //         cstate = this.zipcodes[zip.split('-')[0]];
-        //         if(this.dbg)console.log('locate_country_from_zip: trying ', zip, zip.split('-')[0]);
-                
-        //     }
-        // }
 
         if( cstate ){
             
@@ -443,6 +420,7 @@ class data {
             if(this.dbg)console.log('locate_country_from_zip: found jp: ', zip);
             return 'jp';
         }
+
 
 
         // this matches things like york usa

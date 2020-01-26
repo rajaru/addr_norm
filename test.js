@@ -1,5 +1,5 @@
 var addrnorm = require('./index');
-
+var argentina = require('./data/argentina');
 var cases = {
     '' : {},
     '12921 Coyote Run Fishers IN 46038':{
