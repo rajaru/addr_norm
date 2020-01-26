@@ -323,7 +323,7 @@ class data {
     }
 
     _get_country_state_list_from_zip(zip){
-        zip = zip.replace('-000', '');
+        if( zip.endsWith('-000') )zip = zip.replace('-000', '');
         var zipcode= null;
         var cstate = null;
         if( !cstate){ zipcode=zip.replace(' ', '-'); cstate = this._get_cstate_from_zip(zipcode);}
