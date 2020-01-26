@@ -206,7 +206,7 @@ class data {
 
     _locate_city_by_name(parts, geo, country, zip){
         var name = parts.join(' ');
-        if(this.dbg)console.log('_locate_city_by_name:', name);
+        if(this.dbg)console.log('locate_city_by_name:', name);
         if( geo.cities[name] )return name;
 
         if(country == 'jp'){
@@ -245,7 +245,7 @@ class data {
                 var {cstate,zipcode} = this._get_country_state_list_from_zip(zip);
                 var gc = this.geo_citites[name];
                 if( cstate && gc ){
-                    if(this.dbg)console.log(' x reference with zip', name, cstate);
+                    if(this.dbg)console.log(' x reference with zip', name, cstate, gc);
 
                     if( !(cstate instanceof Array) )cstate = [cstate];
                     if( !(gc instanceof Array) )gc = [gc];
@@ -258,6 +258,7 @@ class data {
                             if( sctry == ctry && zipz.indexOf(c)<0 )zipz.push(sctry);
                         }
                     }
+                    if(this.dbg)console.log(' x referenced', zipz);
                     if( zipz.length==1 ){
                         if(this.dbg)console.log('found a possible match at ', zipz[0]);
                         return name;//zipz[0].split(',')[0];
@@ -352,6 +353,29 @@ class data {
 
             // more than one country/state found. ambiguous
             if(this.dbg)console.log('locate_country_from_zip: more found ', zip, cstate);
+
+            if( fixothers && parsed.city && !parsed.country){
+                var zstates = this.geo_citites[parsed.city];
+                if( !(zstates instanceof Array) )zstates = [zstates];
+                var ctry = [];
+                // console.log('zstates:', zstates);
+                for(var z of zstates){
+                    var zctry = z.split(',')[0];
+                    for(var c of cstate){
+                        var cctry = c.split(',')[0];
+                        if( zctry == cctry )ctry.push(zctry);
+                    }
+                }
+                
+                if( ctry.length>0 ){
+                    var ftry = ctry.filter(x=>x!=ctry[0]);
+                    if( ftry.length == 0 )parsed.country = ctry[0];
+                    return parsed.country;
+                    //console.log('...', ctry, ftry, parsed.country);
+                }
+            }
+
+
 
             // see if a matching city is found in any one of the cstate entries
             if( parsed.city || parsed.state ){
