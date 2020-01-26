@@ -259,20 +259,20 @@ class data {
                         }
                     }
                     if( zipz.length==1 ){
-                        console.log('found a possible match at ', zipz[0]);
+                        if(this.dbg)console.log('found a possible match at ', zipz[0]);
                         return name;//zipz[0].split(',')[0];
                     }
                     else if( zipz.length>1 ){
                         // if all of them have same country, we are good to go
                         var ctry = zipz.filter( x => x!=zipz[0] );
                         if( ctry.length==0 )return name;
-                        console.log('found more possible matches at ', zipz, ctry);
+                        if(this.dbg)console.log('found more possible matches at ', zipz, ctry);
                     }
                 }
             }
             var cstate = gc.filter( x=>x.split(',')[2]==name );
             if( cstate.length==1 ){
-                console.log('found one with city name match ', cstate);
+                if(this.dbg)console.log('found one with city name match ', cstate);
                 return name;
             }
         }
