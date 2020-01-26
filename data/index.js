@@ -356,22 +356,24 @@ class data {
 
             if( fixothers && parsed.city && !parsed.country){
                 var zstates = this.geo_citites[parsed.city];
-                if( !(zstates instanceof Array) )zstates = [zstates];
-                var ctry = [];
-                // console.log('zstates:', zstates);
-                for(var z of zstates){
-                    var zctry = z.split(',')[0];
-                    for(var c of cstate){
-                        var cctry = c.split(',')[0];
-                        if( zctry == cctry )ctry.push(zctry);
+                if( zstates ){
+                    if( !(zstates instanceof Array) )zstates = [zstates];
+                    var ctry = [];
+                    // console.log('zstates:', zstates);
+                    for(var z of zstates){
+                        var zctry = z.split(',')[0];
+                        for(var c of cstate){
+                            var cctry = c.split(',')[0];
+                            if( zctry == cctry )ctry.push(zctry);
+                        }
                     }
-                }
-                
-                if( ctry.length>0 ){
-                    var ftry = ctry.filter(x=>x!=ctry[0]);
-                    if( ftry.length == 0 )parsed.country = ctry[0];
-                    return parsed.country;
-                    //console.log('...', ctry, ftry, parsed.country);
+                    
+                    if( ctry.length>0 ){
+                        var ftry = ctry.filter(x=>x!=ctry[0]);
+                        if( ftry.length == 0 )parsed.country = ctry[0];
+                        return parsed.country;
+                        //console.log('...', ctry, ftry, parsed.country);
+                    }    
                 }
             }
 
