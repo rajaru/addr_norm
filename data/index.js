@@ -359,7 +359,7 @@ class data {
                 if( zstates ){
                     if( !(zstates instanceof Array) )zstates = [zstates];
                     var ctry = [];
-                    // console.log('zstates:', zstates);
+                    
                     for(var z of zstates){
                         var zctry = z.split(',')[0];
                         for(var c of cstate){
@@ -370,6 +370,7 @@ class data {
                     
                     if( ctry.length>0 ){
                         var ftry = ctry.filter(x=>x!=ctry[0]);
+                        if(this.dbg)console.log('   x referencing with geo cities, found ', ftry);
                         if( ftry.length == 0 )parsed.country = ctry[0];
                         return parsed.country;
                         //console.log('...', ctry, ftry, parsed.country);

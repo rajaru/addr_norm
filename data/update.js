@@ -123,11 +123,13 @@ class update {
             }
             else
                 this.country.cities[rec.city] = state_code;
+            
+            if( rec.zip )this.country.zips[rec.zip] = rec.city;
         }
         
         if( rec.state )this.country.states[rec.state] = rec.state_code;
-        if( rec.region)this.country.regions[rec.region]=1;
-        if( rec.place )this.country.places[rec.place] = 1;
+        //if( rec.region)this.country.regions[rec.region]=1;
+        //if( rec.place )this.country.places[rec.place] = 1;
         if( rec.state_code && !Number.isInteger(rec.state_code) )
             this.country.statecodes[rec.state_code] = rec.state;
 
@@ -281,6 +283,7 @@ class update {
             this.country = {
                 states: {},
                 cities: {},
+                zips: {},
                 regions:{},
                 places: {},
                 statecodes: {}
