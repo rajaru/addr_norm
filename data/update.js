@@ -108,6 +108,7 @@ class update {
     _add_city_details(rec){
         for(var key in rec )rec[key] = (rec[key]||'').toLowerCase();
         if( rec.city && rec.city != 'street' && rec.city != 'avenue' ){ // seriously?!!
+            var cityname = fix_city_name(rec.city);
             var states = this.country.cities[rec.city];
             var state_code = rec.state_code || 1;
 
@@ -119,13 +120,17 @@ class update {
                     if( states.indexOf(state_code)<0 )states.push(state_code);
                     //else its already there in the array
                 }
-                else
+                else{
                     this.country.cities[rec.city] = [states, state_code];
+                    this.country.cities[cityname] = [states, state_code];
+                }
             }
-            else
+            else{
                 this.country.cities[rec.city] = state_code;
+                this.country.cities[cityname] = state_code;
+            }
             
-            if( rec.zip )this.country.zips[rec.zip] = rec.city;
+            if( rec.zip )this.country.zips[rec.zip] = cityname;
         }
         
         if( rec.state )this.country.states[rec.state] = rec.state_code;
