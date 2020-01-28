@@ -1,4 +1,5 @@
 const data = require('./data');
+const norm = require('./data/normalize');
 const update = require('./data/update');
 const yargs = require('yargs');
 
@@ -58,8 +59,10 @@ class address{
         str = str.replace(/[\(\)]/g, '');
 
         var parts = str.split(/\s+/g) || [];
-        if( this.dbg )data.dbg = true;
-        return data.parse_address( parts.filter(Boolean), address );
+        // if( this.dbg )data.dbg = true;
+        // return data.parse_address( parts.filter(Boolean), address );
+        if( this.dbg )norm.dbg = true;
+        return norm.parse_address( parts.filter(Boolean), address );
     }
 }
 module.exports = new address();
