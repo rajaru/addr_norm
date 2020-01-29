@@ -31,7 +31,7 @@ const countries = [
     'PT',   // Portugal
     'ZA',   // South africa
 ];
-// const countries = ['FR'];
+// const countries = ['US'];
 
 
 
@@ -87,16 +87,12 @@ class update {
             if( fs.existsSync(fname) )this.zip = JSON.parse( fs.readFileSync(fname, 'utf8') );
             else this.zip = {};
         }
-        if( !this.zip.hasOwnProperty(zip) )
+        if( !this.zip.hasOwnProperty(zip) || !this.zip[zip])
             this.zip[zip] = data;
         else{
             if( !(this.zip[zip] instanceof Array) ){
-                if( this.zip[zip] != data ){
+                if( this.zip[zip] != data )
                     this.zip[zip] = [this.zip[zip], data];
-                }
-                else{
-                    // already present, ignore
-                }
             }
             else{
                 if( this.zip[zip].indexOf(data)<0 )
@@ -110,7 +106,7 @@ class update {
         if( rec.city && rec.city != 'street' && rec.city != 'avenue' ){ // seriously?!!
             var cityname = fix_city_name(rec.city);
             var states = this.country.cities[rec.city];
-            var state_code = rec.state_code || 1;
+            var state_code = rec.state_code || rec.state || 1;
 
             if( states ){
                 if( state_code == states ){
@@ -130,7 +126,21 @@ class update {
                 this.country.cities[cityname] = state_code;
             }
             
-            if( rec.zip )this.country.zips[rec.zip] = cityname;
+            if( rec.zip ){
+                var citystate = cityname+','+state_code;
+                if( !this.country.zips[rec.zip] )
+                    this.country.zips[rec.zip] = citystate;
+                else if( this.country.zips[rec.zip] instanceof Array ){
+                    if( this.country.zips[rec.zip].indexOf(citystate) < 0 )this.country.zips[rec.zip].push(citystate);
+                }
+                else if( this.country.zips[rec.zip] == citystate ){
+
+                }
+                else{
+                    this.country.zips[rec.zip] = [citystate, this.country.zips[rec.zip]];
+                }
+                
+            }
         }
         
         if( rec.state )this.country.states[rec.state] = rec.state_code;
@@ -141,8 +151,11 @@ class update {
 
     }
 
-    async _parse_cities_geonames(fname){
+    async _parse_cities_geonames(fname, c){
         var columns = ['country', 'zip', 'city', 'state', 'state_code', 'region', false, 'place', false, false, false, false];
+        if( c == 'JP')
+            columns = ['country', 'zip', 'region', 'state', 'state_code', 'city', 'ward', 'place', false, false, false, false];
+            
         var options = {delimiter: '\t', quote: null, columns: columns, raw: false, info: false};
         try{
             var cities = await utils.csv_to_array(fname, options);
@@ -286,14 +299,14 @@ class update {
         for(var zip in otherzipcodes ){
             var parts = otherzipcodes[zip].split(',');
             if( parts[0] == lc ){
-                console.log('    merging additional zips for ', lc);
-                this._add_city_details( {country: parts[0], state_code: parts[1]||'', city: parts[2]||''} );
+                console.log('    merging otherzips zips for ', lc, zip, parts[2]);
+                this._add_city_details( {country: parts[0], state_code: parts[1]||'', city: parts[2]||'', zip: zip} );
                 this._add_zipcode(parts[0], parts[1], zip, parts[2]);
             }
         }
 
         if( c == 'US' ){
-            console.log('    merging additional zips for us');
+            console.log('    merging additional us zip codes');
             var zips = JSON.parse( fs.readFileSync(path.join(__dirname,'us-zip-code-latitude-and-longitude.json'), 'utf-8' ) );
             for(var zip of zips ){
                 var statecode = zip.fields.state.toLowerCase();
@@ -311,13 +324,13 @@ class update {
                 this._add_zipcode('jp', rec.state, rec.zip, rec.city);
             }
         }
-        if( c == 'GB_full.csv' ){
-            console.log('    merging additional zips for gb');
-            var zips = JSON.parse( fs.readFileSync(path.join(__dirname,'ukzips.json'), 'utf-8' ) );
-            for(var zip of zips ){
-                this._add_zipcode('uk', zips[zip], zip, '');
-            }
-        }
+        // if( c == 'GB_full.csv' ){
+        //     console.log('    merging additional zips for gb');
+        //     var zips = JSON.parse( fs.readFileSync(path.join(__dirname,'ukzip.json'), 'utf-8' ) );
+        //     for(var zip in zips ){
+        //         this._add_zipcode('uk', zips[zip], zip, '');
+        //     }
+        // }
 
     }
 
@@ -351,11 +364,12 @@ class update {
                     return;
                 }
             }
-            await this._parse_cities_geonames(txtFile);
+            await this._parse_cities_geonames(txtFile, c);
             await this._merge_other_zips_for_country(c);
 
 
             console.log(c, 'completed');
+
             if( folder ){
                 var jsfile = path.join(folder, c.replace('_full.csv', '').toLowerCase()+'.json');
                 fs.writeFileSync(jsfile, JSON.stringify(this.country, null, 2));

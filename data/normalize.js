@@ -75,6 +75,7 @@ class anormalize {
             var {countries, zipcode} = this._get_countries_from_zip(zip);
             if( countries ){
                 this._add_to_parsed(parsed, i, 'zip', zipcode);
+                if( this.dbg )console.log('zip: ', countries);
                 parsed.guessed.countries = countries;
                 break;
             }
@@ -104,11 +105,11 @@ class anormalize {
         var geo = this.__geo(ccode);
         var name = parts.join(' ');
         if( geo.states[name] ){
-            if(this.dbg)console.log('locate_state_by_name: found in ', geo, name);
+            if(this.dbg)console.log('locate_state_by_name: found in ', name);
             return name;
         }
         if( geo.statecodes && geo.statecodes[name] ){
-            if(this.dbg)console.log('locate_state_by_name: found (code) in ', geo, name);
+            if(this.dbg)console.log('locate_state_by_name: found (code) in ', name);
             return name;
         }
         return null;
@@ -116,13 +117,13 @@ class anormalize {
 
     _locate_city_in_geo_names(name, ccode){
         var geo = this.__geo(ccode);
-        if( geo.cities[name] )return {city: name, state: geo.cities[name]};
+        if( geo.cities[name] )return {city: name, state: geo.cities[name], country: ccode};
 
         if(ccode == 'jp'){// leave a space in the front
             var suffix = [' ken', ' to', ' fu', ' do', ' gun', ' shi', ' ku', ' machi', ' cho', ' mura', ' son'];
             for(var suf of suffix ){
                 var aname = name.replace(suf, '');
-                if( geo.cities[aname] )return {city: aname, state: geo.cities[aname]};
+                if( geo.cities[aname] )return {city: aname, state: geo.cities[aname], country: ccode};
             }
         }
         return null;
@@ -137,9 +138,11 @@ class anormalize {
 
         if( !(cnst instanceof Array) ){
             var parts = cnst.split(',');
-            if( ccode != parts[0])
-                console.log('warning: city matches but not country, expected', ccode, 'found', parts[0]);
-            return {city: parts[2], state: parts[1], country: parts[0]}; //common mame
+            // if( ccode != parts[0])
+            //     console.log('warning: city matches but not country, expected', ccode, 'found', parts[0]);
+            if( ccode == parts[0] )
+                return {city: parts[2], state: parts[1], country: parts[0]}; //common mame
+            return {city: null, state: null, country: null};
         }
 
         // found multiple cities with this name, lets cross reference and see potential matches for this country
@@ -183,9 +186,12 @@ class anormalize {
     _extract_state_name(parsed){
         var parts = parsed.parts;
        
-        var guessed_countries = parsed.country || [...parsed.guessed.countries] || [];
+        var guessed_countries = parsed.country || parsed.guessed.countries || [];
         if( !(guessed_countries instanceof Array) )guessed_countries = [guessed_countries];
-        guessed_countries.push('us');
+        if( guessed_countries.indexOf('us')<0 )
+            guessed_countries = [...guessed_countries, 'us']; // make a copy
+        else
+            guessed_countries = [...guessed_countries]; // make a copy
 
         for(var i=4; i>0; i--){
             if( parts.length<=i )continue;
@@ -202,38 +208,86 @@ class anormalize {
         }
     }
 
+    __extract_city_name(parsed, guessed_countries, skip){
+        var parts = parsed.parts;
+        skip = skip || 0;
+        for(var i=4; i>skip; i--){
+            if( parts.length<i )continue;
+            for(var ccode of guessed_countries ){
+                var {city, state, country} = this._locate_city( parts.slice(parts.length-i, parts.length-skip).join(' '), ccode );
+                if( city ){
+                    // console.log('found city with ', city, state, country)
+                    if( parsed.country == country ){
+                        this._add_to_parsed(parsed, i, 'city', city);
+                        return true;
+                    }
+                    else{
+                        // console.log('city guessed: ', {country: country, city: city, state: state})
+                        parsed.guessed.cities.push({country: country, city: city, state: state, index: i});
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     _extract_city_name(parsed){
         var parts = parsed.parts;
 
         var guessed_countries = parsed.country || parsed.guessed.countries || [];
         if( !(guessed_countries instanceof Array) )guessed_countries = [guessed_countries];
-        guessed_countries.push('us');
+        if( guessed_countries.indexOf('us')<0 )
+            guessed_countries = [...guessed_countries, 'us']; // make a copy
+        else
+            guessed_countries = [...guessed_countries]; // make a copy
 
-        for(var i=4; i>0; i--){
-            if( parts.length<i )continue;
-            for(var ccode of guessed_countries ){
-                var {city, state, country} = this._locate_city( parts.slice(parts.length-i), ccode );
-                if( city ){
-                    if( parsed.country == country )
-                        return this._add_to_parsed(parsed, i, 'city', city);
-                    else{
-                        console.log('city guessed: ', {country: country, city: city, state: state})
-                        parsed.guessed.cities.push({country: country, city: city, state: state});
-                    }
-                }
-            }
-        }
+        if( this.dbg )console.log('city: guessed ', guessed_countries);
+
+        if( this.__extract_city_name(parsed, guessed_countries, 0) )return true;
+        if( this.__extract_city_name(parsed, guessed_countries, 1) )return true;
+
+        // for(var i=4; i>0; i--){
+        //     if( parts.length<i )continue;
+        //     for(var ccode of guessed_countries ){
+        //         var {city, state, country} = this._locate_city( parts.slice(parts.length-i).join(' '), ccode );
+        //         if( city ){
+        //             // console.log('found city with ', city, state, country)
+        //             if( parsed.country == country )
+        //                 return this._add_to_parsed(parsed, i, 'city', city);
+        //             else{
+        //                 // console.log('city guessed: ', {country: country, city: city, state: state})
+        //                 parsed.guessed.cities.push({country: country, city: city, state: state, index: i});
+        //             }
+        //         }
+        //     }
+        // }
 
         if( !parsed.city ){
             // cross reference guessed city names against their zip city names
             var matches = [];
             for(var cobj of parsed.guessed.cities ){
                 var geo = this.__geo(cobj.country);
-                console.log('zip city: ', cobj.country, cobj.city, geo.zips[parsed.zip]);
-                if( geo.zips[parsed.zip] == cobj.city )
-                    matches.push( cobj );
+                if(this.dbg)console.log('zip city: ', parsed.zip, cobj.country, cobj.city, '==', geo.zips[parsed.zip]);
+                var zips = geo.zips[parsed.zip];
+                if( zips ){
+                    if( !(zips instanceof Array) )zips = [zips];
+                    for(var zip of zips ){
+                        if( zip.split(',')[0] == cobj.city)matches.push( cobj );
+                    }
+                }
+                // if( (zips instanceof Array) && zips.indexOf(cobj.city)>=0 )
+                //     matches.push( cobj );
+                // else if( zips == cobj.city )matches.push( cobj );
             }
-            console.log('x-matched: ', matches);
+            
+            if( matches.length==1 ){
+                if( !parsed.country )parsed.country = matches[0].country;
+                if( !parsed.state )parsed.state = matches[0].state;
+                return this._add_to_parsed(parsed, matches[0].index, 'city', matches[0].city);
+            }
+            else{
+                console.log('x-matched: ', matches);
+            }
         }
     }
 

@@ -26,87 +26,174 @@
     "warwick": "11"
   },
   "zips": {
-    "dv 01": "devonshire",
-    "dv 02": "devonshire",
-    "dv 03": "paget",
-    "dv 04": "paget",
-    "dv 05": "devonshire",
-    "dv 06": "devonshire",
-    "dv 07": "devonshire",
-    "dv 08": "devonshire",
-    "fl 01": "smith’s",
-    "fl 02": "smith’s",
-    "fl 03": "smith’s",
-    "fl 05": "smith’s",
-    "hm 14": "pembroke",
-    "hm 15": "pembroke",
-    "hm 16": "pembroke",
-    "hm 18": "pembroke",
-    "hm 19": "pembroke",
-    "hm 20": "pembroke",
-    "cr 01": "hamilton parish",
-    "cr 02": "hamilton parish",
-    "cr 03": "hamilton parish",
-    "cr 04": "st. george's",
-    "fl 04": "smith’s",
-    "hs 02": "smith’s",
-    "hm 08": "pembroke",
-    "hm 09": "pembroke",
-    "hm 10": "city of hamilton",
-    "hm 11": "city of hamilton",
-    "hm 12": "city of hamilton",
-    "hm 17": "pembroke",
-    "pg 01": "warwick",
-    "pg 02": "paget",
-    "pg 03": "paget",
-    "pg 04": "warwick",
-    "pg 05": "paget",
-    "pg 06": "paget",
-    "hm 01": "pembroke",
-    "hm 02": "pembroke",
-    "hm 03": "pembroke",
-    "hm 04": "pembroke",
-    "hm 05": "pembroke",
-    "hm 06": "pembroke",
-    "hm 07": "pembroke",
-    "hm 13": "pembroke",
-    "ge 02": "st. george's",
-    "ge 03": "st. george's",
-    "ge 04": "st. george's",
-    "ge 05": "st. george's",
-    "dd 01": "st. george's",
-    "dd 02": "st. george's",
-    "dd 03": "st. george's",
-    "ge 01": "st. george's",
-    "ge cx": "st. george's",
-    "ma 01": "sandys",
-    "ma 02": "sandys",
-    "ma 03": "sandys",
-    "ma 04": "sandys",
-    "ma 05": "sandys",
-    "ma 06": "sandys",
-    "sb 01": "sandys",
-    "sb 02": "southampton",
-    "sb 03": "southampton",
-    "fl 06": "smith’s",
-    "fl 07": "smith’s",
-    "fl 08": "smith’s",
-    "hs 01": "smith’s",
-    "sb 04": "southampton",
-    "sn 01": "southampton",
-    "sn 02": "southampton",
-    "sn 03": "southampton",
-    "sn 04": "southampton",
-    "wk 01": "warwick",
-    "wk 03": "warwick",
-    "wk 02": "warwick",
-    "wk 04": "warwick",
-    "wk 05": "warwick",
-    "wk 06": "warwick",
-    "wk 07": "warwick",
-    "wk 08": "warwick",
-    "wk 09": "warwick",
-    "wk 10": "warwick"
+    "dv 01": "devonshire,01",
+    "dv 02": "devonshire,01",
+    "dv 03": [
+      "paget,04",
+      "devonshire,01"
+    ],
+    "dv 04": [
+      "paget,04",
+      "devonshire,01"
+    ],
+    "dv 05": "devonshire,01",
+    "dv 06": "devonshire,01",
+    "dv 07": "devonshire,01",
+    "dv 08": "devonshire,01",
+    "fl 01": [
+      "smith’s,09",
+      "devonshire,01"
+    ],
+    "fl 02": [
+      "smith’s,09",
+      "devonshire,01"
+    ],
+    "fl 03": [
+      "smith’s,09",
+      "devonshire,01"
+    ],
+    "fl 05": [
+      "smith’s,09",
+      "devonshire,01"
+    ],
+    "hm 14": [
+      "pembroke,05",
+      "devonshire,01"
+    ],
+    "hm 15": [
+      "pembroke,05",
+      "devonshire,01"
+    ],
+    "hm 16": [
+      "pembroke,05",
+      "devonshire,01"
+    ],
+    "hm 18": [
+      "pembroke,05",
+      "devonshire,01"
+    ],
+    "hm 19": [
+      "city of hamilton,03",
+      "devonshire,01",
+      "pembroke,05"
+    ],
+    "hm 20": [
+      "pembroke,05",
+      "devonshire,01"
+    ],
+    "cr 01": "hamilton parish,02",
+    "cr 02": "hamilton parish,02",
+    "cr 03": "hamilton parish,02",
+    "cr 04": [
+      "st. george's,07",
+      "hamilton parish,02"
+    ],
+    "fl 04": [
+      "smith’s,09",
+      "hamilton parish,02"
+    ],
+    "hs 02": [
+      "st. george,06",
+      "hamilton parish,02",
+      "st. george's,07",
+      "smith’s,09"
+    ],
+    "hm 08": [
+      "pembroke,05",
+      "city of hamilton,03"
+    ],
+    "hm 09": [
+      "pembroke,05",
+      "city of hamilton,03"
+    ],
+    "hm 10": "city of hamilton,03",
+    "hm 11": "city of hamilton,03",
+    "hm 12": "city of hamilton,03",
+    "hm 17": [
+      "pembroke,05",
+      "city of hamilton,03"
+    ],
+    "pg 01": [
+      "warwick,11",
+      "paget,04"
+    ],
+    "pg 02": "paget,04",
+    "pg 03": "paget,04",
+    "pg 04": [
+      "warwick,11",
+      "paget,04"
+    ],
+    "pg 05": "paget,04",
+    "pg 06": "paget,04",
+    "hm 01": "pembroke,05",
+    "hm 02": "pembroke,05",
+    "hm 03": "pembroke,05",
+    "hm 04": "pembroke,05",
+    "hm 05": "pembroke,05",
+    "hm 06": "pembroke,05",
+    "hm 07": "pembroke,05",
+    "hm 13": "pembroke,05",
+    "ge 02": [
+      "st. george's,07",
+      "town of st. george,06"
+    ],
+    "ge 03": [
+      "st. george's,07",
+      "town of st. george,06"
+    ],
+    "ge 04": [
+      "st. george's,07",
+      "town of st. george,06"
+    ],
+    "ge 05": [
+      "st. george's,07",
+      "town of st. george,06"
+    ],
+    "dd 01": "st. george's,07",
+    "dd 02": "st. george's,07",
+    "dd 03": "st. george's,07",
+    "ge 01": "st. george's,07",
+    "ge cx": "st. george's,07",
+    "ma 01": "sandys,08",
+    "ma 02": "sandys,08",
+    "ma 03": "sandys,08",
+    "ma 04": "sandys,08",
+    "ma 05": "sandys,08",
+    "ma 06": "sandys,08",
+    "sb 01": "sandys,08",
+    "sb 02": [
+      "southampton,10",
+      "sandys,08"
+    ],
+    "sb 03": [
+      "southampton,10",
+      "sandys,08"
+    ],
+    "fl 06": "smith’s,09",
+    "fl 07": "smith’s,09",
+    "fl 08": "smith’s,09",
+    "hs 01": "smith’s,09",
+    "sb 04": "southampton,10",
+    "sn 01": "southampton,10",
+    "sn 02": "southampton,10",
+    "sn 03": "southampton,10",
+    "sn 04": "southampton,10",
+    "wk 01": [
+      "warwick,11",
+      "southampton,10"
+    ],
+    "wk 03": [
+      "warwick,11",
+      "southampton,10"
+    ],
+    "wk 02": "warwick,11",
+    "wk 04": "warwick,11",
+    "wk 05": "warwick,11",
+    "wk 06": "warwick,11",
+    "wk 07": "warwick,11",
+    "wk 08": "warwick,11",
+    "wk 09": "warwick,11",
+    "wk 10": "warwick,11"
   },
   "regions": {},
   "places": {},
