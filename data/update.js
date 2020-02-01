@@ -10,7 +10,7 @@ const countries = [
     'BR',   // Brazil
     'SG',   // Singaport
     'FR',   // France
-    'NO',   
+    'NO',   // Norway
     'DE',   // Germany
     'NL_full.csv', 'JP', 
     'MX',   // Mexico
@@ -29,9 +29,14 @@ const countries = [
     'BE',   // Belgium
     'BM',   // Bermuda
     'PT',   // Portugal
-    'ZA',   // South africa
+    'ZA',   // South africa,
+    'LU',   // Luxemberg
+    'HU',   // Hungary
+    'PL',   // Poland
+    'RU',   // Russia
+
 ];
-const countries1 = ['US'];
+// const countries = ['US'];
 
 
 
@@ -197,8 +202,10 @@ class update {
         if( rec.state )this.country.states[rec.state] = rec.state_code;
         //if( rec.region)this.country.regions[rec.region]=1;
         //if( rec.place )this.country.places[rec.place] = 1;
-        if( rec.state_code && !Number.isInteger(rec.state_code) )
+        
+        if( rec.state && rec.state_code && !Number.isInteger(rec.state_code) ){
             this.country.statecodes[rec.state_code] = rec.state;
+        }
 
     }
 

@@ -52,7 +52,7 @@ class utils {
         parser.on('readable', async ()=>{
             var row = null;
             while( (row=parser.read()) ){
-                row = row.map(s => s.trim());
+                for(var key in row)row[key] = row[key].trim();
                 data.push(row);
                 process.stderr.write('\r'+data.length);
             }

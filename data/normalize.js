@@ -41,12 +41,12 @@ class anormalize {
     }
 
     _check_uk_zip(zip){
-        return false;
+        // return false;
         // The letters Q, V and X are not used in the first position.
         // second is alpha-numneric except i,j,z
         // third optional alpha numeric with A, B, C, D, E, F, G, H, J, K, S, T, U and W
         // fourth alpha-numneric with A, B, E, H, M, N, P, R, V, W, X and Y
-        var rex = /[abcedfghijklmnoprstuwyz][abcdefghklmnopqrsty0-9](?:[abcdefghjkstuw0-9][abehmnprvwxz0-9]?)?\s?[0-9][abdefghjlnpqrstuwxyz0-9][abdefghjlnpqrstuwxyz0-9]/;
+        var rex = /^[abcedfghijklmnoprstuwyz][abcdefghklmnopqrsty0-9](?:[abcdefghjkstuw0-9][abehmnprvwxz0-9]?)?\s?[0-9][abdefghjlnpqrstuwxyz0-9][abdefghjlnpqrstuwxyz0-9]$/;
         return zip.match(rex);
     }
 
@@ -93,7 +93,7 @@ class anormalize {
         this.nameindex = {};
         for(var alpha2 in doc ){
             var c = doc[alpha2];
-            var keys = [c.alpha2||'', c.alpha3||'', c.fifa||'', c.iso_name||'', c.official||'', 
+            var keys = [/*c.alpha2||'',*/ c.alpha3||'', c.fifa||'', c.iso_name||'', c.official||'', 
                 c.short||'', ...(c.aliases||[])];
             for(var key of keys ){
                 this.nameindex[key.toLowerCase()] = c.alpha2.toLowerCase();
@@ -156,8 +156,9 @@ class anormalize {
 
     _locate_country_by_name(parts){
         var name = parts.join(' ');
+        if(this.dbg)console.log('locate_country_by_name: ', name);
         if( this.cname[name] )return this.cname[name].alpha2.toLowerCase();
-        // if( this.nameindex[name] )return this.nameindex[name];
+        if( this.nameindex[name] )return this.nameindex[name];
         return null;
     }
     _locate_country_by_alpha2(parts){
@@ -169,7 +170,7 @@ class anormalize {
     _locate_country_by_alpha3(parts){
         var name = parts[ parts.length-1 ];
         if( this.alpha3[name] )return this.alpha3[name].alpha2.toLowerCase();
-        // if( this.nameindex[name] )return this.nameindex[name];
+        if( this.nameindex[name] )return this.nameindex[name];
         return null;
     }
     _locate_state_in_country(parts, ccode){
@@ -258,8 +259,7 @@ class anormalize {
         }
 
         name = this._locate_country_by_alpha2( parts );
-        if( name ){
-            // if we have a country from zip, this must match that
+        if( name ){   // if we have a country from zip, this must match that
             if( parsed.guessed.countries.indexOf(name)>=0 ){
                 return this._add_to_parsed(parsed, 1, 'country', name);
             }
@@ -408,6 +408,12 @@ class anormalize {
             else{
                 if(this.dbg>2)console.log('x-matched: ', matches);
             }
+
+            // some cities have same name as their state
+            if( parsed.country && parsed.state ){
+                var geo = this.__geo(parsed.country);
+                if( geo.cities[parsed.state] )parsed.city = parsed.state;
+            }
         }
     }
 
@@ -482,7 +488,7 @@ class anormalize {
     }
 
     parse_address(parts, str){
-        var parsed = {parts: parts, address: str, zip: null, guessed: {states: [], cities: []}};
+        var parsed = {parts: parts, address: str, zip: null, guessed: {states: [], cities: [], countries: []}};
         this._extract_zipcode(parsed);
         this._extract_country_name(parsed);
         this._extract_zipcode(parsed);
