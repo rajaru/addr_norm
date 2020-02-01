@@ -157,7 +157,7 @@ class anormalize {
     _locate_country_by_name(parts){
         var name = parts.join(' ');
         if( this.cname[name] )return this.cname[name].alpha2.toLowerCase();
-        if( this.nameindex[name] )return this.nameindex[name];
+        // if( this.nameindex[name] )return this.nameindex[name];
         return null;
     }
     _locate_country_by_alpha2(parts){
@@ -169,13 +169,13 @@ class anormalize {
     _locate_country_by_alpha3(parts){
         var name = parts[ parts.length-1 ];
         if( this.alpha3[name] )return this.alpha3[name].alpha2.toLowerCase();
-        if( this.nameindex[name] )return this.nameindex[name];
+        // if( this.nameindex[name] )return this.nameindex[name];
         return null;
     }
     _locate_state_in_country(parts, ccode){
         var geo = this.__geo(ccode);
         var name = parts.join(' ');
-        if(this.dbg)console.log('locate_state_by_name: ', name, ccode);
+        if(this.dbg)console.log('locate_state_by_name: ', name, 'ccode:', ccode);
         if( geo.states[name] ){
             if(this.dbg)console.log('    found in ', name);
             return name;
@@ -258,7 +258,12 @@ class anormalize {
         }
 
         name = this._locate_country_by_alpha2( parts );
-        if( name )return this._add_to_parsed(parsed, 1, 'country', name);
+        if( name ){
+            // if we have a country from zip, this must match that
+            if( parsed.guessed.countries.indexOf(name)>=0 ){
+                return this._add_to_parsed(parsed, 1, 'country', name);
+            }
+        }
 
         name = this._locate_country_by_alpha3( parts );
         if( name )return this._add_to_parsed(parsed, 1, 'country', name);
