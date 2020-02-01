@@ -338,7 +338,7 @@ class anormalize {
                         return true;
                     }
                     else if( guessed_countries.length>0 && guessed_countries.length<3 && guessed_countries[0] == country ){
-                        console.log('matches guessed country: ',guessed_countries[0], city, state, country);
+                        // console.log('matches guessed country: ',guessed_countries[0], city, state, country);
                         parsed.country = guessed_countries[0];
                         this._add_to_parsed(parsed, i, 'city', city);
                         return true;
