@@ -85,8 +85,8 @@ var cases = {
     },
     "shelbourne buildings shelbourne road ballsbridge 4 dublin d04 w3v6":{
         country: 'ie',
-        zip: 'd04 w3v6',
-        city: 'dublin',
+        zip: 'd04',
+        city: 'dublin 4',
     },
     "101 federal street - 1900  boston  02100": {
         country: 'us',
@@ -97,7 +97,7 @@ var cases = {
     "belgielei 49-53, antwerpen  aalter   2018":{
         country: 'be',
         zip: '2018',
-        city: 'aalter',
+        city: 'antwerpen',
         state: 'vlg'
     },
     "landsvagen 40, sundbyberg  stockholm   105 34":{
@@ -130,11 +130,12 @@ var cases = {
 
 var count = 0, err=0;
 for(var cas in cases ){
+    console.log(count, cas);
     var ret = addrnorm.normalize(cas);
     var failed = false;
     for(var key in cases[cas] ){
         if( ret[key] != cases[cas][key] ){
-            if( !failed )console.log(cas);
+            // if( !failed )console.log(cas);
             console.log('    ', key+':', ret[key], '!=', cases[cas][key]);
             failed = true;
         }

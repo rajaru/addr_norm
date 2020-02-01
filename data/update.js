@@ -31,25 +31,10 @@ const countries = [
     'PT',   // Portugal
     'ZA',   // South africa
 ];
-// const countries = ['US'];
+const countries1 = ['US'];
 
 
 
-function fix_city_name(city){
-    var remexp = [/ am main/,
-        /an der havel/,
-        /am Rhein/,
-        /an der Lahn/,
-        // /de ballesteros/,
-        // /de ballesteros/,
-        /de morcin/,
-        /(\(.*\))/,
-        
-    ];
-    for(var r of remexp )city = city.replace(r, '');
-    city = city.replace(/\s+/g, ' ').trim();
-    return city;
-}
 
 
 class update {
@@ -76,35 +61,100 @@ class update {
         });
     }
 
+    fix_city_name(city, country){
+        var remexp = [/ am main/,
+            /an der havel/,
+            /am Rhein/,
+            /an der Lahn/,
+            // /de ballesteros/,
+            // /de ballesteros/,
+            /de morcin/,
+            /(\(.*\))/,
+            
+        ];
+        for(var r of remexp )city = city.replace(r, '');
+        city = city.replace(/\s+/g, ' ').trim();
+
+        if( !this.english ){
+            this.english = JSON.parse( fs.readFileSync(path.join(__dirname, 'english.json'), 'utf-8') );
+        }
+        if( this.english[city] )return this.english[city];
+
+        if( country.toLowerCase() == 'jp '){
+            var suffix = [/ ken$/, / to$/, / fu$/, / do$/, / gun$/, / shi$/, / ku$/, / machi$/, / cho$/, / mura$/, / son$/];
+            for(var suf of suffix ){
+                city = city.replace(suf, '');
+            }
+        }
+
+        return city;
+    }
+    
+
+
     _add_zipcode(country, statecode, zip, city){
         if( !country || !zip )return;
         zip = zip.trim().replace(' ', '-').replace('-000', '');
+        var cityname = this.fix_city_name(city, country);
 
         //var data = country+','+(statecode||'');//+','+(city||'');
-        var data = country;
+        
         if( !this.zip ){
-            var fname = path.join(__dirname, 'zip.json');
-            if( fs.existsSync(fname) )this.zip = JSON.parse( fs.readFileSync(fname, 'utf8') );
-            else this.zip = {};
+            // var fname = path.join(__dirname, 'zip.json');
+            // if( fs.existsSync(fname) )this.zip = JSON.parse( fs.readFileSync(fname, 'utf8') );
+            // else this.zip = {conflicts: {}};
+            this._read_zip_json();
         }
-        if( !this.zip.hasOwnProperty(zip) || !this.zip[zip])
-            this.zip[zip] = data;
-        else{
-            if( !(this.zip[zip] instanceof Array) ){
-                if( this.zip[zip] != data )
-                    this.zip[zip] = [this.zip[zip], data];
-            }
-            else{
-                if( this.zip[zip].indexOf(data)<0 )
-                    this.zip[zip].push(data);
-            }
+
+        if( !this.zip[zip] )this.zip[zip] = {};
+
+        if( !this.zip[zip].hasOwnProperty(country) )this.zip[zip][country] = {};
+
+        if( this.zip[zip][country][city] && this.zip[zip][country][city] != statecode ){
+            if( !this.zip.conflicts[zip] )this.zip.conflicts[zip] = [];
+            var data = country+','+statecode+','+city;
+            if( this.zip.conflicts[zip].indexOf(data)<0 )this.zip.conflicts[zip].push(data);
+            this.conflicts++;
         }
+
+
+        if( !this.zip[zip][country][city] )this.zip[zip][country][city] = statecode;
+        if( !this.zip[zip][country][cityname] )this.zip[zip][country][cityname] = statecode;
+
+
+
+        // if( !this.zip[zip].hasOwnProperty(country) )
+        //     this.zip[zip][country] = {[city]: statecode, [cityname]: statecode};
+        // else if( !this.zip[zip][country].hasOwnProperty(city) )
+        //     this.zip[zip][country][city] = statecode;
+        // else if( this.zip[zip][country][city] != statecode ){
+        //     // console.log('multiple city names with same zip different state found', country, zip, city, statecode, '!=', this.zip[zip][country][city] );
+        //     if( !this.zip.conflicts[zip] )this.zip.conflicts[zip] = [];
+        //     var data = country+','+statecode+','+city;
+        //     if( this.zip.conflicts[zip].indexOf(data)<0 ){
+        //         this.zip.conflicts[zip].push(data);
+        //     }
+        //     this.conflicts++;
+        // }
+
+        // if( !this.zip.hasOwnProperty(zip) || !this.zip[zip])
+        //     this.zip[zip] = data;
+        // else{
+        //     if( !(this.zip[zip] instanceof Array) ){
+        //         if( this.zip[zip] != data )
+        //             this.zip[zip] = [this.zip[zip], data];
+        //     }
+        //     else{
+        //         if( this.zip[zip].indexOf(data)<0 )
+        //             this.zip[zip].push(data);
+        //     }
+        // }
     }
 
     _add_city_details(rec){
         for(var key in rec )rec[key] = (rec[key]||'').toLowerCase();
         if( rec.city && rec.city != 'street' && rec.city != 'avenue' ){ // seriously?!!
-            var cityname = fix_city_name(rec.city);
+            var cityname = this.fix_city_name(rec.city, rec.country);
             var states = this.country.cities[rec.city];
             var state_code = rec.state_code || rec.state || 1;
 
@@ -125,7 +175,8 @@ class update {
                 this.country.cities[rec.city] = state_code;
                 this.country.cities[cityname] = state_code;
             }
-            
+
+            /*
             if( rec.zip ){
                 var citystate = cityname+','+state_code;
                 if( !this.country.zips[rec.zip] )
@@ -140,7 +191,7 @@ class update {
                     this.country.zips[rec.zip] = [citystate, this.country.zips[rec.zip]];
                 }
                 
-            }
+            }*/
         }
         
         if( rec.state )this.country.states[rec.state] = rec.state_code;
@@ -299,7 +350,7 @@ class update {
         for(var zip in otherzipcodes ){
             var parts = otherzipcodes[zip].split(',');
             if( parts[0] == lc ){
-                console.log('    merging otherzips zips for ', lc, zip, parts[2]);
+                // console.log('    merging otherzips zips for ', lc, zip, parts[2]);
                 this._add_city_details( {country: parts[0], state_code: parts[1]||'', city: parts[2]||'', zip: zip} );
                 this._add_zipcode(parts[0], parts[1], zip, parts[2]);
             }
@@ -342,6 +393,7 @@ class update {
         var url = "http://download.geonames.org/export/zip/"+c+'.zip';
         
         try{
+            this.conflicts = 0;
             this.country = {
                 states: {},
                 cities: {},
@@ -368,15 +420,15 @@ class update {
             await this._merge_other_zips_for_country(c);
 
 
-            console.log(c, 'completed');
+            console.log(c, 'completed with conflicts', this.conflicts);
 
             if( folder ){
                 var jsfile = path.join(folder, c.replace('_full.csv', '').toLowerCase()+'.json');
                 fs.writeFileSync(jsfile, JSON.stringify(this.country, null, 2));
-                if( this.zip ){
-                    jsfile = path.join(folder, 'zip.json');
-                    fs.writeFileSync(jsfile, JSON.stringify(this.zip, null, 2));
-                }
+                // if( this.zip ){
+                //     jsfile = path.join(folder, 'zip.json');
+                //     fs.writeFileSync(jsfile, JSON.stringify(this.zip, null, 2));
+                // }
             }
             // utils.rmFile(zipFile);
         }catch(e){
@@ -387,9 +439,9 @@ class update {
 
     _add_city_state_details(country, city, altname, state){
         country = country.toLowerCase();
-        city = fix_city_name(city.toLowerCase());
+        city = this.fix_city_name(city.toLowerCase(), country);
         state = state.toLowerCase();
-        altname = fix_city_name(altname.toLowerCase());
+        altname = this.fix_city_name(altname.toLowerCase(), country);
 
         var cstate = country+','+state+','+city;
         if( !this.cities.hasOwnProperty(altname) ){
@@ -563,8 +615,8 @@ class update {
             var parts = otherzipcodes[zip].split(',');
             this._add_zipcode(parts[0], parts[1], zip, parts[2]);
         }
-        var jsfile = path.join(__dirname, 'zip.json');
-        fs.writeFileSync(jsfile, JSON.stringify(this.zip, null, 2));
+        // var jsfile = path.join(__dirname, 'zip.json');
+        // fs.writeFileSync(jsfile, JSON.stringify(this.zip, null, 2));
     }
 
 
@@ -608,7 +660,43 @@ class update {
         await this._update_us_zipcodes();
 
         //- await this._update_uk_zipcodes();
+
+        // if( this.zip ){
+        //     jsfile = path.join(__dirname, 'zip.json');
+        //     fs.writeFileSync(jsfile, JSON.stringify(this.zip, null, 2));
+        // }
+        this._write_zip_json();
     }
+
+    _read_zip_json(){
+        var codes = '0123456789abcdefghijklmnopqrstuvwxyz';
+        this.zip = {conflicts:{}};
+        for(var prefix in codes ){
+            var fname = path.join(__dirname, 'zip', codes[prefix]+'.json');
+            try{
+                var zips = JSON.parse(fs.readFileSync(fname, 'utf-8' ));
+                for(var z in zips )this.zip[z] = zips[z];    
+            }catch(e){
+
+            }
+        }
+    }
+
+    _write_zip_json(){
+        //split into small files
+        var zips = {};
+        for(var z in this.zip ){
+            var prefix = z[0];
+            if( !zips.hasOwnProperty(prefix) )zips[prefix] = {};
+            zips[prefix][z] = this.zip[z];
+        }
+
+        for(var prefix in zips ){
+            var fname = path.join(__dirname, 'zip', prefix+'.json');
+            fs.writeFileSync(fname, JSON.stringify(zips[prefix]) );
+        }
+    }
+
 
     async street_abbreviations(){
         var fname = path.join(__dirname, 'street_abbrev.csv');
