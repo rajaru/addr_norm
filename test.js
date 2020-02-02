@@ -125,6 +125,11 @@ var cases = {
         country: 'ie',
         city: 'dublin 2',
         state: 'dublin'
+    },
+    "550 kearny street - 510  san francisco   94108-2527":{
+        country: 'us',
+        city: 'san francisco',
+        state: 'ca'
     }
 };
 

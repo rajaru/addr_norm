@@ -63,6 +63,8 @@ class anormalize {
             }
             this.loaded[zip[0]] = true;
         }
+        if( this.zipz[zip] )return this.zipz[zip];
+        return null;
     }
 
     load_data(){
@@ -307,6 +309,18 @@ class anormalize {
         }
     }
 
+    __state(parsed, state, city){
+        if( parsed.state || !parsed.country )return;
+        if( state instanceof Array ){
+            var countries = this.__zips(parsed.zip);
+            if( countries && countries[parsed.country] ){
+                parsed.state = countries[parsed.country][city] || null;
+            }                                
+        }
+        else
+            parsed.state = state;
+    }
+
     __extract_city_name(parsed, guessed_countries, skip){
         // if we have only one guessed country (that will be us) then lets try a match without country as well
         if( guessed_countries.length == 1 )guessed_countries = [...guessed_countries, null];
@@ -327,13 +341,13 @@ class anormalize {
                         // whatever we get is golden
                         if( parsed.state && state != parsed.state )console.log('state mismatch ', parsed.state, '!=', state);
                         parsed.country = country;
-                        parsed.state = state;
+                        this.__state(parsed, state, city);
                         this._add_to_parsed(parsed, i, 'city', city);
                         return true;
                     }
 
                     if( parsed.country == country ){
-                        if( !parsed.state )parsed.state = state;
+                        this.__state(parsed, state, city);
                         this._add_to_parsed(parsed, i, 'city', city);
                         return true;
                     }
