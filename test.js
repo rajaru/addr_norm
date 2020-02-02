@@ -39,7 +39,7 @@ var cases = {
     },
     "saint martin's ct. 5th fl.  london  united kingdom ec4m 7ej":{
         country: 'gb',
-        zip: 'ec4m 7ej',
+        zip: 'ec4m-7ej',
         city: 'london',
         street: 'saint martin\'s court fifth floor'
     },
