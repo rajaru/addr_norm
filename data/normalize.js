@@ -235,7 +235,7 @@ class anormalize {
         if(this.dbg )console.log('locate city: ', name, 'ccode:', ccode);
         var city = this._locate_city_in_geo_names(name, ccode);
         if( city ){
-            if(this.dbg )console.log('    locate_city: ', city);
+            if(this.dbg )console.log('    found: ', city);
             return city;
         }
 
@@ -344,6 +344,118 @@ class anormalize {
     }
 
     __extract_city_name(parsed, guessed_countries, skip){
+        var parts = parsed.parts;
+        skip = skip || 0;
+        if( parsed.country ){
+            for(var i=4+skip; i>skip; i--){
+                if( parts.length<i )continue;
+                var cparts = parts.slice(parts.length-i, parts.length-skip);
+                var city = this._locate_city_in_geo_names(cparts.join(' '), parsed.country);
+                if( !city && cparts.length>1  )city = this._locate_city_in_geo_names(cparts.reverse().join(' '), parsed.country);
+                if( city ){
+                    this.__state(parsed, city.state, city.city);
+                    return this._add_to_parsed(parsed, i, 'city', city.city);
+                }
+            }
+        }
+
+        // lets use guessed countries and try
+        for(var i=4+skip; i>skip; i--){
+            if( parts.length<i )continue;
+            for(var j=0; j<guessed_countries.length; j++ ){
+                var ccode = guessed_countries[j];
+                var cparts = parts.slice(parts.length-i, parts.length-skip);
+                var {city, state, country} = this._locate_city( cparts.join(' '), ccode );
+                if( !city && cparts.length>1 )this._locate_city( cparts.reverse().join(' '), ccode );
+                if( !city )continue;
+
+                state = this.__fix_state(country, state);
+
+                // we have nothing, what we get is here is good enough
+                if( !parsed.zip && ( !parsed.country || parsed.country == country) ){
+                    if(this.dbg)console.log('    found in global cities', city, state, country);
+                    if( parsed.state && state != parsed.state )console.log('state mismatch ', parsed.state, '!=', state);
+                    if( !parsed.country )parsed.country = country;
+                    this.__state(parsed, state, city);
+                    this._add_to_parsed(parsed, i, 'city', city);
+                    return true;
+                }
+
+                // if we have 2 countries guessed one must be US and lets check if
+                if( !parsed.country && j==0 && guessed_countries.length<3 ){
+                    parsed.country = guessed_countries[0];
+                    this._add_to_parsed(parsed, i, 'city', city);
+                    return true;
+                }
+
+                // lets add the city to the potential list of cities if not already added
+                var found = parsed.guessed.cities.filter( x=>x.country==country&&x.city==city&&x.state==state);
+                if(found.length==0){
+                    parsed.guessed.cities.push({country: country, city: city, state: state, index: i});
+                }
+            }
+        }
+
+        // if we have guessed only one, that must be it
+        if( parsed.guessed.cities.length==0 )return;
+
+        if( parsed.guessed.cities.length==1 ){
+            parsed.country = parsed.guessed.cities[0].country;
+            parsed.city = parsed.guessed.cities[0].city;
+            var states = parsed.guessed.cities[0].state;
+            if( states instanceof Array ){
+                var zips = this.__zips(parsed.zip);
+                if( zips && zips[parsed.country] ){
+                    // console.log('zip country', zips[parsed.country]);
+                    if( zips[parsed.country][parsed.city] )parsed.state = zips[parsed.country][parsed.city];
+                }
+            }
+            else
+                parsed.state = states;
+        }
+
+        if( this.dbg )console.log('    found ', parsed.guessed.cities.length, 'cities');
+
+        // if all our guesses are in one country, merge guessed states and cities
+        var countries = [parsed.country];
+        if( !parsed.country ){
+            countries = parsed.guessed.cities.map(x=>x.country);
+            countries = [...new Set(countries)]; //dedupe
+            if( countries.length == 1 )parsed.country = countries[0];
+            else if( this.dbg )console.log('    found in ', countries.length, ' different countries');
+        }
+
+        if( !parsed.country ){
+            // cross check guessed cities with corresponding geo names
+            var zips = this.__zips(parsed.zip);
+            for(var cobj of parsed.guessed.cities){
+                if( zips[cobj.city] ){
+                    console.log('zipcity: ', cobj);
+                }
+            }
+        }
+
+        // get states 
+        if( !parsed.state ){
+            var states = parsed.guessed.cities.map( x=>x.state instanceof Array ? x.state : [x.state]);
+            var ret = states[0];
+            for(var state of states )
+                ret = ret.filter(x => state.includes(x));
+            if( ret.length>1 )return false;
+            parsed.state = ret[0];    
+        }
+        
+        
+
+
+        return false;
+
+    }
+
+
+
+
+    __extract_city_name1(parsed, guessed_countries, skip){
         // if we have only one guessed country (that will be us) then lets try a match without country as well
         if( guessed_countries.length == 1 )guessed_countries = [...guessed_countries, null];
 

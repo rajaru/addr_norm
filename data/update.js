@@ -81,7 +81,8 @@ class update {
             /de morcin/,
             /(\(.*\))/,
             /^wein, /,
-            /^region /
+            /^region /,
+            / region$/
         ];
         for(var r of remexp )city = city.replace(r, '');
         city = city.replace(/\s+/g, ' ').trim();
@@ -104,6 +105,14 @@ class update {
     }
 
     fix_state_name(state, country){
+        var remexp = [
+            /(\(.*\))/,
+            /^region /,
+            / region$/
+        ];
+        for(var r of remexp )state = state.replace(r, '');
+        state = state.replace(/\s+/g, ' ').trim();
+
         if( !this.english ){
             this.english = JSON.parse( fs.readFileSync(path.join(__dirname, 'english.json'), 'utf-8') );
         }
