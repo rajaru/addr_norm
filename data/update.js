@@ -3,6 +3,11 @@ const path = require('path');
 const request = require('request');
 const unzip = require('unzipper');
 const utils= require('./utils');
+const diacrt = require('diacritics');
+diacrt.diacriticsMap['ä'] = 'ae';
+diacrt.diacriticsMap['ö'] = 'oe';
+diacrt.diacriticsMap['ü'] = 'ue';
+
 
 const tmp = "g:\\tmp\\out";
 const countries = [
@@ -36,7 +41,7 @@ const countries = [
     'RU',   // Russia
 
 ];
-// const countries = ['US'];
+// const countries = ['AT'];
 
 
 
@@ -75,7 +80,8 @@ class update {
             // /de ballesteros/,
             /de morcin/,
             /(\(.*\))/,
-            
+            /^wein, /,
+            /^region /
         ];
         for(var r of remexp )city = city.replace(r, '');
         city = city.replace(/\s+/g, ' ').trim();
@@ -83,7 +89,9 @@ class update {
         if( !this.english ){
             this.english = JSON.parse( fs.readFileSync(path.join(__dirname, 'english.json'), 'utf-8') );
         }
-        if( this.english[city] )return this.english[city];
+        if( this.english[city] )city = this.english[city];
+
+        city = diacrt.remove(city);
 
         if( country.toLowerCase() == 'jp '){
             var suffix = [/ ken$/, / to$/, / fu$/, / do$/, / gun$/, / shi$/, / ku$/, / machi$/, / cho$/, / mura$/, / son$/];
@@ -94,8 +102,14 @@ class update {
 
         return city;
     }
-    
 
+    fix_state_name(state, country){
+        if( !this.english ){
+            this.english = JSON.parse( fs.readFileSync(path.join(__dirname, 'english.json'), 'utf-8') );
+        }
+        if( this.english[state] )return this.english[state];
+        return state;
+    }
 
     _add_zipcode(country, statecode, zip, city){
         if( !country || !zip )return;
@@ -103,7 +117,7 @@ class update {
         var cityname = this.fix_city_name(city, country);
 
         //var data = country+','+(statecode||'');//+','+(city||'');
-        
+        statecode = this.fix_state_name(statecode);
         if( !this.zip ){
             // var fname = path.join(__dirname, 'zip.json');
             // if( fs.existsSync(fname) )this.zip = JSON.parse( fs.readFileSync(fname, 'utf8') );
@@ -160,8 +174,13 @@ class update {
         for(var key in rec )rec[key] = (rec[key]||'').toLowerCase();
         if( rec.city && rec.city != 'street' && rec.city != 'avenue' ){ // seriously?!!
             var cityname = this.fix_city_name(rec.city, rec.country);
+            var statename= this.fix_state_name(rec.state, rec.country);
             var states = this.country.cities[rec.city];
             var state_code = rec.state_code || rec.state || 1;
+
+            if( !isNaN(rec.state_code) ){
+                state_code = rec.state || '';
+            }
 
             if( states ){
                 if( state_code == states ){
@@ -199,12 +218,14 @@ class update {
             }*/
         }
         
-        if( rec.state )this.country.states[rec.state] = rec.state_code;
+        // console.log('state:', statename, rec.state);
+        if( rec.state )this.country.states[rec.state] = state_code;
+        if( statename )this.country.states[statename] = state_code;
         //if( rec.region)this.country.regions[rec.region]=1;
         //if( rec.place )this.country.places[rec.place] = 1;
         
-        if( rec.state && rec.state_code && !Number.isInteger(rec.state_code) ){
-            this.country.statecodes[rec.state_code] = rec.state;
+        if( rec.state && state_code && !Number.isInteger(state_code) ){
+            this.country.statecodes[state_code] = statename || rec.state;
         }
 
     }

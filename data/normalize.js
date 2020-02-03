@@ -3,6 +3,11 @@ const fs   = require('fs');
 const argentina= require('./argentina');
 const utils= require('./utils');
 const {performance}        = require('perf_hooks');
+const diacrt = require('diacritics');
+diacrt.diacriticsMap['ä'] = 'ae';
+diacrt.diacriticsMap['ö'] = 'oe';
+diacrt.diacriticsMap['ü'] = 'ue';
+
 
 const ordinals = {
     '1st' : 'first',
@@ -49,6 +54,13 @@ class anormalize {
         var rex = /^[abcedfghijklmnoprstuwyz][abcdefghklmnopqrsty0-9](?:[abcdefghjkstuw0-9][abehmnprvwxz0-9]?)?\s?[0-9][abdefghjlnpqrstuwxyz0-9][abdefghjlnpqrstuwxyz0-9]$/;
         return zip.match(rex);
     }
+
+    __english(name){
+        if( this.english[name] )name = this.english[name];
+        name = diacrt.remove(name);
+        return name;
+    }
+
 
     __zips(zip){
         if( !zip )return null;
@@ -179,7 +191,7 @@ class anormalize {
     _locate_state_in_country(parts, ccode){
         var geo = this.__geo(ccode);
         var name = parts.join(' ');
-        if(this.dbg)console.log('locate_state_by_name: ', name, 'ccode:', ccode);
+        if(this.dbg)console.log('locate_state_by_name: ', name, 'ccode:', ccode, geo.states[name]);
         if( geo.states[name] ){
             if(this.dbg)console.log('    found in ', name);
             return name;
@@ -188,9 +200,11 @@ class anormalize {
             if(this.dbg)console.log('    found (code) in ', name);
             return name;
         }
-        if( geo.states[ this.english[name] ] ){
-            if(this.dbg)console.log('    found in englsh ', name, this.english[name]);
-            return this.english[name];
+
+        var ename = this.__english(name);
+        if( geo.states[ename] ){
+            if(this.dbg)console.log('    found in englsh ', name, ename);
+            return ename;
         }
 
         return null;
@@ -212,10 +226,8 @@ class anormalize {
             }
         }
 
-        if( this.english[name] ){
-            name = this.english[name];
-            if( geo.cities[name] )return {city: name, state: geo.cities[name], country: ccode};
-        }
+        var ename = this.__english(name);
+        if( geo.cities[ename] )return {city: ename, state: geo.cities[ename], country: ccode};
         return null;
     }
 
@@ -304,11 +316,19 @@ class anormalize {
                 if( name ){
                     if( parsed.country == ccode )
                         return this._add_to_parsed(parsed, i, 'state', name);
-                    else
-                        parsed.guessed.states.push({country: ccode, state: name});
+                    else{
+                        // console.log('    to state guessed: ', {country: ccode, state: name, index: i});
+                        parsed.guessed.states.push({country: ccode, state: name, index: i});
+                    }
                  }
             }
         }
+
+        if( parsed.guessed.states.length==1 ){
+            if( !parsed.coountry )parsed.country = parsed.guessed.states[0].country;
+            return this._add_to_parsed(parsed, parsed.guessed.states[0].index, 'state', parsed.guessed.states[0].state);
+        }
+
     }
 
     __state(parsed, state, city){
@@ -327,10 +347,14 @@ class anormalize {
         // if we have only one guessed country (that will be us) then lets try a match without country as well
         if( guessed_countries.length == 1 )guessed_countries = [...guessed_countries, null];
 
+        if( parsed.country )guessed_countries = [parsed.country];
+
+
         var parts = parsed.parts;
         skip = skip || 0;
         for(var i=4+skip; i>skip; i--){
             if( parts.length<i )continue;
+
             for(var ccode of guessed_countries ){
                 var cparts = parts.slice(parts.length-i, parts.length-skip);
                 var {city, state, country} = this._locate_city( cparts.join(' '), ccode );
@@ -452,7 +476,7 @@ class anormalize {
                 if( cities[cobj.city] )matches.push( cobj );
             }
         }
-            
+
         if( matches.length==1 ){
             if( !parsed.country )parsed.country = matches[0].country;
             if( !parsed.state ){
