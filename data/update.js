@@ -148,7 +148,7 @@ class update {
 
         if( !this.zip[zip][country][city] )this.zip[zip][country][city] = statecode;
         if( !this.zip[zip][country][cityname] )this.zip[zip][country][cityname] = statecode;
-
+        if( city != cityname)console.log('added: ', cityname, 'for', city);
 
 
         // if( !this.zip[zip].hasOwnProperty(country) )

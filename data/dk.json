@@ -1,10 +1,15 @@
 {
   "states": {
     "region midtjylland": "region midtjylland",
+    "midtjylland": "region midtjylland",
     "region sjælland": "region sjælland",
+    "sjælland": "region sjælland",
     "region syddanmark": "region syddanmark",
+    "syddanmark": "region syddanmark",
     "region nordjylland": "region nordjylland",
-    "region hovedstaden": "region hovedstaden"
+    "nordjylland": "region nordjylland",
+    "region hovedstaden": "region hovedstaden",
+    "hovedstaden": "region hovedstaden"
   },
   "cities": {
     "endelave": "region midtjylland",
@@ -601,7 +606,6 @@
     "copenhagen": "region hovedstaden",
     "udland": "region hovedstaden",
     "københavn k": "region hovedstaden",
-    "kobenhavn k": "region hovedstaden",
     "københavn v": "region hovedstaden",
     "kobenhavn v": "region hovedstaden",
     "centraltastning": "region hovedstaden",
@@ -940,10 +944,10 @@
   "regions": {},
   "places": {},
   "statecodes": {
-    "region midtjylland": "region midtjylland",
-    "region sjælland": "region sjælland",
-    "region syddanmark": "region syddanmark",
-    "region nordjylland": "region nordjylland",
-    "region hovedstaden": "region hovedstaden"
+    "region midtjylland": "midtjylland",
+    "region sjælland": "sjælland",
+    "region syddanmark": "syddanmark",
+    "region nordjylland": "nordjylland",
+    "region hovedstaden": "hovedstaden"
   }
 }

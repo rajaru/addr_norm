@@ -589,6 +589,8 @@ class anormalize {
             }
         }
 
+        if( matches.length==0 )return;
+
         if( matches.length==1 ){
             if( !parsed.country )parsed.country = matches[0].country;
             if( !parsed.state ){
@@ -608,13 +610,41 @@ class anormalize {
             if(this.dbg )console.log('x-matched: ', matches);
         }
 
+        // merge guessed states and cities
+        if( !parsed.country ){
+            var countries = matches.map(x=>x.country);
+            countries = [...new Set(countries)];
+            if( countries.length>1 )return false;   // we still have more than one country
+            parsed.country = countries[0];
+            if( !parsed.city )parsed.city = matches[0].city;
+        }
+
+        // get states 
+        if( !parsed.state ){
+            var states = matches.map( x=>x.state instanceof Array ? x.state : [x.state]);
+            var ret = states[0];
+            for(var state of states )
+                ret = ret.filter(x => state.includes(x));
+            if( ret.length>1 )return false;         // ambiguous list of states
+            parsed.state = ret[0];
+        }
+
         // some cities have same name as their state
-        if( parsed.country && parsed.state ){
+        // if( parsed.country && parsed.state ){
+        //     var geo = this.__geo(parsed.country);
+        //     if( geo.cities[parsed.state] )parsed.city = parsed.state;
+        // }
+
+    }
+
+    _final_fix(parsed){
+        // some cities have same name as their state
+        if( parsed.state && parsed.country && !parsed.city ){
             var geo = this.__geo(parsed.country);
             if( geo.cities[parsed.state] )parsed.city = parsed.state;
         }
-
     }
+
 
     fix_abbreviation(word){
         word = (word || '' ).trim();
@@ -693,6 +723,7 @@ class anormalize {
         this._extract_zipcode(parsed);
         this._extract_state_name(parsed);
         this._extract_city_name(parsed);
+        this._final_fix(parsed);
         this._parse_street(parsed);
         this.fix_zip_code(parsed);
 

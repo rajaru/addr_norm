@@ -1,11 +1,13 @@
 {
   "states": {
     "bruxelles-capitale": "bru",
+    "brussels": "bru",
     "vlaanderen": "vlg",
     "wallonie": "wal"
   },
   "cities": {
     "bruxelles": "bru",
+    "brussels": "bru",
     "laeken": "bru",
     "schaerbeek": "bru",
     "etterbeek": "bru",
@@ -34,6 +36,7 @@
     "woluwe-saint-lambert": "bru",
     "saint-josse-ten-noode": "bru",
     "antwerpen": "vlg",
+    "antwerp": "vlg",
     "lillo": "vlg",
     "berendrecht": "vlg",
     "zandvliet": "vlg",
@@ -143,6 +146,7 @@
     "hoboken": "vlg",
     "walem": "vlg",
     "mechelen": "vlg",
+    "mechlin": "vlg",
     "heffen": "vlg",
     "leest": "vlg",
     "hombeek": "vlg",
@@ -292,6 +296,7 @@
     "elewijt": "vlg",
     "weerde": "vlg",
     "leuven": "vlg",
+    "louvain": "vlg",
     "heverlee": "vlg",
     "kessel lo": "vlg",
     "wilsele": "vlg",
@@ -638,6 +643,7 @@
     "grote-brogel": "vlg",
     "wijchmaal": "vlg",
     "gent": "vlg",
+    "ghent": "vlg",
     "mariakerke": "vlg",
     "drongen": "vlg",
     "wondelgem": "vlg",
@@ -935,6 +941,7 @@
     "adegem": "vlg",
     "middelburg": "vlg",
     "brugge": "vlg",
+    "bruges": "vlg",
     "koolkerke": "vlg",
     "waardamme": "vlg",
     "oostkamp": "vlg",
@@ -971,6 +978,7 @@
     "stene": "vlg",
     "zandvoorde": "vlg",
     "oostende": "vlg",
+    "ostend": "vlg",
     "wenduine": "vlg",
     "de haan": "vlg",
     "klemskerke": "vlg",
@@ -1001,6 +1009,7 @@
     "jabbeke": "vlg",
     "snellegem": "vlg",
     "kortrijk": "vlg",
+    "courtay": "vlg",
     "bissegem": "vlg",
     "heule": "vlg",
     "bellegem": "vlg",
@@ -2959,7 +2968,7 @@
   "regions": {},
   "places": {},
   "statecodes": {
-    "bru": "bruxelles-capitale",
+    "bru": "brussels",
     "vlg": "vlaanderen",
     "wal": "wallonie"
   }
