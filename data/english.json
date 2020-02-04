@@ -21,9 +21,19 @@
     "bosna": "bosnia",
     "dunav": "danube",
     "donav": "danube",
+    "rodopi": "rhodopes",
     "sofiya": "sofia",
     "stara planina": "balkan mountains",
     "trakia": "thrace",
     "cabo verde": "cape verde",
-    "alpen": "alps"
+    "alpen": "alps",
+    "erevan": "yerevan",
+    "drau": "drave",
+    "kärnten": "carinthia",
+    "tirol": "tyrol",
+    "wettersteingebirge": "wetterstein",
+    "genève": "geneva",
+    "geneve" : "geneva",
+    "münchen": "munich",
+    "munchen": "munich"
 }

@@ -38,8 +38,9 @@ const countries = [
     'LU',   // Luxemberg
     'HU',   // Hungary
     'PL',   // Poland
-    'RU',   // Russia
-
+    'RU',   // Russia,
+    'TH',   // Thanilad
+    'LI',   // Liechtenstein
 ];
 // const countries = ['AT'];
 
