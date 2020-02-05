@@ -141,6 +141,15 @@ class anormalize {
         if( !countries){ zipcode=zip.split('-').join(''); countries = this.__zips(zipcode) ? Object.keys(this.__zips(zipcode)) : null;}
         if( !countries){ zipcode=zip.split(' ').join(''); countries = this.__zips(zipcode) ? Object.keys(this.__zips(zipcode)) : null;}
         if( !countries){ zipcode=zip; countries = argentina(zip)};
+        // if( !countries){
+        //     var re = /^(\d\d\d){1}-\d\d\d\d$/gim
+        //     var matches = re.exec(zip.replace(' ', '-'));
+        //     if( matches && matches.length>1 ){
+        //         console.log('zip could be jp', zipcode)
+        //         zipcode=matches[1]; countries = ['jp'];
+        //     }
+        // }
+
         return {countries, zipcode};
 
     }
@@ -298,15 +307,19 @@ class anormalize {
 
     }
 
-    _extract_state_name(parsed){
+    _extract_state_name(parsed, us){
         var parts = parsed.parts;
        
         var guessed_countries = parsed.country || parsed.guessed.countries || [];
         if( !(guessed_countries instanceof Array) )guessed_countries = [guessed_countries];
-        if( guessed_countries.indexOf('us')<0 )
-            guessed_countries = [...guessed_countries, 'us']; // make a copy
-        else
-            guessed_countries = [...guessed_countries]; // make a copy
+
+        if( us )guessed_countries = ['us'];
+        else guessed_countries = [...guessed_countries]; // make a copy
+
+        // if( guessed_countries.indexOf('us')<0 )
+        //     guessed_countries = [...guessed_countries, 'us']; // make a copy
+        // else
+        //     guessed_countries = [...guessed_countries]; // make a copy
 
         for(var i=4; i>0; i--){
             if( parts.length<=i )continue;
@@ -359,12 +372,30 @@ class anormalize {
             }
         }
 
+        var countries = guessed_countries;
+
         // lets use guessed countries and try
         for(var i=4+skip; i>skip; i--){
             if( parts.length<i )continue;
-            for(var j=0; j<guessed_countries.length; j++ ){
-                var ccode = guessed_countries[j];
-                var cparts = parts.slice(parts.length-i, parts.length-skip);
+            var cparts = parts.slice(parts.length-i, parts.length-skip);
+
+            if( !parsed.zip && !parsed.country ){
+                var cnst = this.geo_citites[cparts.join(' ')];
+                if( !cnst )this.geo_citites[cparts.reverse().join(' ')];
+                if( cnst ){
+                    if( !(cnst instanceof Array) )cnst = [cnst];
+                    countries = ['us'];
+                    for(var ccs of cnst)countries.push(ccs.split(',')[0]);
+                    guessed_countries = [...new Set(countries)]; //dedupe
+                    if(this.dbg)console.log('    zip not provided, get countries from global cities', guessed_countries);    
+                }
+            }
+    
+
+            for(var j=0; j<countries.length; j++ ){
+                var ccode = countries[j];
+                
+                cparts = parts.slice(parts.length-i, parts.length-skip);    //reverse is inplace
                 var {city, state, country} = this._locate_city( cparts.join(' '), ccode );
                 if( !city && cparts.length>1 )this._locate_city( cparts.reverse().join(' '), ccode );
                 if( !city )continue;
@@ -382,8 +413,8 @@ class anormalize {
                 }
 
                 // if we have 2 countries guessed one must be US and lets check if
-                if( !parsed.country && j==0 && guessed_countries.length<3 ){
-                    parsed.country = guessed_countries[0];
+                if( !parsed.country && j==0 && countries.length<3 ){
+                    parsed.country = countries[0];
                     this._add_to_parsed(parsed, i, 'city', city);
                     return true;
                 }
@@ -414,7 +445,12 @@ class anormalize {
                 parsed.state = states;
         }
 
-        if( this.dbg )console.log('    found ', parsed.guessed.cities.length, 'cities');
+        if( parsed.country ){
+            parsed.guessed.cities = parsed.guessed.cities.filter(x=>x.country==parsed.country);
+        }
+
+
+        if( this.dbg )console.log('    found ', parsed.guessed.cities.length, 'cities', parsed.guessed.cities);
 
         // if all our guesses are in one country, merge guessed states and cities
         var countries = [parsed.country];
@@ -562,14 +598,18 @@ class anormalize {
         return state;
     }
 
-    _extract_city_name(parsed){
+    _extract_city_name(parsed, us){
         var guessed_countries = parsed.country || parsed.guessed.countries || [];
         if( !(guessed_countries instanceof Array) )guessed_countries = [guessed_countries];
 
-        if( guessed_countries.indexOf('us')<0 )
-            guessed_countries = [...guessed_countries, 'us']; // make a copy
-        else
-            guessed_countries = [...guessed_countries]; // make a copy
+        if( us )guessed_countries = ['us'];
+        else guessed_countries = [...guessed_countries]; // make a copy
+
+
+        // if( guessed_countries.indexOf('us')<0 )
+        //     guessed_countries = [...guessed_countries, 'us']; // make a copy
+        // else
+        //     guessed_countries = [...guessed_countries]; // make a copy
 
         if( this.dbg )console.log('city: guessed ', guessed_countries);
         if( this.__extract_city_name(parsed, guessed_countries, 0) )return true;
@@ -723,6 +763,12 @@ class anormalize {
         this._extract_zipcode(parsed);
         this._extract_state_name(parsed);
         this._extract_city_name(parsed);
+
+        if( !parsed.country && !parsed.city && !parsed.state ){
+            this._extract_state_name(parsed, true);
+            this._extract_city_name(parsed, true);
+        }
+
         this._final_fix(parsed);
         this._parse_street(parsed);
         this.fix_zip_code(parsed);

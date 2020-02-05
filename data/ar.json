@@ -3746,7 +3746,10 @@
     "barrio cortez": "b",
     "barrio cinco esquinas": "b",
     "barrio 9 de julio (florencio varela, pdo. f. varela)": "b",
-    "bosques": "b",
+    "bosques": [
+      "b",
+      "buenos aires"
+    ],
     "barrio el 36": "b",
     "el rocio": "b",
     "barrio las margaritas (el rocio, pdo. florencio varela)": "b",

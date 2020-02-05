@@ -2,11 +2,13 @@
   "states": {
     "burgenland": "burgenland",
     "kärnten": "kärnten",
+    "carinthia": "kärnten",
     "niederösterreich": "niederösterreich",
     "oberösterreich": "oberösterreich",
     "salzburg": "salzburg",
     "steiermark": "steiermark",
     "tirol": "tirol",
+    "tyrol": "tirol",
     "vorarlberg": "vorarlberg",
     "wien": "wien",
     "vienna": "wien"
@@ -3165,6 +3167,7 @@
     "koestenberg": "kärnten",
     "rosegg": "kärnten",
     "drau": "kärnten",
+    "drave": "kärnten",
     "st. lambrecht": "kärnten",
     "emmersdorf": [
       "kärnten",
@@ -18375,12 +18378,12 @@
   "places": {},
   "statecodes": {
     "burgenland": "burgenland",
-    "kärnten": "kärnten",
+    "kärnten": "carinthia",
     "niederösterreich": "niederösterreich",
     "oberösterreich": "oberösterreich",
     "salzburg": "salzburg",
     "steiermark": "steiermark",
-    "tirol": "tirol",
+    "tirol": "tyrol",
     "vorarlberg": "vorarlberg",
     "wien": "vienna"
   }

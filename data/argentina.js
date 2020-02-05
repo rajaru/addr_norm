@@ -29,7 +29,9 @@ const states = {
 module.exports = function(zip){
     var matches = zip.trim().match(/^([a-z])(\d\d\d\d)(\s*[a-z][a-z][a-z])?$/im);
     if( !matches )return null;
-    if( !states[matches[1]] )return null;
+    if( !states[matches[1]] ){
+        return null;
+    }
     //return 'ar,'+states[matches[1]];
     return ['ar'];
 }

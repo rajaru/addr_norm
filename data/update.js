@@ -106,6 +106,7 @@ class update {
     }
 
     fix_state_name(state, country){
+        if( !state )return '';
         var remexp = [
             /(\(.*\))/,
             /^region /,
@@ -149,7 +150,7 @@ class update {
 
         if( !this.zip[zip][country][city] )this.zip[zip][country][city] = statecode;
         if( !this.zip[zip][country][cityname] )this.zip[zip][country][cityname] = statecode;
-        if( city != cityname)console.log('added: ', cityname, 'for', city);
+        // if( city != cityname)console.log('added: ', cityname, 'for', city);
 
 
         // if( !this.zip[zip].hasOwnProperty(country) )
@@ -303,11 +304,59 @@ class update {
         jpjson.statecodes = statecodes;
     }
 
+
+    async _update_br_zipcodes(){
+        var cityFolder = path.join(tmp, 'cities');
+        if( !fs.existsSync(cityFolder) )fs.mkdirSync( cityFolder );
+        var zipFile = path.join(cityFolder, 'brzip.zip');
+        var url = "http://cep.la/CEP-dados-2018-UTF8.zip";
+        try{
+            if( !fs.existsSync(zipFile) ){
+                console.log('downloading...', url);
+                fs.writeFileSync(zipFile, await this.aget(url));
+            }
+            var txtFile = "g:\\temp\\ceps.txt";
+            if( !fs.existsSync(txtFile) )
+                await this.unzip(zipFile, "g:\\temp");
+            
+            
+            if( !fs.existsSync(txtFile) ){
+                console.log('Could not locate ', txtFile);
+                return;
+            };
+
+            var columns = ['zip', 'state', 'city','addr', 'addr2'];
+            var options = {delimiter: '\t', quote: '"', columns: columns, raw: false, info: false, relax_column_count: true};
+            try{
+                var cities = await utils.csv_to_array(txtFile, options);
+                // var brzips = {};
+                for(var city of cities ){
+                    var parts = city.state.toLowerCase().split('/');
+                    var cityname = city.city.toLowerCase();
+
+                    //brzips[city.zip.toLowerCase()] = 'br,'+parts[0]+','+(parts.length>1?parts[1]:'')+','+city.city;
+                    this._add_city_details( {city: cityname, state: parts[0], state_code: parts.length>1?parts[1]:'', country: 'br', zip: city.zip.toLowerCase()} );
+                    this._add_zipcode('br', parts.length>1?parts[1]:'', city.zip.toLowerCase(), cityname);
+                }
+                //var jsfile = path.join(__dirname, 'brzip.json');
+                //fs.writeFileSync(jsfile, JSON.stringify(brzips, null, 2));
+            }catch(e){
+                console.log(e);
+            }
+        }catch(e){
+            console.log('exception:', e);
+            return null;
+        }
+
+    }
+
+
     async _update_jp_zipcodes(){
         var columns = ['zip', 'state', 'city', 'other'];
         var options = {delimiter: ',', quote: '"', columns: columns, raw: false, info: false, from: 1};
         var recs = await utils.csv_to_array(path.join(__dirname, 'jpzips.csv'), options);
         var jpjson = JSON.parse(fs.readFileSync(path.join(__dirname, 'jp.json')));
+        var zprefix = {};
         for(var rec of recs ){
             jpjson.statecodes[ rec.state ] = rec.state;
             jpjson.states[ rec.state ] = rec.state;
@@ -316,11 +365,16 @@ class update {
                 if( jpjson.cities[rec.city].indexOf(rec.state)<0 )jpjson.cities[rec.city].push(rec.state);
             }
             else if( jpjson.cities[rec.city] != rec.state )jpjson.cities[rec.city] = rec.state;
+            if( rec.zip.indexOf('-')>0 ){
+                var prefix = rec.zip.substr(0, rec.zip.indexOf('-'));
+                if( !zprefix[prefix] )zprefix[prefix] = {[rec.city]: rec.state};
+            }
         }
 
         // fix state codes and state names
         this._fix_state_suffixes(jpjson, recs);
         fs.writeFileSync(path.join(__dirname, 'jp.json'), JSON.stringify(jpjson, null, 2));
+        fs.writeFileSync(path.join(__dirname, 'jpzprefix.json'), JSON.stringify(zprefix, null, 2));
     }
 
     async _update_us_zipcodes(folder){
@@ -413,6 +467,11 @@ class update {
                 this._add_zipcode('jp', rec.state, rec.zip, rec.city);
             }
         }
+
+        if( c == 'BR' ){
+            await this._update_br_zipcodes();
+        }
+
         // if( c == 'GB_full.csv' ){
         //     console.log('    merging additional zips for gb');
         //     var zips = JSON.parse( fs.readFileSync(path.join(__dirname,'ukzip.json'), 'utf-8' ) );

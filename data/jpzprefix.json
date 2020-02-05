@@ -1,0 +1,2846 @@
+{
+  "100": {
+    "aogashimamura": "tokyo"
+  },
+  "101": {
+    "chiyodaku": "tokyo"
+  },
+  "102": {
+    "chiyodaku": "tokyo"
+  },
+  "103": {
+    "chuoku": "tokyo"
+  },
+  "104": {
+    "chuoku": "tokyo"
+  },
+  "105": {
+    "minatoku": "tokyo"
+  },
+  "106": {
+    "minatoku": "tokyo"
+  },
+  "107": {
+    "minatoku": "tokyo"
+  },
+  "108": {
+    "minatoku": "tokyo"
+  },
+  "110": {
+    "taitoku": "tokyo"
+  },
+  "111": {
+    "taitoku": "tokyo"
+  },
+  "112": {
+    "bunkyoku": "tokyo"
+  },
+  "113": {
+    "bunkyoku": "tokyo"
+  },
+  "114": {
+    "kitaku": "tokyo"
+  },
+  "115": {
+    "kitaku": "tokyo"
+  },
+  "116": {
+    "arakawaku": "tokyo"
+  },
+  "120": {
+    "adachiku": "tokyo"
+  },
+  "121": {
+    "adachiku": "tokyo"
+  },
+  "123": {
+    "adachiku": "tokyo"
+  },
+  "124": {
+    "katsukaku": "tokyo"
+  },
+  "125": {
+    "katsukaku": "tokyo"
+  },
+  "130": {
+    "sumidaku": "tokyo"
+  },
+  "131": {
+    "sumidaku": "tokyo"
+  },
+  "132": {
+    "edogawaku": "tokyo"
+  },
+  "133": {
+    "edogawaku": "tokyo"
+  },
+  "134": {
+    "edogawaku": "tokyo"
+  },
+  "135": {
+    "kotoku": "tokyo"
+  },
+  "136": {
+    "kotoku": "tokyo"
+  },
+  "140": {
+    "shinagawaku": "tokyo"
+  },
+  "141": {
+    "shinagawaku": "tokyo"
+  },
+  "142": {
+    "shinagawaku": "tokyo"
+  },
+  "143": {
+    "otaku": "tokyo"
+  },
+  "144": {
+    "otaku": "tokyo"
+  },
+  "145": {
+    "otaku": "tokyo"
+  },
+  "146": {
+    "otaku": "tokyo"
+  },
+  "150": {
+    "shibuyaku": "tokyo"
+  },
+  "151": {
+    "shibuyaku": "tokyo"
+  },
+  "152": {
+    "meguroku": "tokyo"
+  },
+  "153": {
+    "meguroku": "tokyo"
+  },
+  "154": {
+    "setagayaku": "tokyo"
+  },
+  "155": {
+    "setagayaku": "tokyo"
+  },
+  "156": {
+    "setagayaku": "tokyo"
+  },
+  "157": {
+    "setagayaku": "tokyo"
+  },
+  "158": {
+    "setagayaku": "tokyo"
+  },
+  "160": {
+    "shinjukuku": "tokyo"
+  },
+  "161": {
+    "shinjukuku": "tokyo"
+  },
+  "162": {
+    "shinjukuku": "tokyo"
+  },
+  "163": {
+    "shinjukuku": "tokyo"
+  },
+  "164": {
+    "nakanoku": "tokyo"
+  },
+  "165": {
+    "nakanoku": "tokyo"
+  },
+  "166": {
+    "suginamiku": "tokyo"
+  },
+  "167": {
+    "suginamiku": "tokyo"
+  },
+  "168": {
+    "suginamiku": "tokyo"
+  },
+  "169": {
+    "shinjukuku": "tokyo"
+  },
+  "170": {
+    "toshimaku": "tokyo"
+  },
+  "171": {
+    "toshimaku": "tokyo"
+  },
+  "173": {
+    "itabashiku": "tokyo"
+  },
+  "174": {
+    "itabashiku": "tokyo"
+  },
+  "175": {
+    "itabashiku": "tokyo"
+  },
+  "176": {
+    "nerimaku": "tokyo"
+  },
+  "177": {
+    "nerimaku": "tokyo"
+  },
+  "178": {
+    "nerimaku": "tokyo"
+  },
+  "179": {
+    "nerimaku": "tokyo"
+  },
+  "180": {
+    "musashino": "tokyo"
+  },
+  "181": {
+    "mitaka": "tokyo"
+  },
+  "182": {
+    "chofu": "tokyo"
+  },
+  "183": {
+    "fuchu": "tokyo"
+  },
+  "184": {
+    "koganei": "tokyo"
+  },
+  "185": {
+    "kokubunji": "tokyo"
+  },
+  "186": {
+    "kunitachi": "tokyo"
+  },
+  "187": {
+    "kodaira": "tokyo"
+  },
+  "188": {
+    "nishitokyo": "tokyo"
+  },
+  "189": {
+    "higashimurayama": "tokyo"
+  },
+  "190": {
+    "akiruno": "tokyo"
+  },
+  "191": {
+    "hino": "tokyo"
+  },
+  "192": {
+    "hachioji": "tokyo"
+  },
+  "193": {
+    "hachioji": "tokyo"
+  },
+  "194": {
+    "machida": "tokyo"
+  },
+  "195": {
+    "machida": "tokyo"
+  },
+  "196": {
+    "akishima": "tokyo"
+  },
+  "197": {
+    "akiruno": "tokyo"
+  },
+  "198": {
+    "nishitama-gun": "tokyo"
+  },
+  "201": {
+    "komae": "tokyo"
+  },
+  "202": {
+    "nishitokyo": "tokyo"
+  },
+  "203": {
+    "higashikurume": "tokyo"
+  },
+  "204": {
+    "kiyose": "tokyo"
+  },
+  "205": {
+    "hamura": "tokyo"
+  },
+  "206": {
+    "inagi": "tokyo"
+  },
+  "207": {
+    "higashiyamato": "tokyo"
+  },
+  "208": {
+    "musashimurayama": "tokyo"
+  },
+  "210": {
+    "kawasaki": "kanagawa"
+  },
+  "211": {
+    "kawasaki": "kanagawa"
+  },
+  "212": {
+    "kawasaki": "kanagawa"
+  },
+  "213": {
+    "kawasaki": "kanagawa"
+  },
+  "214": {
+    "kawasaki": "kanagawa"
+  },
+  "215": {
+    "kawasaki": "kanagawa"
+  },
+  "216": {
+    "kawasaki": "kanagawa"
+  },
+  "220": {
+    "yokohama": "kanagawa"
+  },
+  "221": {
+    "yokohama": "kanagawa"
+  },
+  "222": {
+    "yokohama": "kanagawa"
+  },
+  "223": {
+    "yokohama": "kanagawa"
+  },
+  "224": {
+    "yokohama": "kanagawa"
+  },
+  "225": {
+    "yokohama": "kanagawa"
+  },
+  "226": {
+    "yokohama": "kanagawa"
+  },
+  "227": {
+    "yokohama": "kanagawa"
+  },
+  "230": {
+    "yokohama": "kanagawa"
+  },
+  "231": {
+    "yokohama": "kanagawa"
+  },
+  "232": {
+    "yokohama": "kanagawa"
+  },
+  "233": {
+    "yokohama": "kanagawa"
+  },
+  "234": {
+    "yokohama": "kanagawa"
+  },
+  "235": {
+    "yokohama": "kanagawa"
+  },
+  "236": {
+    "yokohama": "kanagawa"
+  },
+  "237": {
+    "yokosuka": "kanagawa"
+  },
+  "238": {
+    "miura": "kanagawa"
+  },
+  "239": {
+    "yokosuka": "kanagawa"
+  },
+  "240": {
+    "miura-gun": "kanagawa"
+  },
+  "241": {
+    "yokohama": "kanagawa"
+  },
+  "242": {
+    "yamato": "kanagawa"
+  },
+  "243": {
+    "aiko-gun": "kanagawa"
+  },
+  "244": {
+    "yokohama": "kanagawa"
+  },
+  "245": {
+    "yokohama": "kanagawa"
+  },
+  "246": {
+    "yokohama": "kanagawa"
+  },
+  "247": {
+    "kamakura": "kanagawa"
+  },
+  "248": {
+    "kamakura": "kanagawa"
+  },
+  "249": {
+    "zushi": "kanagawa"
+  },
+  "250": {
+    "ashigarashimo-gun": "kanagawa"
+  },
+  "251": {
+    "fujisawa": "kanagawa"
+  },
+  "252": {
+    "ayase": "kanagawa"
+  },
+  "253": {
+    "chigasaki": "kanagawa"
+  },
+  "254": {
+    "hiratsuka": "kanagawa"
+  },
+  "255": {
+    "naka-gun": "kanagawa"
+  },
+  "256": {
+    "odawara": "kanagawa"
+  },
+  "257": {
+    "aiko-gun": "kanagawa"
+  },
+  "258": {
+    "ashigarakami-gun": "kanagawa"
+  },
+  "259": {
+    "ashigarakami-gun": "kanagawa"
+  },
+  "260": {
+    "chiba": "chiba"
+  },
+  "261": {
+    "chiba": "chiba"
+  },
+  "262": {
+    "chiba": "chiba"
+  },
+  "263": {
+    "chiba": "chiba"
+  },
+  "264": {
+    "chiba": "chiba"
+  },
+  "265": {
+    "chiba": "chiba"
+  },
+  "266": {
+    "chiba": "chiba"
+  },
+  "267": {
+    "chiba": "chiba"
+  },
+  "270": {
+    "abiko": "chiba"
+  },
+  "271": {
+    "matsudo": "chiba"
+  },
+  "272": {
+    "ichikawa": "chiba"
+  },
+  "273": {
+    "funabashi": "chiba"
+  },
+  "274": {
+    "funabashi": "chiba"
+  },
+  "275": {
+    "narashino": "chiba"
+  },
+  "276": {
+    "yachiyo": "chiba"
+  },
+  "277": {
+    "kashiwa": "chiba"
+  },
+  "278": {
+    "noda": "chiba"
+  },
+  "279": {
+    "urayasu": "chiba"
+  },
+  "282": {
+    "katori-gun": "chiba"
+  },
+  "283": {
+    "sambu-gun": "chiba"
+  },
+  "284": {
+    "yotsukaido": "chiba"
+  },
+  "285": {
+    "imba-gun": "chiba"
+  },
+  "286": {
+    "narita": "chiba"
+  },
+  "287": {
+    "katori": "chiba"
+  },
+  "288": {
+    "choshi": "chiba"
+  },
+  "289": {
+    "asahi": "chiba"
+  },
+  "290": {
+    "ichihara": "chiba"
+  },
+  "292": {
+    "kimitsu": "chiba"
+  },
+  "293": {
+    "futtsu": "chiba"
+  },
+  "294": {
+    "minamiboso": "chiba"
+  },
+  "295": {
+    "minamiboso": "chiba"
+  },
+  "296": {
+    "kamogawa": "chiba"
+  },
+  "297": {
+    "chosei-gun": "chiba"
+  },
+  "298": {
+    "isumi": "chiba"
+  },
+  "299": {
+    "awa-gun": "chiba"
+  },
+  "300": {
+    "chikusei": "ibaraki"
+  },
+  "301": {
+    "inashiki": "ibaraki"
+  },
+  "302": {
+    "moriya": "ibaraki"
+  },
+  "303": {
+    "joso": "ibaraki"
+  },
+  "304": {
+    "shimotsuma": "ibaraki"
+  },
+  "305": {
+    "tsukuba": "ibaraki"
+  },
+  "306": {
+    "bando": "ibaraki"
+  },
+  "307": {
+    "yuuki": "ibaraki"
+  },
+  "308": {
+    "chikusei": "ibaraki"
+  },
+  "309": {
+    "chikusei": "ibaraki"
+  },
+  "310": {
+    "mito": "ibaraki"
+  },
+  "311": {
+    "higashiibaraki-gun": "ibaraki"
+  },
+  "312": {
+    "hitachinaka": "ibaraki"
+  },
+  "313": {
+    "hitachiota": "ibaraki"
+  },
+  "314": {
+    "kamisu": "ibaraki"
+  },
+  "315": {
+    "ishioka": "ibaraki"
+  },
+  "316": {
+    "hitachi": "ibaraki"
+  },
+  "317": {
+    "hitachi": "ibaraki"
+  },
+  "318": {
+    "takahagi": "ibaraki"
+  },
+  "319": {
+    "hitachi": "ibaraki"
+  },
+  "320": {
+    "utsunomiya": "tochigi"
+  },
+  "321": {
+    "haga-gun": "tochigi"
+  },
+  "322": {
+    "kanuma": "tochigi"
+  },
+  "323": {
+    "oyama": "tochigi"
+  },
+  "324": {
+    "nasu-gun": "tochigi"
+  },
+  "325": {
+    "nasu-gun": "tochigi"
+  },
+  "326": {
+    "ashikaga": "tochigi"
+  },
+  "327": {
+    "sano": "tochigi"
+  },
+  "328": {
+    "kanuma": "tochigi"
+  },
+  "329": {
+    "ashikaga": "tochigi"
+  },
+  "330": {
+    "saitama": "saitama"
+  },
+  "331": {
+    "saitama": "saitama"
+  },
+  "332": {
+    "kawaguchi": "saitama"
+  },
+  "333": {
+    "kawaguchi": "saitama"
+  },
+  "334": {
+    "kawaguchi": "saitama"
+  },
+  "335": {
+    "toda": "saitama"
+  },
+  "336": {
+    "saitama": "saitama"
+  },
+  "337": {
+    "saitama": "saitama"
+  },
+  "338": {
+    "saitama": "saitama"
+  },
+  "339": {
+    "saitama": "saitama"
+  },
+  "340": {
+    "kuki": "saitama"
+  },
+  "341": {
+    "misato": "saitama"
+  },
+  "342": {
+    "yoshikawa": "saitama"
+  },
+  "343": {
+    "kitakatsushika-gun": "saitama"
+  },
+  "344": {
+    "kasukabe": "saitama"
+  },
+  "345": {
+    "kitakatsushika-gun": "saitama"
+  },
+  "346": {
+    "kuki": "saitama"
+  },
+  "347": {
+    "kazo": "saitama"
+  },
+  "348": {
+    "hanyu": "saitama"
+  },
+  "349": {
+    "hasuda": "saitama"
+  },
+  "350": {
+    "hidaka": "saitama"
+  },
+  "351": {
+    "asaka": "saitama"
+  },
+  "352": {
+    "niiza": "saitama"
+  },
+  "353": {
+    "shiki": "saitama"
+  },
+  "354": {
+    "fujimi": "saitama"
+  },
+  "355": {
+    "chichibu-gun": "saitama"
+  },
+  "356": {
+    "fujimino": "saitama"
+  },
+  "357": {
+    "hanno": "saitama"
+  },
+  "358": {
+    "iruma": "saitama"
+  },
+  "359": {
+    "tokorozawa": "saitama"
+  },
+  "360": {
+    "kumagaya": "saitama"
+  },
+  "361": {
+    "gyoda": "saitama"
+  },
+  "362": {
+    "ageo": "saitama"
+  },
+  "363": {
+    "okegawa": "saitama"
+  },
+  "364": {
+    "kitamoto": "saitama"
+  },
+  "365": {
+    "konosu": "saitama"
+  },
+  "366": {
+    "fukaya": "saitama"
+  },
+  "367": {
+    "honjo": "saitama"
+  },
+  "368": {
+    "chichibu": "saitama"
+  },
+  "369": {
+    "chichibu": "saitama"
+  },
+  "370": {
+    "agatsuma-gun": "gunma"
+  },
+  "371": {
+    "maebashi": "gunma"
+  },
+  "372": {
+    "isesaki": "gunma"
+  },
+  "373": {
+    "ota": "gunma"
+  },
+  "374": {
+    "ora-gun": "gunma"
+  },
+  "375": {
+    "fujioka": "gunma"
+  },
+  "376": {
+    "kiryu": "gunma"
+  },
+  "377": {
+    "agatsuma-gun": "gunma"
+  },
+  "378": {
+    "numata": "gunma"
+  },
+  "379": {
+    "annaka": "gunma"
+  },
+  "380": {
+    "nagano": "nagano"
+  },
+  "381": {
+    "kamiminochi-gun": "nagano"
+  },
+  "382": {
+    "kamitakai-gun": "nagano"
+  },
+  "383": {
+    "nakano": "nagano"
+  },
+  "384": {
+    "kitasaku-gun": "nagano"
+  },
+  "385": {
+    "saku": "nagano"
+  },
+  "386": {
+    "chiisagata-gun": "nagano"
+  },
+  "387": {
+    "chikuma": "nagano"
+  },
+  "388": {
+    "nagano": "nagano"
+  },
+  "389": {
+    "chikuma": "nagano"
+  },
+  "390": {
+    "higashichikuma-gun": "nagano"
+  },
+  "391": {
+    "chino": "nagano"
+  },
+  "392": {
+    "suwa": "nagano"
+  },
+  "393": {
+    "suwa-gun": "nagano"
+  },
+  "394": {
+    "okaya": "nagano"
+  },
+  "395": {
+    "iida": "nagano"
+  },
+  "396": {
+    "ina": "nagano"
+  },
+  "397": {
+    "kiso-gun": "nagano"
+  },
+  "398": {
+    "omachi": "nagano"
+  },
+  "399": {
+    "azumino": "nagano"
+  },
+  "400": {
+    "chuo": "yamanashi"
+  },
+  "401": {
+    "minamitsuru-gun": "yamanashi"
+  },
+  "402": {
+    "minamitsuru-gun": "yamanashi"
+  },
+  "403": {
+    "fujiyoshida": "yamanashi"
+  },
+  "404": {
+    "koshu": "yamanashi"
+  },
+  "405": {
+    "fuefuki": "yamanashi"
+  },
+  "406": {
+    "fuefuki": "yamanashi"
+  },
+  "407": {
+    "hokuto": "yamanashi"
+  },
+  "408": {
+    "hokuto": "yamanashi"
+  },
+  "409": {
+    "chuo": "yamanashi"
+  },
+  "410": {
+    "izu": "shizuoka"
+  },
+  "411": {
+    "mishima": "shizuoka"
+  },
+  "412": {
+    "gotemba": "shizuoka"
+  },
+  "413": {
+    "atami": "shizuoka"
+  },
+  "414": {
+    "ito": "shizuoka"
+  },
+  "415": {
+    "kamo-gun": "shizuoka"
+  },
+  "416": {
+    "fuji": "shizuoka"
+  },
+  "417": {
+    "fuji": "shizuoka"
+  },
+  "418": {
+    "fujinomiya": "shizuoka"
+  },
+  "419": {
+    "fuji": "shizuoka"
+  },
+  "420": {
+    "shizuoka": "shizuoka"
+  },
+  "421": {
+    "fuji": "shizuoka"
+  },
+  "422": {
+    "shizuoka": "shizuoka"
+  },
+  "424": {
+    "shizuoka": "shizuoka"
+  },
+  "425": {
+    "yaizu": "shizuoka"
+  },
+  "426": {
+    "fujieda": "shizuoka"
+  },
+  "427": {
+    "shimada": "shizuoka"
+  },
+  "428": {
+    "haibara-gun": "shizuoka"
+  },
+  "430": {
+    "hamamatsu": "shizuoka"
+  },
+  "431": {
+    "hamamatsu": "shizuoka"
+  },
+  "432": {
+    "hamamatsu": "shizuoka"
+  },
+  "433": {
+    "hamamatsu": "shizuoka"
+  },
+  "434": {
+    "hamamatsu": "shizuoka"
+  },
+  "435": {
+    "hamamatsu": "shizuoka"
+  },
+  "436": {
+    "kakegawa": "shizuoka"
+  },
+  "437": {
+    "fukuroi": "shizuoka"
+  },
+  "438": {
+    "iwata": "shizuoka"
+  },
+  "439": {
+    "kikugawa": "shizuoka"
+  },
+  "440": {
+    "toyohashi": "aichi"
+  },
+  "441": {
+    "kitashitara-gun": "aichi"
+  },
+  "442": {
+    "toyokawa": "aichi"
+  },
+  "443": {
+    "gamagori": "aichi"
+  },
+  "444": {
+    "anjo": "aichi"
+  },
+  "445": {
+    "nishio": "aichi"
+  },
+  "446": {
+    "anjo": "aichi"
+  },
+  "447": {
+    "hekinan": "aichi"
+  },
+  "448": {
+    "kariya": "aichi"
+  },
+  "449": {
+    "kitashitara-gun": "aichi"
+  },
+  "450": {
+    "nagoya": "aichi"
+  },
+  "451": {
+    "nagoya": "aichi"
+  },
+  "452": {
+    "kiyosu": "aichi"
+  },
+  "453": {
+    "nagoya": "aichi"
+  },
+  "454": {
+    "nagoya": "aichi"
+  },
+  "455": {
+    "nagoya": "aichi"
+  },
+  "456": {
+    "nagoya": "aichi"
+  },
+  "457": {
+    "nagoya": "aichi"
+  },
+  "458": {
+    "nagoya": "aichi"
+  },
+  "459": {
+    "nagoya": "aichi"
+  },
+  "460": {
+    "nagoya": "aichi"
+  },
+  "461": {
+    "nagoya": "aichi"
+  },
+  "462": {
+    "nagoya": "aichi"
+  },
+  "463": {
+    "nagoya": "aichi"
+  },
+  "464": {
+    "nagoya": "aichi"
+  },
+  "465": {
+    "nagoya": "aichi"
+  },
+  "466": {
+    "nagoya": "aichi"
+  },
+  "467": {
+    "nagoya": "aichi"
+  },
+  "468": {
+    "nagoya": "aichi"
+  },
+  "470": {
+    "aichi-gun": "aichi"
+  },
+  "471": {
+    "toyota": "aichi"
+  },
+  "472": {
+    "chiryu": "aichi"
+  },
+  "473": {
+    "toyota": "aichi"
+  },
+  "474": {
+    "obu": "aichi"
+  },
+  "475": {
+    "handa": "aichi"
+  },
+  "476": {
+    "tokai": "aichi"
+  },
+  "477": {
+    "tokai": "aichi"
+  },
+  "478": {
+    "chita": "aichi"
+  },
+  "479": {
+    "tokoname": "aichi"
+  },
+  "480": {
+    "kasugai": "aichi"
+  },
+  "481": {
+    "kitanagoya": "aichi"
+  },
+  "482": {
+    "iwakura": "aichi"
+  },
+  "483": {
+    "konan": "aichi"
+  },
+  "484": {
+    "inuyama": "aichi"
+  },
+  "485": {
+    "komaki": "aichi"
+  },
+  "486": {
+    "kasugai": "aichi"
+  },
+  "487": {
+    "kasugai": "aichi"
+  },
+  "488": {
+    "owariasahi": "aichi"
+  },
+  "489": {
+    "seto": "aichi"
+  },
+  "490": {
+    "ama": "aichi"
+  },
+  "491": {
+    "ichinomiya": "aichi"
+  },
+  "492": {
+    "inazawa": "aichi"
+  },
+  "493": {
+    "ichinomiya": "aichi"
+  },
+  "494": {
+    "ichinomiya": "aichi"
+  },
+  "495": {
+    "inazawa": "aichi"
+  },
+  "496": {
+    "aisai": "aichi"
+  },
+  "497": {
+    "ama": "aichi"
+  },
+  "498": {
+    "yatomi": "aichi"
+  },
+  "500": {
+    "gifu": "gifu"
+  },
+  "501": {
+    "gifu": "gifu"
+  },
+  "502": {
+    "gifu": "gifu"
+  },
+  "503": {
+    "ampachi-gun": "gifu"
+  },
+  "504": {
+    "kakamigahara": "gifu"
+  },
+  "505": {
+    "kamo-gun": "gifu"
+  },
+  "506": {
+    "hida": "gifu"
+  },
+  "507": {
+    "tajimi": "gifu"
+  },
+  "508": {
+    "nakatsugawa": "gifu"
+  },
+  "509": {
+    "ena": "gifu"
+  },
+  "510": {
+    "mie-gun": "mie"
+  },
+  "511": {
+    "inabe": "mie"
+  },
+  "512": {
+    "yokkaichi": "mie"
+  },
+  "513": {
+    "suzuka": "mie"
+  },
+  "514": {
+    "tsu": "mie"
+  },
+  "515": {
+    "ise": "mie"
+  },
+  "516": {
+    "ise": "mie"
+  },
+  "517": {
+    "ise": "mie"
+  },
+  "518": {
+    "iga": "mie"
+  },
+  "519": {
+    "iga": "mie"
+  },
+  "520": {
+    "kyoto": "kyoto"
+  },
+  "521": {
+    "higashiomi": "shiga"
+  },
+  "522": {
+    "hikone": "shiga"
+  },
+  "523": {
+    "omihachiman": "shiga"
+  },
+  "524": {
+    "moriyama": "shiga"
+  },
+  "525": {
+    "kusatsu": "shiga"
+  },
+  "526": {
+    "nagahama": "shiga"
+  },
+  "527": {
+    "higashiomi": "shiga"
+  },
+  "528": {
+    "koka": "shiga"
+  },
+  "529": {
+    "echi-gun": "shiga"
+  },
+  "530": {
+    "osaka": "osaka"
+  },
+  "531": {
+    "osaka": "osaka"
+  },
+  "532": {
+    "osaka": "osaka"
+  },
+  "533": {
+    "osaka": "osaka"
+  },
+  "534": {
+    "osaka": "osaka"
+  },
+  "535": {
+    "osaka": "osaka"
+  },
+  "536": {
+    "osaka": "osaka"
+  },
+  "537": {
+    "osaka": "osaka"
+  },
+  "538": {
+    "osaka": "osaka"
+  },
+  "539": {
+    "osaka": "osaka"
+  },
+  "540": {
+    "osaka": "osaka"
+  },
+  "541": {
+    "osaka": "osaka"
+  },
+  "542": {
+    "osaka": "osaka"
+  },
+  "543": {
+    "osaka": "osaka"
+  },
+  "544": {
+    "osaka": "osaka"
+  },
+  "545": {
+    "osaka": "osaka"
+  },
+  "546": {
+    "osaka": "osaka"
+  },
+  "547": {
+    "osaka": "osaka"
+  },
+  "549": {
+    "izumisano": "osaka"
+  },
+  "550": {
+    "osaka": "osaka"
+  },
+  "551": {
+    "osaka": "osaka"
+  },
+  "552": {
+    "osaka": "osaka"
+  },
+  "553": {
+    "osaka": "osaka"
+  },
+  "554": {
+    "osaka": "osaka"
+  },
+  "555": {
+    "osaka": "osaka"
+  },
+  "556": {
+    "osaka": "osaka"
+  },
+  "557": {
+    "osaka": "osaka"
+  },
+  "558": {
+    "osaka": "osaka"
+  },
+  "559": {
+    "osaka": "osaka"
+  },
+  "560": {
+    "toyonaka": "osaka"
+  },
+  "561": {
+    "toyonaka": "osaka"
+  },
+  "562": {
+    "minoo": "osaka"
+  },
+  "563": {
+    "itami": "hyogo"
+  },
+  "564": {
+    "suita": "osaka"
+  },
+  "565": {
+    "suita": "osaka"
+  },
+  "566": {
+    "settsu": "osaka"
+  },
+  "567": {
+    "ibaraki": "osaka"
+  },
+  "568": {
+    "ibaraki": "osaka"
+  },
+  "569": {
+    "takatsuki": "osaka"
+  },
+  "570": {
+    "moriguchi": "osaka"
+  },
+  "571": {
+    "kadoma": "osaka"
+  },
+  "572": {
+    "neyagawa": "osaka"
+  },
+  "573": {
+    "hirakata": "osaka"
+  },
+  "574": {
+    "daito": "osaka"
+  },
+  "575": {
+    "shijonawate": "osaka"
+  },
+  "576": {
+    "katano": "osaka"
+  },
+  "577": {
+    "higashiosaka": "osaka"
+  },
+  "578": {
+    "higashiosaka": "osaka"
+  },
+  "579": {
+    "higashiosaka": "osaka"
+  },
+  "580": {
+    "matsubara": "osaka"
+  },
+  "581": {
+    "yao": "osaka"
+  },
+  "582": {
+    "kashiwara": "osaka"
+  },
+  "583": {
+    "fujiidera": "osaka"
+  },
+  "584": {
+    "tondabayashi": "osaka"
+  },
+  "585": {
+    "minamikawachi-gun": "osaka"
+  },
+  "586": {
+    "kawachinagano": "osaka"
+  },
+  "587": {
+    "sakai": "osaka"
+  },
+  "589": {
+    "osakasayama": "osaka"
+  },
+  "590": {
+    "kaizuka": "osaka"
+  },
+  "591": {
+    "sakai": "osaka"
+  },
+  "592": {
+    "sakai": "osaka"
+  },
+  "593": {
+    "sakai": "osaka"
+  },
+  "594": {
+    "izumi": "osaka"
+  },
+  "595": {
+    "izumiotsu": "osaka"
+  },
+  "596": {
+    "kishiwada": "osaka"
+  },
+  "597": {
+    "kaizuka": "osaka"
+  },
+  "598": {
+    "izumisano": "osaka"
+  },
+  "599": {
+    "hannan": "osaka"
+  },
+  "600": {
+    "kyoto": "kyoto"
+  },
+  "601": {
+    "kyoto": "kyoto"
+  },
+  "602": {
+    "kyoto": "kyoto"
+  },
+  "603": {
+    "kyoto": "kyoto"
+  },
+  "604": {
+    "kyoto": "kyoto"
+  },
+  "605": {
+    "kyoto": "kyoto"
+  },
+  "606": {
+    "kyoto": "kyoto"
+  },
+  "607": {
+    "kyoto": "kyoto"
+  },
+  "610": {
+    "joyo": "kyoto"
+  },
+  "611": {
+    "uji": "kyoto"
+  },
+  "612": {
+    "kyoto": "kyoto"
+  },
+  "613": {
+    "kuse-gun": "kyoto"
+  },
+  "614": {
+    "yawata": "kyoto"
+  },
+  "615": {
+    "kyoto": "kyoto"
+  },
+  "616": {
+    "kyoto": "kyoto"
+  },
+  "617": {
+    "muko": "kyoto"
+  },
+  "618": {
+    "otokuni-gun": "kyoto"
+  },
+  "619": {
+    "kizugawa": "kyoto"
+  },
+  "620": {
+    "fukuchiyama": "kyoto"
+  },
+  "621": {
+    "kameoka": "kyoto"
+  },
+  "622": {
+    "funai-gun": "kyoto"
+  },
+  "623": {
+    "ayabe": "kyoto"
+  },
+  "624": {
+    "maizuru": "kyoto"
+  },
+  "625": {
+    "maizuru": "kyoto"
+  },
+  "626": {
+    "miyazu": "kyoto"
+  },
+  "627": {
+    "kyotango": "kyoto"
+  },
+  "629": {
+    "ayabe": "kyoto"
+  },
+  "630": {
+    "ikoma": "nara"
+  },
+  "631": {
+    "nara": "nara"
+  },
+  "632": {
+    "nara": "nara"
+  },
+  "633": {
+    "sakurai": "nara"
+  },
+  "634": {
+    "kashihara": "nara"
+  },
+  "635": {
+    "kitakatsuragi-gun": "nara"
+  },
+  "636": {
+    "ikoma-gun": "nara"
+  },
+  "637": {
+    "gojo": "nara"
+  },
+  "638": {
+    "gojo": "nara"
+  },
+  "639": {
+    "gose": "nara"
+  },
+  "640": {
+    "kainan": "wakayama"
+  },
+  "641": {
+    "wakayama": "wakayama"
+  },
+  "642": {
+    "kainan": "wakayama"
+  },
+  "643": {
+    "arida-gun": "wakayama"
+  },
+  "644": {
+    "gobo": "wakayama"
+  },
+  "645": {
+    "hidaka-gun": "wakayama"
+  },
+  "646": {
+    "nishimuro-gun": "wakayama"
+  },
+  "647": {
+    "kumano": "mie"
+  },
+  "648": {
+    "yoshino-gun": "nara"
+  },
+  "649": {
+    "arida": "wakayama"
+  },
+  "650": {
+    "kobe": "hyogo"
+  },
+  "651": {
+    "kobe": "hyogo"
+  },
+  "652": {
+    "kobe": "hyogo"
+  },
+  "653": {
+    "kobe": "hyogo"
+  },
+  "654": {
+    "kobe": "hyogo"
+  },
+  "655": {
+    "kobe": "hyogo"
+  },
+  "656": {
+    "awaji": "hyogo"
+  },
+  "657": {
+    "kobe": "hyogo"
+  },
+  "658": {
+    "kobe": "hyogo"
+  },
+  "659": {
+    "ashiya": "hyogo"
+  },
+  "660": {
+    "amagasaki": "hyogo"
+  },
+  "661": {
+    "amagasaki": "hyogo"
+  },
+  "662": {
+    "nishinomiya": "hyogo"
+  },
+  "663": {
+    "nishinomiya": "hyogo"
+  },
+  "664": {
+    "itami": "hyogo"
+  },
+  "665": {
+    "takarazuka": "hyogo"
+  },
+  "666": {
+    "kawabe-gun": "hyogo"
+  },
+  "667": {
+    "mikata-gun": "hyogo"
+  },
+  "668": {
+    "toyoka": "hyogo"
+  },
+  "669": {
+    "asago": "hyogo"
+  },
+  "670": {
+    "himeji": "hyogo"
+  },
+  "671": {
+    "himeji": "hyogo"
+  },
+  "672": {
+    "himeji": "hyogo"
+  },
+  "673": {
+    "akashi": "hyogo"
+  },
+  "674": {
+    "akashi": "hyogo"
+  },
+  "675": {
+    "kakogawa": "hyogo"
+  },
+  "676": {
+    "takasago": "hyogo"
+  },
+  "677": {
+    "nishiwaki": "hyogo"
+  },
+  "678": {
+    "aioi": "hyogo"
+  },
+  "679": {
+    "asago": "hyogo"
+  },
+  "680": {
+    "tottori": "tottori"
+  },
+  "681": {
+    "iwami-gun": "tottori"
+  },
+  "682": {
+    "kurayoshi": "tottori"
+  },
+  "683": {
+    "saihaku-gun": "tottori"
+  },
+  "684": {
+    "oki-gun": "shimane"
+  },
+  "685": {
+    "oki-gun": "shimane"
+  },
+  "689": {
+    "hino-gun": "tottori"
+  },
+  "690": {
+    "iishi-gun": "shimane"
+  },
+  "691": {
+    "izumo": "shimane"
+  },
+  "692": {
+    "yasugi": "shimane"
+  },
+  "693": {
+    "izumo": "shimane"
+  },
+  "694": {
+    "oda": "shimane"
+  },
+  "695": {
+    "gotsu": "shimane"
+  },
+  "696": {
+    "ochi-gun": "shimane"
+  },
+  "697": {
+    "hamada": "shimane"
+  },
+  "698": {
+    "masuda": "shimane"
+  },
+  "699": {
+    "gotsu": "shimane"
+  },
+  "700": {
+    "okayama": "okayama"
+  },
+  "701": {
+    "akaiwa": "okayama"
+  },
+  "702": {
+    "okayama": "okayama"
+  },
+  "703": {
+    "okayama": "okayama"
+  },
+  "704": {
+    "okayama": "okayama"
+  },
+  "705": {
+    "bizen": "okayama"
+  },
+  "706": {
+    "tamano": "okayama"
+  },
+  "707": {
+    "aida-gun": "okayama"
+  },
+  "708": {
+    "katsuta-gun": "okayama"
+  },
+  "709": {
+    "akaiwa": "okayama"
+  },
+  "710": {
+    "kurashiki": "okayama"
+  },
+  "711": {
+    "kurashiki": "okayama"
+  },
+  "712": {
+    "kurashiki": "okayama"
+  },
+  "713": {
+    "kurashiki": "okayama"
+  },
+  "714": {
+    "asakuchi": "okayama"
+  },
+  "715": {
+    "ibara": "okayama"
+  },
+  "716": {
+    "kaga-gun": "okayama"
+  },
+  "717": {
+    "maniwa": "okayama"
+  },
+  "718": {
+    "niimi": "okayama"
+  },
+  "719": {
+    "asakuchi": "okayama"
+  },
+  "720": {
+    "fukuyama": "hiroshima"
+  },
+  "721": {
+    "fukuyama": "hiroshima"
+  },
+  "722": {
+    "fuchu": "hiroshima"
+  },
+  "723": {
+    "mihara": "hiroshima"
+  },
+  "725": {
+    "takehara": "hiroshima"
+  },
+  "726": {
+    "fuchu": "hiroshima"
+  },
+  "727": {
+    "shobara": "hiroshima"
+  },
+  "728": {
+    "miyoshi": "hiroshima"
+  },
+  "729": {
+    "fuchu": "hiroshima"
+  },
+  "730": {
+    "hiroshima": "hiroshima"
+  },
+  "731": {
+    "aki-gun": "hiroshima"
+  },
+  "732": {
+    "hiroshima": "hiroshima"
+  },
+  "733": {
+    "hiroshima": "hiroshima"
+  },
+  "734": {
+    "hiroshima": "hiroshima"
+  },
+  "735": {
+    "aki-gun": "hiroshima"
+  },
+  "736": {
+    "aki-gun": "hiroshima"
+  },
+  "737": {
+    "etajima": "hiroshima"
+  },
+  "738": {
+    "hatsukaichi": "hiroshima"
+  },
+  "739": {
+    "akitakata": "hiroshima"
+  },
+  "740": {
+    "iwakuni": "yamaguchi"
+  },
+  "741": {
+    "iwakuni": "yamaguchi"
+  },
+  "742": {
+    "iwakuni": "yamaguchi"
+  },
+  "743": {
+    "hikari": "yamaguchi"
+  },
+  "744": {
+    "kudamatsu": "yamaguchi"
+  },
+  "745": {
+    "shunan": "yamaguchi"
+  },
+  "746": {
+    "shunan": "yamaguchi"
+  },
+  "747": {
+    "hofu": "yamaguchi"
+  },
+  "749": {
+    "yanai": "yamaguchi"
+  },
+  "750": {
+    "mine": "yamaguchi"
+  },
+  "751": {
+    "shimonoseki": "yamaguchi"
+  },
+  "752": {
+    "shimonoseki": "yamaguchi"
+  },
+  "753": {
+    "hagi": "yamaguchi"
+  },
+  "754": {
+    "hagi": "yamaguchi"
+  },
+  "755": {
+    "ube": "yamaguchi"
+  },
+  "756": {
+    "sanyoonoda": "yamaguchi"
+  },
+  "757": {
+    "sanyoonoda": "yamaguchi"
+  },
+  "758": {
+    "abu-gun": "yamaguchi"
+  },
+  "759": {
+    "abu-gun": "yamaguchi"
+  },
+  "760": {
+    "takamatsu": "kagawa"
+  },
+  "761": {
+    "ayauta-gun": "kagawa"
+  },
+  "762": {
+    "marugame": "kagawa"
+  },
+  "763": {
+    "marugame": "kagawa"
+  },
+  "764": {
+    "nakatado-gun": "kagawa"
+  },
+  "765": {
+    "zentsuuji": "kagawa"
+  },
+  "766": {
+    "nakatado-gun": "kagawa"
+  },
+  "767": {
+    "mitoyo": "kagawa"
+  },
+  "768": {
+    "kanonji": "kagawa"
+  },
+  "769": {
+    "ayauta-gun": "kagawa"
+  },
+  "770": {
+    "tokushima": "tokushima"
+  },
+  "771": {
+    "anan": "tokushima"
+  },
+  "772": {
+    "naruto": "tokushima"
+  },
+  "773": {
+    "komatsumashi": "tokushima"
+  },
+  "774": {
+    "anan": "tokushima"
+  },
+  "775": {
+    "kaifu-gun": "tokushima"
+  },
+  "776": {
+    "yoshinogawa": "tokushima"
+  },
+  "777": {
+    "mima": "tokushima"
+  },
+  "778": {
+    "miyoshi": "tokushima"
+  },
+  "779": {
+    "anan": "tokushima"
+  },
+  "780": {
+    "kochi": "kochi"
+  },
+  "781": {
+    "agawa-gun": "kochi"
+  },
+  "782": {
+    "kami": "kochi"
+  },
+  "783": {
+    "nankoku": "kochi"
+  },
+  "784": {
+    "aki": "kochi"
+  },
+  "785": {
+    "susaki": "kochi"
+  },
+  "786": {
+    "takaoka-gun": "kochi"
+  },
+  "787": {
+    "hata-gun": "kochi"
+  },
+  "788": {
+    "hata-gun": "kochi"
+  },
+  "789": {
+    "hata-gun": "kochi"
+  },
+  "790": {
+    "matsuyama": "ehime"
+  },
+  "791": {
+    "iyo": "ehime"
+  },
+  "792": {
+    "imabari": "ehime"
+  },
+  "793": {
+    "saijo": "ehime"
+  },
+  "794": {
+    "imabari": "ehime"
+  },
+  "795": {
+    "kita-gun": "ehime"
+  },
+  "796": {
+    "nishiuwa-gun": "ehime"
+  },
+  "797": {
+    "ozu": "ehime"
+  },
+  "798": {
+    "kitauwa-gun": "ehime"
+  },
+  "799": {
+    "imabari": "ehime"
+  },
+  "800": {
+    "kitakyushu": "fukuoka"
+  },
+  "801": {
+    "kitakyushu": "fukuoka"
+  },
+  "802": {
+    "kitakyushu": "fukuoka"
+  },
+  "803": {
+    "kitakyushu": "fukuoka"
+  },
+  "804": {
+    "kitakyushu": "fukuoka"
+  },
+  "805": {
+    "kitakyushu": "fukuoka"
+  },
+  "806": {
+    "kitakyushu": "fukuoka"
+  },
+  "807": {
+    "kitakyushu": "fukuoka"
+  },
+  "808": {
+    "kitakyushu": "fukuoka"
+  },
+  "809": {
+    "nakama": "fukuoka"
+  },
+  "810": {
+    "fukuoka": "fukuoka"
+  },
+  "811": {
+    "chikushi-gun": "fukuoka"
+  },
+  "812": {
+    "fukuoka": "fukuoka"
+  },
+  "813": {
+    "fukuoka": "fukuoka"
+  },
+  "814": {
+    "fukuoka": "fukuoka"
+  },
+  "815": {
+    "fukuoka": "fukuoka"
+  },
+  "816": {
+    "kasuga": "fukuoka"
+  },
+  "817": {
+    "tsushima": "nagasaki"
+  },
+  "818": {
+    "chikushino": "fukuoka"
+  },
+  "819": {
+    "fukuoka": "fukuoka"
+  },
+  "820": {
+    "iizuka": "fukuoka"
+  },
+  "821": {
+    "kama": "fukuoka"
+  },
+  "822": {
+    "miyawaka": "fukuoka"
+  },
+  "823": {
+    "miyawaka": "fukuoka"
+  },
+  "824": {
+    "miyako-gun": "fukuoka"
+  },
+  "825": {
+    "tagawa": "fukuoka"
+  },
+  "826": {
+    "tagawa": "fukuoka"
+  },
+  "827": {
+    "tagawa-gun": "fukuoka"
+  },
+  "828": {
+    "buzen": "fukuoka"
+  },
+  "829": {
+    "chikujo-gun": "fukuoka"
+  },
+  "830": {
+    "kurume": "fukuoka"
+  },
+  "831": {
+    "okawa": "fukuoka"
+  },
+  "832": {
+    "yanagawa": "fukuoka"
+  },
+  "833": {
+    "chikugo": "fukuoka"
+  },
+  "834": {
+    "yame": "fukuoka"
+  },
+  "835": {
+    "miyama": "fukuoka"
+  },
+  "836": {
+    "omuta": "fukuoka"
+  },
+  "837": {
+    "omuta": "fukuoka"
+  },
+  "838": {
+    "asakura": "fukuoka"
+  },
+  "839": {
+    "kurume": "fukuoka"
+  },
+  "840": {
+    "miyaki-gun": "saga"
+  },
+  "841": {
+    "miyaki-gun": "saga"
+  },
+  "842": {
+    "kanzaki": "saga"
+  },
+  "843": {
+    "takeo": "saga"
+  },
+  "844": {
+    "nishimatsuura-gun": "saga"
+  },
+  "845": {
+    "ogi": "saga"
+  },
+  "846": {
+    "taku": "saga"
+  },
+  "847": {
+    "higashimatsuura-gun": "saga"
+  },
+  "848": {
+    "matsuura": "nagasaki"
+  },
+  "849": {
+    "fujitsu-gun": "saga"
+  },
+  "850": {
+    "nagasaki": "nagasaki"
+  },
+  "851": {
+    "nagasaki": "nagasaki"
+  },
+  "852": {
+    "nagasaki": "nagasaki"
+  },
+  "853": {
+    "goto": "nagasaki"
+  },
+  "854": {
+    "isahaya": "nagasaki"
+  },
+  "855": {
+    "shimabara": "nagasaki"
+  },
+  "856": {
+    "omura": "nagasaki"
+  },
+  "857": {
+    "kitamatsuura-gun": "nagasaki"
+  },
+  "858": {
+    "sasebo": "nagasaki"
+  },
+  "859": {
+    "higashisonogi-gun": "nagasaki"
+  },
+  "860": {
+    "kumamoto": "kumamoto"
+  },
+  "861": {
+    "amakusa": "kumamoto"
+  },
+  "862": {
+    "kumamoto": "kumamoto"
+  },
+  "863": {
+    "amakusa": "kumamoto"
+  },
+  "864": {
+    "arao": "kumamoto"
+  },
+  "865": {
+    "tamana": "kumamoto"
+  },
+  "866": {
+    "amakusa": "kumamoto"
+  },
+  "867": {
+    "minamata": "kumamoto"
+  },
+  "868": {
+    "hitoyoshi": "kumamoto"
+  },
+  "869": {
+    "ashikita-gun": "kumamoto"
+  },
+  "870": {
+    "oita": "oita"
+  },
+  "871": {
+    "chikujo-gun": "fukuoka"
+  },
+  "872": {
+    "bungotakada": "oita"
+  },
+  "873": {
+    "kitsuki": "oita"
+  },
+  "874": {
+    "beppu": "oita"
+  },
+  "875": {
+    "usuki": "oita"
+  },
+  "876": {
+    "saiki": "oita"
+  },
+  "877": {
+    "hita": "oita"
+  },
+  "878": {
+    "taketa": "oita"
+  },
+  "879": {
+    "bungoono": "oita"
+  },
+  "880": {
+    "higashimorokata-gun": "miyazaki"
+  },
+  "881": {
+    "koyu-gun": "miyazaki"
+  },
+  "882": {
+    "nishiusuki-gun": "miyazaki"
+  },
+  "883": {
+    "higashiusuki-gun": "miyazaki"
+  },
+  "884": {
+    "koyu-gun": "miyazaki"
+  },
+  "885": {
+    "miyakonojo": "miyazaki"
+  },
+  "886": {
+    "kobayashi": "miyazaki"
+  },
+  "887": {
+    "nichinan": "miyazaki"
+  },
+  "888": {
+    "kushima": "miyazaki"
+  },
+  "889": {
+    "ebino": "miyazaki"
+  },
+  "890": {
+    "kagoshima": "kagoshima"
+  },
+  "891": {
+    "ibusuki": "kagoshima"
+  },
+  "892": {
+    "kagoshima": "kagoshima"
+  },
+  "893": {
+    "kanoya": "kagoshima"
+  },
+  "894": {
+    "amami": "kagoshima"
+  },
+  "895": {
+    "isa": "kagoshima"
+  },
+  "896": {
+    "ichikikushikino": "kagoshima"
+  },
+  "897": {
+    "minamikyushu": "kagoshima"
+  },
+  "898": {
+    "makurazaki": "kagoshima"
+  },
+  "899": {
+    "aira": "kagoshima"
+  },
+  "900": {
+    "naha": "okinawa"
+  },
+  "901": {
+    "ginowan": "okinawa"
+  },
+  "902": {
+    "naha": "okinawa"
+  },
+  "903": {
+    "naha": "okinawa"
+  },
+  "904": {
+    "kunigami-gun": "okinawa"
+  },
+  "905": {
+    "kunigami-gun": "okinawa"
+  },
+  "906": {
+    "miyako-gun": "okinawa"
+  },
+  "907": {
+    "ishigaki": "okinawa"
+  },
+  "910": {
+    "awara": "fukui"
+  },
+  "911": {
+    "katsuyama": "fukui"
+  },
+  "912": {
+    "ono": "fukui"
+  },
+  "913": {
+    "sakai": "fukui"
+  },
+  "914": {
+    "tsuruga": "fukui"
+  },
+  "915": {
+    "echizen": "fukui"
+  },
+  "916": {
+    "nyu-gun": "fukui"
+  },
+  "917": {
+    "obama": "fukui"
+  },
+  "918": {
+    "fukui": "fukui"
+  },
+  "919": {
+    "awara": "fukui"
+  },
+  "920": {
+    "hakusan": "ishikawa"
+  },
+  "921": {
+    "kanazawa": "ishikawa"
+  },
+  "922": {
+    "awara": "fukui"
+  },
+  "923": {
+    "komatsu": "ishikawa"
+  },
+  "924": {
+    "hakusan": "ishikawa"
+  },
+  "925": {
+    "hakui": "ishikawa"
+  },
+  "926": {
+    "nanao": "ishikawa"
+  },
+  "927": {
+    "hosu-gun": "ishikawa"
+  },
+  "928": {
+    "hosu-gun": "ishikawa"
+  },
+  "929": {
+    "hakui": "ishikawa"
+  },
+  "930": {
+    "nakaniikawa-gun": "toyama"
+  },
+  "931": {
+    "toyama": "toyama"
+  },
+  "932": {
+    "nanto": "toyama"
+  },
+  "933": {
+    "imizu": "toyama"
+  },
+  "934": {
+    "imizu": "toyama"
+  },
+  "935": {
+    "himi": "toyama"
+  },
+  "936": {
+    "nakaniikawa-gun": "toyama"
+  },
+  "937": {
+    "uozu": "toyama"
+  },
+  "938": {
+    "kurobe": "toyama"
+  },
+  "939": {
+    "hakui-gun": "ishikawa"
+  },
+  "940": {
+    "nagaoka": "niigata"
+  },
+  "941": {
+    "itoigawa": "niigata"
+  },
+  "942": {
+    "joetsu": "niigata"
+  },
+  "943": {
+    "joetsu": "niigata"
+  },
+  "944": {
+    "joetsu": "niigata"
+  },
+  "945": {
+    "kariwa-gun": "niigata"
+  },
+  "946": {
+    "uonuma": "niigata"
+  },
+  "947": {
+    "nagaoka": "niigata"
+  },
+  "948": {
+    "tokamachi": "niigata"
+  },
+  "949": {
+    "shimominochi-gun": "nagano"
+  },
+  "950": {
+    "niigata": "niigata"
+  },
+  "951": {
+    "niigata": "niigata"
+  },
+  "952": {
+    "sado": "niigata"
+  },
+  "953": {
+    "niigata": "niigata"
+  },
+  "954": {
+    "mitsuke": "niigata"
+  },
+  "955": {
+    "sanjo": "niigata"
+  },
+  "956": {
+    "niigata": "niigata"
+  },
+  "957": {
+    "kitakambara-gun": "niigata"
+  },
+  "958": {
+    "murakami": "niigata"
+  },
+  "959": {
+    "agano": "niigata"
+  },
+  "960": {
+    "date": "fukushima"
+  },
+  "961": {
+    "nishishirakawa-gun": "fukushima"
+  },
+  "962": {
+    "iwase-gun": "fukushima"
+  },
+  "963": {
+    "higashishirakawa-gun": "fukushima"
+  },
+  "964": {
+    "adachi-gun": "fukushima"
+  },
+  "965": {
+    "aizuwakamatsu": "fukushima"
+  },
+  "966": {
+    "kitakata": "fukushima"
+  },
+  "967": {
+    "minamiaizu-gun": "fukushima"
+  },
+  "968": {
+    "minamiaizu-gun": "fukushima"
+  },
+  "969": {
+    "adachi-gun": "fukushima"
+  },
+  "970": {
+    "iwaki": "fukushima"
+  },
+  "971": {
+    "iwaki": "fukushima"
+  },
+  "972": {
+    "iwaki": "fukushima"
+  },
+  "973": {
+    "iwaki": "fukushima"
+  },
+  "974": {
+    "iwaki": "fukushima"
+  },
+  "975": {
+    "minamisoma": "fukushima"
+  },
+  "976": {
+    "soma": "fukushima"
+  },
+  "979": {
+    "futaba-gun": "fukushima"
+  },
+  "980": {
+    "sendai": "miyagi"
+  },
+  "981": {
+    "higashimatsushima": "miyagi"
+  },
+  "982": {
+    "sendai": "miyagi"
+  },
+  "983": {
+    "sendai": "miyagi"
+  },
+  "984": {
+    "sendai": "miyagi"
+  },
+  "985": {
+    "miyagi-gun": "miyagi"
+  },
+  "986": {
+    "ishinomaki": "miyagi"
+  },
+  "987": {
+    "ishinomaki": "miyagi"
+  },
+  "988": {
+    "kesennuma": "miyagi"
+  },
+  "989": {
+    "iwanuma": "miyagi"
+  },
+  "990": {
+    "higashimurayama-gun": "yamagata"
+  },
+  "991": {
+    "nishimurayama-gun": "yamagata"
+  },
+  "992": {
+    "higashiokitama-gun": "yamagata"
+  },
+  "993": {
+    "nagai": "yamagata"
+  },
+  "994": {
+    "tendo": "yamagata"
+  },
+  "995": {
+    "murayama": "yamagata"
+  },
+  "996": {
+    "mogami-gun": "yamagata"
+  },
+  "997": {
+    "higashitagawa-gun": "yamagata"
+  },
+  "998": {
+    "sakata": "yamagata"
+  },
+  "999": {
+    "akumi-gun": "yamagata"
+  },
+  "010": {
+    "akita": "akita"
+  },
+  "011": {
+    "akita": "akita"
+  },
+  "019": {
+    "akita": "akita"
+  },
+  "014": {
+    "daisen": "akita"
+  },
+  "018": {
+    "katagami": "akita"
+  },
+  "017": {
+    "kazuno-gun": "akita"
+  },
+  "016": {
+    "noshiro": "akita"
+  },
+  "012": {
+    "ogachi-gun": "akita"
+  },
+  "013": {
+    "yokote": "akita"
+  },
+  "015": {
+    "yurihonjo": "akita"
+  },
+  "038": {
+    "aomori": "aomori"
+  },
+  "030": {
+    "aomori": "aomori"
+  },
+  "039": {
+    "aomori": "aomori"
+  },
+  "037": {
+    "goshogawara": "aomori"
+  },
+  "031": {
+    "hachinohe": "aomori"
+  },
+  "036": {
+    "hirakawa": "aomori"
+  },
+  "033": {
+    "kamikita-gun": "aomori"
+  },
+  "035": {
+    "mutsu": "aomori"
+  },
+  "034": {
+    "towada": "aomori"
+  },
+  "093": {
+    "abashiri": "hokkaido"
+  },
+  "099": {
+    "abashiri": "hokkaido"
+  },
+  "092": {
+    "abashiri-gun": "hokkaido"
+  },
+  "044": {
+    "abuta-gun": "hokkaido"
+  },
+  "048": {
+    "abuta-gun": "hokkaido"
+  },
+  "049": {
+    "abuta-gun": "hokkaido"
+  },
+  "079": {
+    "akabira": "hokkaido"
+  },
+  "085": {
+    "akan-gun": "hokkaido"
+  },
+  "088": {
+    "akkeshi-gun": "hokkaido"
+  },
+  "086": {
+    "akkeshi-gun": "hokkaido"
+  },
+  "078": {
+    "asahikawa": "hokkaido"
+  },
+  "070": {
+    "asahikawa": "hokkaido"
+  },
+  "071": {
+    "asahikawa": "hokkaido"
+  },
+  "074": {
+    "asahikawa": "hokkaido"
+  },
+  "075": {
+    "ashibetsu": "hokkaido"
+  },
+  "089": {
+    "ashoro-gun": "hokkaido"
+  },
+  "072": {
+    "bibai": "hokkaido"
+  },
+  "066": {
+    "chitose": "hokkaido"
+  },
+  "069": {
+    "chitose": "hokkaido"
+  },
+  "052": {
+    "date": "hokkaido"
+  },
+  "059": {
+    "date": "hokkaido"
+  },
+  "067": {
+    "ebetsu": "hokkaido"
+  },
+  "061": {
+    "eniwa": "hokkaido"
+  },
+  "098": {
+    "esashi-gun": "hokkaido"
+  },
+  "076": {
+    "furano": "hokkaido"
+  },
+  "046": {
+    "furubira-gun": "hokkaido"
+  },
+  "045": {
+    "furuu-gun": "hokkaido"
+  },
+  "043": {
+    "futami-gun": "hokkaido"
+  },
+  "041": {
+    "hakodate": "hokkaido"
+  },
+  "042": {
+    "hakodate": "hokkaido"
+  },
+  "040": {
+    "hakodate": "hokkaido"
+  },
+  "056": {
+    "hidaka-gun": "hokkaido"
+  },
+  "058": {
+    "horoizumi-gun": "hokkaido"
+  },
+  "068": {
+    "ishikari-gun": "hokkaido"
+  },
+  "002": {
+    "ishikari-gun": "hokkaido"
+  },
+  "073": {
+    "kabato-gun": "hokkaido"
+  },
+  "081": {
+    "kamikawa-gun": "hokkaido"
+  },
+  "082": {
+    "kasai-gun": "hokkaido"
+  },
+  "080": {
+    "kato-gun": "hokkaido"
+  },
+  "090": {
+    "kitami": "hokkaido"
+  },
+  "091": {
+    "kitami": "hokkaido"
+  },
+  "084": {
+    "kushiro": "hokkaido"
+  },
+  "077": {
+    "mashike-gun": "hokkaido"
+  },
+  "094": {
+    "mombetsu": "hokkaido"
+  },
+  "051": {
+    "muroran": "hokkaido"
+  },
+  "050": {
+    "muroran": "hokkaido"
+  },
+  "083": {
+    "nakagawa-gun": "hokkaido"
+  },
+  "096": {
+    "nayoro": "hokkaido"
+  },
+  "087": {
+    "nemuro": "hokkaido"
+  },
+  "047": {
+    "otaru": "hokkaido"
+  },
+  "097": {
+    "rebun-gun": "hokkaido"
+  },
+  "004": {
+    "sapporo": "hokkaido"
+  },
+  "064": {
+    "sapporo": "hokkaido"
+  },
+  "060": {
+    "sapporo": "hokkaido"
+  },
+  "065": {
+    "sapporo": "hokkaido"
+  },
+  "007": {
+    "sapporo": "hokkaido"
+  },
+  "001": {
+    "sapporo": "hokkaido"
+  },
+  "005": {
+    "sapporo": "hokkaido"
+  },
+  "063": {
+    "sapporo": "hokkaido"
+  },
+  "003": {
+    "sapporo": "hokkaido"
+  },
+  "006": {
+    "sapporo": "hokkaido"
+  },
+  "062": {
+    "sapporo": "hokkaido"
+  },
+  "055": {
+    "saru-gun": "hokkaido"
+  },
+  "095": {
+    "shibetsu": "hokkaido"
+  },
+  "053": {
+    "tomakomai": "hokkaido"
+  },
+  "057": {
+    "urakawa-gun": "hokkaido"
+  },
+  "054": {
+    "yuufutsu-gun": "hokkaido"
+  },
+  "021": {
+    "chinoseki": "iwate"
+  },
+  "029": {
+    "chinoseki": "iwate"
+  },
+  "028": {
+    "hachimantai": "iwate"
+  },
+  "025": {
+    "hanamaki": "iwate"
+  },
+  "020": {
+    "iwate-gun": "iwate"
+  },
+  "026": {
+    "kamaishi": "iwate"
+  },
+  "024": {
+    "kitakami": "iwate"
+  },
+  "027": {
+    "miyako": "iwate"
+  },
+  "022": {
+    "ofunato": "iwate"
+  },
+  "023": {
+    "oshu": "iwate"
+  }
+}

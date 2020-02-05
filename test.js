@@ -86,7 +86,7 @@ var cases = {
     "shelbourne buildings shelbourne road ballsbridge 4 dublin d04 w3v6":{
         country: 'ie',
         zip: 'd04',
-        city: 'dublin 4',
+        city: 'dublin',
     },
     "101 federal street - 1900  boston  02100": {
         country: 'us',

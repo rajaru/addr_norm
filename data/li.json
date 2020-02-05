@@ -1,0 +1,46 @@
+{
+  "states": {
+    "vaduz": "vaduz",
+    "triesen": "triesen",
+    "balzers": "balzers",
+    "triesenberg": "triesenberg",
+    "schaan": "schaan",
+    "planken": "planken",
+    "eschen": "eschen",
+    "mauren": "mauren",
+    "gamprin": "gamprin",
+    "ruggell": "ruggell",
+    "schellenberg": "schellenberg"
+  },
+  "cities": {
+    "vaduz": "vaduz",
+    "triesen": "triesen",
+    "balzers": "balzers",
+    "triesenberg": "triesenberg",
+    "schaan": "schaan",
+    "planken": "planken",
+    "nendeln": "eschen",
+    "eschen": "eschen",
+    "schaanwald": "mauren",
+    "mauren fl": "mauren",
+    "gamprin-bendern": "gamprin",
+    "ruggell": "ruggell",
+    "schellenberg": "schellenberg"
+  },
+  "zips": {},
+  "regions": {},
+  "places": {},
+  "statecodes": {
+    "vaduz": "vaduz",
+    "triesen": "triesen",
+    "balzers": "balzers",
+    "triesenberg": "triesenberg",
+    "schaan": "schaan",
+    "planken": "planken",
+    "eschen": "eschen",
+    "mauren": "mauren",
+    "gamprin": "gamprin",
+    "ruggell": "ruggell",
+    "schellenberg": "schellenberg"
+  }
+}
