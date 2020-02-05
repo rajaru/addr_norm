@@ -315,9 +315,9 @@ class update {
                 console.log('downloading...', url);
                 fs.writeFileSync(zipFile, await this.aget(url));
             }
-            var txtFile = "g:\\temp\\ceps.txt";
+            var txtFile = path.join(tmp, 'ceps.txt');
             if( !fs.existsSync(txtFile) )
-                await this.unzip(zipFile, "g:\\temp");
+                await this.unzip(zipFile, tmp);
             
             
             if( !fs.existsSync(txtFile) ){
@@ -333,13 +333,14 @@ class update {
                 for(var city of cities ){
                     var parts = city.state.toLowerCase().split('/');
                     var cityname = city.city.toLowerCase();
-
-                    //brzips[city.zip.toLowerCase()] = 'br,'+parts[0]+','+(parts.length>1?parts[1]:'')+','+city.city;
                     this._add_city_details( {city: cityname, state: parts[0], state_code: parts.length>1?parts[1]:'', country: 'br', zip: city.zip.toLowerCase()} );
                     this._add_zipcode('br', parts.length>1?parts[1]:'', city.zip.toLowerCase(), cityname);
+
+                    if( !city.addr2 && city.zip.endsWith('000') ){
+                        var pzip = city.zip.substr(0, city.zip.length-3);
+                        this._add_zipcode('br', parts.length>1?parts[1]:'', pzip.toLowerCase(), cityname);
+                    }
                 }
-                //var jsfile = path.join(__dirname, 'brzip.json');
-                //fs.writeFileSync(jsfile, JSON.stringify(brzips, null, 2));
             }catch(e){
                 console.log(e);
             }

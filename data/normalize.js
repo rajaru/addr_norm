@@ -76,6 +76,7 @@ class anormalize {
             this.loaded[zip[0]] = true;
         }
         if( this.zipz[zip] )return this.zipz[zip];
+        if( zip.length==4 && this.zipz['0'+zip] )return this.zipz['0'+zip];
         return null;
     }
 
