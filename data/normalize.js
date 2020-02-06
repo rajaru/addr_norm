@@ -61,23 +61,41 @@ class anormalize {
         return name;
     }
 
-
-    __zips(zip){
-        if( !zip )return null;
-        if( this.zipz[zip] )return this.zipz[zip];
-        if( !this.loaded[zip[0]] ){
-            var fname = path.join(__dirname, 'zip', zip[0]+'.json');
+    __load_zip_code(prefix){
+        if( !this.loaded[prefix] ){
+            var fname = path.join(__dirname, 'zip', prefix+'.json');
             try{
                 // console.log(zip, ':', fname);
                 var zips = JSON.parse(fs.readFileSync(fname, 'utf-8' ));
                 for(var z in zips )this.zipz[z] = zips[z];
             }catch(e){
             }
-            this.loaded[zip[0]] = true;
+            this.loaded[prefix] = true;
         }
-        if( this.zipz[zip] )return this.zipz[zip];
-        if( zip.length==4 && this.zipz['0'+zip] )return this.zipz['0'+zip];
-        return null;
+    }
+
+
+    __zips(zip){
+        if( !zip )return null;
+        this.__load_zip_code('0');
+        this.__load_zip_code(zip[0]);
+        var countries = null;
+        if( this.zipz[zip] )countries = this.zipz[zip];
+        // if( zip.length==4 && this.zipz['0'+zip] )countries = {...countries, ...this.zipz['0'+zip]};
+        return countries;
+        // if( !this.loaded[zip[0]] ){
+        //     var fname = path.join(__dirname, 'zip', zip[0]+'.json');
+        //     try{
+        //         // console.log(zip, ':', fname);
+        //         var zips = JSON.parse(fs.readFileSync(fname, 'utf-8' ));
+        //         for(var z in zips )this.zipz[z] = zips[z];
+        //     }catch(e){
+        //     }
+        //     this.loaded[zip[0]] = true;
+        // }
+        // if( this.zipz[zip] )return this.zipz[zip];
+        // if( zip.length==4 && this.zipz['0'+zip] )return this.zipz['0'+zip];
+        // return null;
     }
 
     load_data(){
@@ -135,7 +153,6 @@ class anormalize {
         if( zip.endsWith('-000') )zip = zip.replace('-000', '');
         var zipcode= null;
         var countries = null;
-        if(this.dbg)console.log('country from zip', zip);
         if( !countries){ zipcode=zip.replace(' ', '-'); countries = this.__zips(zipcode) ? Object.keys(this.__zips(zipcode)) : null;}
         if( !countries){ zipcode=zip.split('-')[0]; countries = this.__zips(zipcode) ? Object.keys(this.__zips(zipcode)) : null;}
         if( !countries){ zipcode=zip.split(' ')[0]; countries = this.__zips(zipcode) ? Object.keys(this.__zips(zipcode)) : null;}
@@ -150,7 +167,6 @@ class anormalize {
         //         zipcode=matches[1]; countries = ['jp'];
         //     }
         // }
-
         return {countries, zipcode};
 
     }
@@ -165,6 +181,7 @@ class anormalize {
             
             var zip = parts.slice(parts.length-i).join(' ');
             var {countries, zipcode} = this._get_countries_from_zip(zip);
+            if(this.dbg)console.log('country from zip', zip, countries);
             if( countries ){
                 this._add_to_parsed(parsed, i, 'zip', zipcode);
                 if( this.dbg )console.log('zip-countries: ', countries);

@@ -1,5 +1,7 @@
 var addrnorm = require('./index');
 var argentina = require('./data/argentina');
+const process = require('process');
+const {performance} = require('perf_hooks');
 var cases = {
     '' : {},
     '12921 Coyote Run Fishers IN 46038':{
@@ -133,6 +135,7 @@ var cases = {
     }
 };
 
+var start = performance.now();
 var count = 0, err=0;
 for(var cas in cases ){
     console.log(count, cas);
@@ -148,4 +151,4 @@ for(var cas in cases ){
     err += failed ? 1 : 0;
     count ++;
 }
-console.log(err+' failed out of '+count);
+console.log(err+' failed out of '+count, 'used',  process.memoryUsage().heapUsed / 1024 / 1024, 'time: ', (performance.now()-start), 'ms' );
