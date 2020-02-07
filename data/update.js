@@ -125,16 +125,11 @@ class update {
     _add_zipcode(country, statecode, zip, city){
         if( !country || !zip )return;
         zip = zip.trim().replace(' ', '-').replace('-000', '');
-        var cityname = this.fix_city_name(city, country);
+        //var cityname = this.fix_city_name(city, country);
+        var city = this.fix_city_name(city, country);
 
-        //var data = country+','+(statecode||'');//+','+(city||'');
         statecode = this.fix_state_name(statecode);
-        if( !this.zip ){
-            // var fname = path.join(__dirname, 'zip.json');
-            // if( fs.existsSync(fname) )this.zip = JSON.parse( fs.readFileSync(fname, 'utf8') );
-            // else this.zip = {conflicts: {}};
-            this._read_zip_json();
-        }
+        if( !this.zip )this._read_zip_json();
 
         if( !this.zip[zip] )this.zip[zip] = {};
 
@@ -149,36 +144,7 @@ class update {
 
 
         if( !this.zip[zip][country][city] )this.zip[zip][country][city] = statecode;
-        if( !this.zip[zip][country][cityname] )this.zip[zip][country][cityname] = statecode;
-        // if( city != cityname)console.log('added: ', cityname, 'for', city);
-
-
-        // if( !this.zip[zip].hasOwnProperty(country) )
-        //     this.zip[zip][country] = {[city]: statecode, [cityname]: statecode};
-        // else if( !this.zip[zip][country].hasOwnProperty(city) )
-        //     this.zip[zip][country][city] = statecode;
-        // else if( this.zip[zip][country][city] != statecode ){
-        //     // console.log('multiple city names with same zip different state found', country, zip, city, statecode, '!=', this.zip[zip][country][city] );
-        //     if( !this.zip.conflicts[zip] )this.zip.conflicts[zip] = [];
-        //     var data = country+','+statecode+','+city;
-        //     if( this.zip.conflicts[zip].indexOf(data)<0 ){
-        //         this.zip.conflicts[zip].push(data);
-        //     }
-        //     this.conflicts++;
-        // }
-
-        // if( !this.zip.hasOwnProperty(zip) || !this.zip[zip])
-        //     this.zip[zip] = data;
-        // else{
-        //     if( !(this.zip[zip] instanceof Array) ){
-        //         if( this.zip[zip] != data )
-        //             this.zip[zip] = [this.zip[zip], data];
-        //     }
-        //     else{
-        //         if( this.zip[zip].indexOf(data)<0 )
-        //             this.zip[zip].push(data);
-        //     }
-        // }
+        // if( !this.zip[zip][country][cityname] )this.zip[zip][country][cityname] = statecode;
     }
 
     _add_city_details(rec){
