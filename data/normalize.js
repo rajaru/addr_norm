@@ -2,6 +2,7 @@ const path = require('path');
 const fs   = require('fs');
 const argentina= require('./argentina');
 const utils= require('./utils');
+const crypto=require('crypto');
 const {performance}        = require('perf_hooks');
 const diacrt = require('diacritics');
 diacrt.diacriticsMap['ä'] = 'ae';
@@ -35,6 +36,7 @@ class anormalize {
         this.loaded = {};
         this.geo = {};
         this.geo_citites = {};
+        this.cityhash = {};
     }
 
     _fix_jp_names(city){
@@ -61,14 +63,27 @@ class anormalize {
         return name;
     }
 
+    __update_zip_cities(zips){
+        for(var z in zips ){
+            var str = JSON.stringify( zips[z] );
+            var md5 = crypto.createHash('md5');
+            var hash = md5.update(str).digest('hex');
+            if( !this.cityhash.hasOwnProperty(hash) )this.cityhash[hash] = zips[z];
+            this.zipz[z] = this.cityhash[hash]; //use it as reference
+        }
+        // this.cityhash = {};
+    }
+
     __load_zip_code(prefix){
         if( !this.loaded[prefix] ){
             var fname = path.join(__dirname, 'zip', prefix+'.json');
             try{
                 const mem = process.memoryUsage();
                 console.log('loading ', fname, (mem.heapUsed/1024/1024).toFixed(2), 'MB');
-                var zips = JSON.parse(fs.readFileSync(fname, 'utf-8' ));
-                for(var z in zips )this.zipz[z] = zips[z];
+                const zips = JSON.parse(fs.readFileSync(fname, 'utf-8' ));
+                //for(var z in zips )this.zipz[z] = zips[z];
+                this.__update_zip_cities(zips);
+                zips = null;
             }catch(e){
                 // console.log(e);
             }
@@ -812,6 +827,7 @@ class anormalize {
         for(var p of alphanum ){
             this.__load_zip_code(p);
         }
+        if( global.gc )global.gc(true);
         var mem = process.memoryUsage();
         console.log('time consumed: ', (performance.now()-start).toFixed(2), 'ms');
         console.log('heap consumed: ', (mem.heapUsed/1024/1024).toFixed(2), ' / ', (mem.heapTotal/1024/1024).toFixed(2) );
