@@ -41,7 +41,12 @@ const countries = [
     'RU',   // Russia,
     'TH',   // Thanilad
     'LI',   // Liechtenstein
-    'TR',   // Turkey
+    'TR',   // Turkey,
+    'KR',   // South Korea
+    'NZ',   // New zealand
+    'ID',   // Indonasia
+    'IL',   // Israel
+    'TN',   // Tunisia
 ];
 // const countries = ['AT'];
 
