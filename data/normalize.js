@@ -65,10 +65,12 @@ class anormalize {
         if( !this.loaded[prefix] ){
             var fname = path.join(__dirname, 'zip', prefix+'.json');
             try{
-                // console.log(zip, ':', fname);
+                const mem = process.memoryUsage();
+                console.log('loading ', fname, (mem.heapUsed/1024/1024).toFixed(2), 'MB');
                 var zips = JSON.parse(fs.readFileSync(fname, 'utf-8' ));
                 for(var z in zips )this.zipz[z] = zips[z];
             }catch(e){
+                // console.log(e);
             }
             this.loaded[prefix] = true;
         }
@@ -792,6 +794,17 @@ class anormalize {
         this.fix_zip_code(parsed);
 
         return parsed;
+    }
+
+    ztest(){
+        var start = performance.now();
+        const alphanum = '0123456789abcdefghijklmnopqrstuvwxyz';
+        for(var p of alphanum ){
+            this.__load_zip_code(p);
+        }
+        var mem = process.memoryUsage();
+        console.log('time consumed: ', (performance.now()-start).toFixed(2), 'ms');
+        console.log('heap consumed: ', (mem.heapUsed/1024/1024).toFixed(2), ' / ', (mem.heapTotal/1024/1024).toFixed(2) );
     }
 }
 

@@ -71,6 +71,7 @@ module.exports = new address();
 yargs.option('addr', {describe: 'Address to parse'});
 yargs.option('update', {describe: 'Update all or specific data set'});
 yargs.option('debug', {describe: 'Enable debug print'});
+yargs.option('test', {describe: 'Test zip loading'});
 setTimeout(async ()=>{
     if( yargs.argv.addr ){
         var addr = new address(yargs.argv.debug);
@@ -79,5 +80,8 @@ setTimeout(async ()=>{
     if( yargs.argv.update ){
         await update.cities();
         await update.street_abbreviations();
+    }
+    if( yargs.argv.test ){
+        norm.ztest();
     }
 }, 1);
