@@ -41,6 +41,7 @@ const countries = [
     'RU',   // Russia,
     'TH',   // Thanilad
     'LI',   // Liechtenstein
+    'TR',   // Turkey
 ];
 // const countries = ['AT'];
 
@@ -317,6 +318,48 @@ class update {
 
     }
 
+    async _update_za_zipcodes(){
+        var cityFolder = path.join(tmp, 'cities');
+        if( !fs.existsSync(cityFolder) )fs.mkdirSync( cityFolder );
+        var zipFile = path.join(cityFolder, 'postalcodes.txt');
+        var url = "https://www.postoffice.co.za/Questions/postalcodes.txt";
+        try{
+            if( !fs.existsSync(zipFile) ){
+                console.log('downloading...', url);
+                fs.writeFileSync(zipFile, await this.aget(url));
+            }
+            var txtFile = zipFile
+            if( !fs.existsSync(txtFile) ){
+                console.log('Could not locate ', txtFile);
+                return;
+            };
+
+            var columns = [null, null, null, 'city', 'zip', null,'state', 'addr2', 
+                null, null, null, null, null, null, null, null, null, null,
+                null, null, null, null, null, null, null, null, null, null,
+                null, null, null, null, null, null, null, null, null, null,
+            ];
+            var options = {delimiter: ',', quote: '"', columns: columns, raw: false, info: false, relax_column_count: true};
+            try{
+                var cities = await utils.csv_to_array(txtFile, options);
+                for(var city of cities ){
+                    var parts = city.state.toLowerCase().split('/');
+                    var cityname = city.city.toLowerCase();
+                    if( !city.zip )continue;
+                    this._add_city_details( {city: cityname, state: parts[0], state_code: parts.length>1?parts[1]:'', country: 'za', zip: city.zip.toLowerCase()} );
+                    this._add_zipcode('za', parts.length>1?parts[1]:'', city.zip.toLowerCase(), cityname);
+                }
+            }catch(e){
+                console.log(e);
+            }
+        }catch(e){
+            console.log('exception:', e);
+            return null;
+        }
+
+    }
+
+
 
     async _update_jp_zipcodes(){
         var columns = ['zip', 'state', 'city', 'other'];
@@ -429,11 +472,22 @@ class update {
             var columns = ['zip', 'state', 'city', 'other'];
             var options = {delimiter: ',', quote: '"', columns: columns, raw: false, info: false, from: 1};
             var recs = await utils.csv_to_array(path.join(__dirname, 'jpzips.csv'), options);
+            var prefix={};
             for(var rec of recs ){
                 // this._add_city_details( {country: 'jp', state_code: statecode, city: city} );    // jp.json already gets this merged
+                var parts = rec.zip.split('-');
+                if( parts.length>1 && (!prefix[parts[0]+'-0000'] || parts[1]=='0000') )prefix[parts[0]+'-0000']=rec;
                 this._add_zipcode('jp', rec.state, rec.zip, rec.city);
             }
+            for(var z in prefix ){
+                this._add_zipcode('jp', prefix[z].state, z, prefix[z].city);
+            }
         }
+
+        if( c == 'ZA'){ //south africa
+            await this._update_za_zipcodes();
+        }
+
 
         if( c == 'BR' ){
             await this._update_br_zipcodes();

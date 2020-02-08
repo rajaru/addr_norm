@@ -132,6 +132,11 @@ var cases = {
         country: 'us',
         city: 'san francisco',
         state: 'ca'
+    },
+    "20/f shinjuku mitsui building 2-1-1 nishi-shinjuku shinjuku-ku (tokyo)   163-0456":{
+        country: 'jp',
+        city: 'shinjuku',
+        state: 'tokyo'
     }
 };
 

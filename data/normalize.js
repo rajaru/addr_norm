@@ -161,14 +161,24 @@ class anormalize {
         if( !countries){ zipcode=zip.split('-').join(''); countries = this.__zips(zipcode) ? Object.keys(this.__zips(zipcode)) : null;}
         if( !countries){ zipcode=zip.split(' ').join(''); countries = this.__zips(zipcode) ? Object.keys(this.__zips(zipcode)) : null;}
         if( !countries){ zipcode=zip; countries = argentina(zip)};
-        // if( !countries){
-        //     var re = /^(\d\d\d){1}-\d\d\d\d$/gim
-        //     var matches = re.exec(zip.replace(' ', '-'));
-        //     if( matches && matches.length>1 ){
-        //         console.log('zip could be jp', zipcode)
-        //         zipcode=matches[1]; countries = ['jp'];
-        //     }
-        // }
+        if( !countries){
+            var re = /^(\d\d\d){1}-\d\d\d\d$/gim
+            var matches = re.exec(zip.replace(' ', '-'));
+            if( matches && matches.length>1 ){
+                console.log('zip could be jp', zipcode)
+                zipcode=matches[1]; countries = ['jp'];
+            }
+        }
+        if( !countries){    // bermuda post boxes
+            var re = /^([a-z][a-z])-[a-z][a-z]$/gim
+            var matches = re.exec(zip.replace(' ', '-'));
+            if( matches && matches.length>1 ){
+                console.log('zip could be be', zipcode)
+                zipcode=matches[1]+'-01'; countries = ['be'];
+            }
+
+        }
+
         return {countries, zipcode};
 
     }
